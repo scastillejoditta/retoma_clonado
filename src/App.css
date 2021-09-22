@@ -27,6 +27,8 @@
 .App-text {
   font-size: calc(6px + 2vmin);
   max-width: 600px;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .App-mail {

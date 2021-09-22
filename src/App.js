@@ -1,11 +1,14 @@
-import logo from "./logo.svg";
+import styled from "styled-components";
+import Feminindex from "./assets/Feminindex";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <SvgWrapper>
+          <Feminindex />
+        </SvgWrapper>
         <p>Sitio en Construcción</p>
         <p className="App-text">
           Estamos trabajando en el Feminindex 2021, tercera edición del índice
@@ -18,5 +21,12 @@ function App() {
     </div>
   );
 }
+
+const SvgWrapper = styled.div`
+  > svg {
+    height: 200px;
+    width: 100%;
+  }
+`;
 
 export default App;
