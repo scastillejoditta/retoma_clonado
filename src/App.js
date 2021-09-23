@@ -12,7 +12,7 @@ function App() {
         <p>Sitio en Construcción</p>
         <p className="App-text">
           Estamos trabajando en el Feminindex 2021, tercera edición del índice
-          de Eco Feminita que releva las posiciones de les candidates sobre la
+          de Ecofeminita que releva las posiciones de les candidates sobre la
           agenda de género. Si sos candidate o formas parte de un equipo de
           campaña y querés responder, envianos un correo a{" "}
           <span className="App-mail">hola@ecofeminita.com</span>
