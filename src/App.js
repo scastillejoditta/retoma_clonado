@@ -1,32 +1,37 @@
-import styled from "styled-components";
-import Feminindex from "./assets/Feminindex";
-import "./App.css";
+import styled, { ThemeProvider } from "styled-components";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+
+import theme from "./utils/theme";
+import GlobalStyles from "./utils/globalStyles";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// Scenes
+import Home from "./scenes/Home";
+import About from "./scenes/About";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <SvgWrapper>
-          <Feminindex />
-        </SvgWrapper>
-        <p>Sitio en Construcción</p>
-        <p className="App-text">
-          Estamos trabajando en el Feminindex 2021, tercera edición del índice
-          de Ecofeminita que releva las posiciones de les candidates sobre la
-          agenda de género. Si sos candidate o formas parte de un equipo de
-          campaña y querés responder, envianos un correo a{" "}
-          <span className="App-mail">hola@ecofeminita.com</span>
-        </p>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/inicio" component={Home} />
+            <Route exact path="/sobre-nosotrxs" component={About} />
+          </Switch>
+          <Footer />
+        </Router>
+      </ThemeProvider>
+    </>
   );
 }
-
-const SvgWrapper = styled.div`
-  > svg {
-    height: 200px;
-    width: 100%;
-  }
-`;
 
 export default App;
