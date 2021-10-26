@@ -9,7 +9,7 @@ const Icon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M25 1L2 21L25 41" stroke="#4A4A4A" stroke-width="2" />
+      <path d="M25 1L2 21L25 41" stroke="#4A4A4A" strokeWidth="2" />
     </svg>
   );
 };

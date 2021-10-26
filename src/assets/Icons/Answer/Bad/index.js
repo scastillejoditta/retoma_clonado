@@ -19,9 +19,9 @@ const Icon = () => {
           opacity="0.3"
           d="M60.5354 8.67188C66.8461 8.67188 71.9881 13.8281 71.9881 20.1563V60.9375C71.9881 67.2656 66.8461 72.4219 60.5354 72.4219H55.744L42.1878 82.9688V72.4219H19.6331C13.3224 72.4219 8.18042 67.2656 8.18042 60.9375L8.41415 18.75C8.41415 18.75 7.24551 8.20312 16.5946 8.20312L60.5354 8.67188Z"
           stroke="black"
-          stroke-width="12"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="12"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
       </g>
@@ -32,9 +32,9 @@ const Icon = () => {
       <path
         d="M59.3667 7.5C65.6774 7.5 70.8194 12.6563 70.8194 18.9844V59.7656C70.8194 66.0938 65.6774 71.25 59.3667 71.25H54.5753L41.0191 81.7969V71.25H18.4644C12.1537 71.25 7.01172 66.0938 7.01172 59.7656L7.24545 17.5781C7.24545 17.5781 6.07681 7.03125 15.4259 7.03125L59.3667 7.5Z"
         stroke="white"
-        stroke-width="12"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
+        strokeWidth="12"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
         stroke-linejoin="round"
       />
       <path
@@ -44,9 +44,9 @@ const Icon = () => {
       <path
         d="M59.3668 7.5H18.4644C12.1537 7.5 7.01172 12.6563 7.01172 18.9844V59.7656C7.01172 66.0937 12.1537 71.25 18.4644 71.25H40.9023V81.7969L54.4585 71.25H59.2499C65.5605 71.25 70.7026 66.0937 70.7026 59.7656V18.8672C70.8194 12.5391 65.6774 7.5 59.3668 7.5Z"
         stroke="#4A4A4A"
-        stroke-width="2"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
         stroke-linejoin="round"
       />
       <path

@@ -9,7 +9,7 @@ const Icon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_139:1053)">
+      <g clipPath="url(#clip0_139:1053)">
         <g opacity="0.3">
           <path
             opacity="0.3"
@@ -20,9 +20,9 @@ const Icon = () => {
             opacity="0.3"
             d="M116.066 41.742C123.22 41.742 129.05 47.5913 129.05 54.7698V101.032C129.05 108.21 123.22 114.06 116.066 114.06H110.633L95.264 126.024V114.06H69.6925C62.5377 114.06 56.7079 108.21 56.7079 101.032L58.2979 41.2103H9.27466V9.30554H116.596L116.066 41.742Z"
             stroke="black"
-            stroke-width="12"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
+            strokeWidth="12"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
             stroke-linejoin="round"
           />
         </g>
@@ -33,9 +33,9 @@ const Icon = () => {
         <path
           d="M114.741 40.4127C121.896 40.4127 127.725 46.2619 127.725 53.4405V99.7024C127.725 106.881 121.896 112.73 114.741 112.73H109.309L93.9391 124.694V112.73H68.3675C61.2128 112.73 55.383 106.881 55.383 99.7024L56.9729 39.881H7.94971V7.9762H115.271L114.741 40.4127Z"
           stroke="white"
-          stroke-width="12"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="12"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
         <path
@@ -45,9 +45,9 @@ const Icon = () => {
         <path
           d="M114.741 40.4127H68.3675C61.2128 40.4127 55.383 46.2619 55.383 53.4405V99.7024C55.383 106.881 61.2128 112.73 68.3675 112.73H93.8066V124.694L109.176 112.73H114.608C121.763 112.73 127.593 106.881 127.593 99.7024V53.3076C127.725 46.129 121.896 40.4127 114.741 40.4127Z"
           stroke="#4A4A4A"
-          stroke-width="2"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="2"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
         <path

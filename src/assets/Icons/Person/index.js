@@ -11,7 +11,7 @@ const Icon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_42:538)">
+      <g clipPath="url(#clip0_42:538)">
         <g opacity="0.2">
           <g opacity="0.2">
             <path
@@ -32,27 +32,27 @@ const Icon = () => {
         <path
           d="M114.961 60.3338C114.961 77.0388 106.346 91.7356 93.1368 100.773C84.6176 106.615 75.2369 108.167 63.9418 108.167C60.2086 108.167 55.4226 109.719 51.8809 108.988C28.3334 104.15 10.7207 84.2503 10.7207 60.3338C10.7207 32.8573 34.0767 10.584 62.8888 10.584C91.6052 10.584 114.961 32.8573 114.961 60.3338Z"
           stroke="#4A4A4A"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="4"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
         <path
           d="M64.899 71.288H60.6873C45.0847 71.288 32.4495 83.3375 32.4495 98.2168V100.773C40.9687 106.615 51.498 110.084 62.7931 110.084C74.0882 110.084 84.6176 106.615 93.1368 100.773V98.2168C93.1368 83.3375 80.5016 71.288 64.899 71.288Z"
           fill="white"
           stroke="#4A4A4A"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="4"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
         <path
           d="M82.1289 52.8486C82.1289 62.9811 73.514 71.288 62.7932 71.288C52.1682 71.288 43.4575 63.0724 43.4575 52.8486C43.4575 42.716 52.0724 34.4092 62.7932 34.4092C73.514 34.5005 82.1289 42.716 82.1289 52.8486Z"
           fill="white"
           stroke="#4A4A4A"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="4"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
       </g>

@@ -1,17 +1,16 @@
-import React from "react";
 import styled from "styled-components";
 
 // Assets
-import Congress from "../../assets/Icons/Congress";
-import WorldGout from "../../assets/Icons/WorldGout";
-import Score from "../../assets/Icons/Score";
-import TeamIcon from "../../assets/Icons/Team";
-import PersonIcon from "../../assets/Icons/Person";
+import Congress from "../assets/Icons/Congress";
+import WorldGout from "../assets/Icons/WorldGout";
+import Score from "../assets/Icons/Score";
+import TeamIcon from "../assets/Icons/Team";
+import PersonIcon from "../assets/Icons/Person";
 
 // Components
-import Container from "../../components/Container";
-import Title from "../../components/Title";
-import Paragraph from "../../components/Paragraph";
+import Container from "../components/Container";
+import Title from "../components/Title";
+import Paragraph from "../components/Paragraph";
 
 const About = () => {
   return (

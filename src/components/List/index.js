@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 // Assets
@@ -9,18 +8,18 @@ import Twitter from "../../assets/Icons/Twitter";
 import Instagram from "../../assets/Icons/Instagram";
 
 const List = ({ onShowMenuInMobile }) => {
-  let history = useHistory();
+  // let history = useHistory();
 
-  const [selectedSection, setSelectedSection] = useState(
-    history.location.pathname || "/inicio"
-  );
+  // const [selectedSection, setSelectedSection] = useState(
+  //   history.location.pathname || "/inicio"
+  // );
 
-  const handleSelectedSection = (section) => {
-    setSelectedSection(section);
-    history.push(section);
-    onShowMenuInMobile(false);
-  };
-
+  // const handleSelectedSection = (section) => {
+  //   setSelectedSection(section);
+  //   history.push(section);
+  //   onShowMenuInMobile(false);
+  // };
+  let selectedSection = 'test'
   return (
     <>
       <Close onClick={() => onShowMenuInMobile(false)}>

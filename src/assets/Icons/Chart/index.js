@@ -9,7 +9,7 @@ const Icon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_139:1067)">
+      <g clipPath="url(#clip0_139:1067)">
         <g opacity="0.3">
           <path
             opacity="0.3"
@@ -20,9 +20,9 @@ const Icon = () => {
             opacity="0.3"
             d="M51.8 7.4C57.2 7.4 61.6 11.8 61.6 17.2V52C61.6 57.4 57.2 61.8 51.8 61.8H47.7L36.1 70.8V61.8H16.8C11.4 61.8 7 57.4 7 52L7.2 16C7.2 16 6.2 7 14.2 7L51.8 7.4Z"
             stroke="#020203"
-            stroke-width="12"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
+            strokeWidth="12"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
             stroke-linejoin="round"
           />
         </g>
@@ -33,26 +33,26 @@ const Icon = () => {
         <path
           d="M50.8 6.4C56.2 6.4 60.6 10.8 60.6 16.2V51C60.6 56.4 56.2 60.8 50.8 60.8H46.7L35.1 69.8V60.8H15.8C10.4 60.8 6 56.4 6 51L6.2 15C6.2 15 5.2 6 13.2 6L50.8 6.4Z"
           stroke="white"
-          stroke-width="12"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="12"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
         <path
           d="M50.8 6.4H15.8C10.4 6.4 6 10.8 6 16.2V51C6 56.4 10.4 60.8 15.8 60.8H35V69.8L46.6 60.8H50.7C56.1 60.8 60.5 56.4 60.5 51V16.1C60.6 10.7 56.2 6.4 50.8 6.4Z"
           fill="#D5D6D6"
           stroke="#4A494A"
-          stroke-width="2"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="2"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
         <path
           d="M50.8 6.4H15.8C10.4 6.4 6 10.8 6 16.2V51C6 56.4 10.4 60.8 15.8 60.8H35V69.8L46.6 60.8H50.7C56.1 60.8 60.5 56.4 60.5 51V16.1C60.6 10.7 56.2 6.4 50.8 6.4Z"
           stroke="#4A494A"
-          stroke-width="2"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="2"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
           stroke-linejoin="round"
         />
         <path d="M32.3001 27.7H26.1001V46.9H32.3001V27.7Z" fill="#697BAF" />
