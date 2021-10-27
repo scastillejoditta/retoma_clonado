@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import styled from "styled-components";
+import { useRouter } from 'next/router'
 
 // Assets
 import CloseIcon from "../../assets/Icons/Close";
@@ -8,18 +8,13 @@ import Twitter from "../../assets/Icons/Twitter";
 import Instagram from "../../assets/Icons/Instagram";
 
 const List = ({ onShowMenuInMobile }) => {
-  // let history = useHistory();
+  const router = useRouter()
 
-  // const [selectedSection, setSelectedSection] = useState(
-  //   history.location.pathname || "/inicio"
-  // );
+  const handleSelectedSection = (section) => {
+    router.push(section)
+    onShowMenuInMobile(false);
+  };
 
-  // const handleSelectedSection = (section) => {
-  //   setSelectedSection(section);
-  //   history.push(section);
-  //   onShowMenuInMobile(false);
-  // };
-  let selectedSection = 'test'
   return (
     <>
       <Close onClick={() => onShowMenuInMobile(false)}>
@@ -27,15 +22,13 @@ const List = ({ onShowMenuInMobile }) => {
       </Close>
       <Wrapper>
         <UnorderedList>
-          <ListItems selected={"/inicio" === selectedSection}>
-            <a onClick={() => handleSelectedSection("/inicio")}>Inicio</a>
+          <ListItems selected={router.asPath === "/"}>
+            <a onClick={() => handleSelectedSection("/")}>Inicio</a>
           </ListItems>
-          <ListItems selected={"/sobre-nosotrxs" === selectedSection}>
-            <a onClick={() => handleSelectedSection("/sobre-nosotrxs")}>
-              Sobre el proyecto
-            </a>
+          <ListItems selected={router.asPath === "/sobre-nosotrxs"}>
+            <a onClick={() => handleSelectedSection("/sobre-nosotrxs")}>Sobre el proyecto</a>
           </ListItems>
-          <ListItems selected={"/candidates" === selectedSection}>
+          <ListItems selected={router.asPath === "/candidates"}>
             <a onClick={() => handleSelectedSection("/candidates")}>
               Candidates
             </a>
