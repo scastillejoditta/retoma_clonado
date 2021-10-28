@@ -8,6 +8,8 @@ const Container = ({
   desktopPadding,
   margin,
   maxWidth,
+  mbHeight,
+  dsHeight
 }) => {
   return (
     <Wrapper
@@ -15,6 +17,8 @@ const Container = ({
       mobilePadding={mobilePadding}
       desktopPadding={desktopPadding}
       margin={margin}
+      mbHeight={mbHeight}
+      dsHeight={dsHeight}
       maxWidth={maxWidth}
     >
       {children}
@@ -27,12 +31,15 @@ const Wrapper = styled.main`
   margin: ${(props) => props.margin};
   background: ${(props) => props.theme.colors[props.background]};
 
+  height: ${props => props.mbHeight};
+
   position: relative;
   z-index: -1;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-width: ${(props) => props.theme.maxWidth[props.maxWidth]};
     padding: ${(props) => props.desktopPadding};
+    height: ${props => props.dsHeight};
   }
 `;
 

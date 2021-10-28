@@ -24,6 +24,7 @@ const theme = {
     primary: "#0092dd",
     feminindexRed: "#E5616E",
     dark: "#4A4A4A",
+    gray: '#EFEDED',
     natural: "#F6F4ED",
     white: "#FFF",
   },

@@ -1,12 +1,9 @@
 import React from "react";
+import styled from 'styled-components';
 
 const Icon = () => {
   return (
-    <svg
-      minWidth="33"
-      minHeight="33"
-      width="33"
-      height="33"
+    <Svg
       viewBox="0 0 127 122"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +32,7 @@ const Icon = () => {
           strokeWidth="4"
           strokeMiterlimit="10"
           strokeLinecap="round"
-          stroke-linejoin="round"
+          strokeLinejoin="round"
         />
         <path
           d="M64.899 71.288H60.6873C45.0847 71.288 32.4495 83.3375 32.4495 98.2168V100.773C40.9687 106.615 51.498 110.084 62.7931 110.084C74.0882 110.084 84.6176 106.615 93.1368 100.773V98.2168C93.1368 83.3375 80.5016 71.288 64.899 71.288Z"
@@ -44,7 +41,7 @@ const Icon = () => {
           strokeWidth="4"
           strokeMiterlimit="10"
           strokeLinecap="round"
-          stroke-linejoin="round"
+          strokeLinejoin="round"
         />
         <path
           d="M82.1289 52.8486C82.1289 62.9811 73.514 71.288 62.7932 71.288C52.1682 71.288 43.4575 63.0724 43.4575 52.8486C43.4575 42.716 52.0724 34.4092 62.7932 34.4092C73.514 34.5005 82.1289 42.716 82.1289 52.8486Z"
@@ -53,7 +50,7 @@ const Icon = () => {
           strokeWidth="4"
           strokeMiterlimit="10"
           strokeLinecap="round"
-          stroke-linejoin="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>
@@ -66,8 +63,17 @@ const Icon = () => {
           />
         </clipPath>
       </defs>
-    </svg>
+    </Svg>
   );
 };
+
+const Svg = styled.svg`
+  width: 115px;
+  height: 115px;
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
+    width: 250px;
+    height: 250px;
+  }
+`
 
 export default Icon;

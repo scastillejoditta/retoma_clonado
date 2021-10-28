@@ -1,0 +1,24 @@
+{
+    "positions": [
+        {
+            "title": "Derechos sexuales y reproductivos", 
+            "id": 1
+        },
+        {
+            "title": "Violencia Machista", 
+            "id": 2
+        },
+        {
+            "title": "Participacion Política", 
+            "id": 3
+        },
+        {
+            "title": "Economía Feminista", 
+            "id": 4
+        },
+        {
+            "title": "Derechos LGBTTTIQ", 
+            "id": 5
+        }
+    ]
+}

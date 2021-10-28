@@ -22,7 +22,7 @@ const Icon = () => {
           strokeWidth="12"
           strokeMiterlimit="10"
           strokeLinecap="round"
-          stroke-linejoin="round"
+          strokeLinejoin="round"
         />
       </g>
       <path
@@ -35,7 +35,7 @@ const Icon = () => {
         strokeWidth="12"
         strokeMiterlimit="10"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M59.3668 7.5H18.4644C12.1537 7.5 7.01172 12.6563 7.01172 18.9844V59.7656C7.01172 66.0938 12.1537 71.25 18.4644 71.25H40.9023V81.7969L54.4585 71.25H59.2499C65.5605 71.25 70.7026 66.0938 70.7026 59.7656V18.8672C70.8194 12.5391 65.6774 7.5 59.3668 7.5Z"
@@ -47,7 +47,7 @@ const Icon = () => {
         strokeWidth="2"
         strokeMiterlimit="10"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M48.6154 31.6406L44.7589 31.9922L45.8107 29.5312L55.1598 27.7734L55.5104 35.5078L56.9128 39.375L55.1598 42.8906L52.7057 50.2734L52.0045 53.3203L46.8625 54.7266L29.3329 52.2656L21.6199 50.625L21.2693 31.9922L27.2293 32.6953L35.6435 28.8281L37.7471 19.3359L41.4867 20.625L43.006 25.3125L41.9542 31.6406H48.6154Z"

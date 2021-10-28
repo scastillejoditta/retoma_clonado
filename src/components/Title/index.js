@@ -8,6 +8,7 @@ const Title = ({
   desktopFontSize = "",
   padding = 0,
   margin = 0,
+  weight
 }) => {
   return (
     <>
@@ -17,6 +18,7 @@ const Title = ({
         color={color}
         padding={padding}
         margin={margin}
+        weight={weight}
       >
         {children}
       </StyledTitle>
@@ -27,6 +29,8 @@ const Title = ({
 const StyledTitle = styled.h1`
   color: ${(props) => props.theme.colors[props.color]};
   font-size: ${(props) => props.theme.fontSizes[props.mobileFontSize]};
+  font-weight: ${props => props.weight};
+
   padding: ${(props) => props.padding};
 
   margin: ${(props) => props.margin};
