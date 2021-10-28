@@ -8,6 +8,9 @@ const Paragraph = ({
   desktopFontSize,
   mobilePadding = "",
   desktopPadding = "",
+  mobileMargin = "",
+  desktopMargin = "",
+  maxWidth
 }) => {
   return (
     <>
@@ -17,6 +20,9 @@ const Paragraph = ({
         color={color}
         mobilePadding={mobilePadding}
         desktopPadding={desktopPadding}
+        mobileMargin={mobileMargin}
+        desktopMargin={desktopMargin}
+        maxWidth={maxWidth}
       >
         {children}
       </StyledParagraph>
@@ -29,10 +35,13 @@ const StyledParagraph = styled.p`
   font-size: ${(props) => props.theme.fontSizes[props.mobileFontSize]};
   padding: ${(props) => props.mobilePadding};
   line-height: 1.5;
+  margin: ${(props) => props.mobileMargin};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
     font-size: ${(props) => props.theme.fontSizes[props.desktopFontSize]};
     padding: ${(props) => props.desktopPadding};
+    margin: ${(props) => props.desktopMargin};
+    max-width: ${(props) => props.maxWidth};
   }
 `;
 

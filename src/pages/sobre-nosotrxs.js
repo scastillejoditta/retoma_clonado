@@ -5,7 +5,7 @@ import Congress from "../assets/Icons/Congress";
 import WorldGout from "../assets/Icons/WorldGout";
 import Score from "../assets/Icons/Score";
 import TeamIcon from "../assets/Icons/Team";
-import PersonIcon from "../assets/Icons/Person";
+import PersonIcon from "../assets/Icons/SmallPerson";
 
 // Components
 import Container from "../components/Container";
@@ -226,6 +226,7 @@ const About = () => {
                     desktopFontSize="medium"
                     color="dark"
                     margin="0 0 1rem 0"
+                    weight='600'
                   >
                     Coordinación general
                   </Title>
@@ -249,6 +250,7 @@ const About = () => {
                     desktopFontSize="medium"
                     color="dark"
                     margin="0 0 1rem 0"
+                    weight='600'
                   >
                     Equipo de investigación de datos
                   </Title>
@@ -274,6 +276,7 @@ const About = () => {
                     desktopFontSize="medium"
                     color="dark"
                     margin="0 0 1rem 0"
+                    weight='600'
                   >
                     Ilustraciones
                   </Title>
@@ -297,6 +300,7 @@ const About = () => {
                     desktopFontSize="medium"
                     color="dark"
                     margin="0 0 1rem 0"
+                    weight='600'
                   >
                     Colaboran
                   </Title>
@@ -322,6 +326,7 @@ const About = () => {
                     desktopFontSize="medium"
                     color="dark"
                     margin="0 0 1rem 0"
+                    weight='600'
                   >
                     Equipo de metodología
                   </Title>
@@ -346,6 +351,7 @@ const About = () => {
                     desktopFontSize="medium"
                     color="dark"
                     margin="0 0 1rem 0"
+                    weight='600'
                   >
                     Equipo de comunicación
                   </Title>
@@ -370,6 +376,7 @@ const About = () => {
                     desktopFontSize="medium"
                     color="dark"
                     margin="0 0 1rem 0"
+                    weight='600'
                   >
                     Equipo de desarrollo
                   </Title>

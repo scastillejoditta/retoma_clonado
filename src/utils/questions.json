@@ -1,0 +1,29 @@
+{
+    "questions": [
+        {
+            "text": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'",
+            "icon": "good",
+            "id": 1
+        },
+        {
+            "text": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'",
+            "icon": "good",
+            "id": 2
+        },
+        {
+            "text": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'",
+            "icon": "good",
+            "id": 3
+        },
+        {
+            "text": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'",
+            "icon": "good",
+            "id": 4
+        },
+        {
+            "text": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'",
+            "icon": "bad",
+            "id": 5
+        }
+    ]
+}
