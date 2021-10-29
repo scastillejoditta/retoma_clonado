@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 
@@ -18,13 +19,17 @@ import BadWrapper from '../assets/Icons/BadWrapper';
 import generalPositions from '../utils/generalPositions.json';
 import questions from '../utils/questions.json';
 
+import { fetchRecords, fetchRecord } from '../utils/api';
+
 const questionIcon = {
   good: <GoodWrapper />,
   bad: <BadWrapper />
 }
 
 export default function Candidates() {
-  
+  const [axles, setAxles] = useState([])
+  const [axis, setAxis] = useState(null)
+
   const makeLeftColumn = (arr) => {
     let arrCopy = [...arr];
     let length = Math.ceil(arrCopy.length / 2);    
@@ -41,7 +46,26 @@ export default function Candidates() {
     let rightSide = arrCopy.splice(length);
 
     return rightSide;
-  }
+  } 
+
+  // Ejemplo para que vean cómo hacer el fetch de los datos
+  useEffect(() => {
+    const getAxles = async () => {
+      let axles = await fetchRecords('Ejes');
+      setAxles(axles);
+    }
+    const getAxis = async () => {
+      let axis = await fetchRecord('Ejes', 'rectVsQ5XkqjPweUq');
+      setAxis(axis);
+    }
+    getAxles();
+    getAxis();
+  }, []);
+
+
+  console.log(axles, 'axles', axis, 'axis');
+
+  console.log(process.env.URL_AIRTABLE_TOKEN);
 
   return (
     <>
