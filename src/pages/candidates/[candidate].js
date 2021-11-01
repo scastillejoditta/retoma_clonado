@@ -1,71 +1,152 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
+
 import styled from 'styled-components';
 
 
-import Container from '../components/Container';
-import Wrapper from '../components/Wrapper';
-import Title from '../components/Title';
-import Paragraph from '../components/Paragraph';
+import Container from '../../components/Container';
+import Wrapper from '../../components/Wrapper';
+import Title from '../../components/Title';
+import Paragraph from '../../components/Paragraph';
 
-import Person from '../assets/Icons/Person';
-import Score from '../assets/Icons/Score';
-import Twitter from '../assets/Icons/Twitter';
-import Facebook from '../assets/Icons/Facebook';
-import Message from '../assets/Icons/Message';
-import Positions from '../assets/Icons/Positions';
-import GoodWrapper from '../assets/Icons/GoodWrapper';
-import BadWrapper from '../assets/Icons/BadWrapper';
+import Person from '../../assets/Icons/Person';
+import Score from '../../assets/Icons/Score';
+import Twitter from '../../assets/Icons/Twitter';
+import Facebook from '../../assets/Icons/Facebook';
+import Message from '../../assets/Icons/Message';
+import Positions from '../../assets/Icons/Positions';
+import GoodWrapper from '../../assets/Icons/GoodWrapper';
+import BadWrapper from '../../assets/Icons/BadWrapper';
 
-import generalPositions from '../utils/generalPositions.json';
-import questions from '../utils/questions.json';
+import { fetchRecords, fetchRecord } from '../../utils/api';
 
-import { fetchRecords, fetchRecord } from '../utils/api';
-
-const questionIcon = {
-  good: <GoodWrapper />,
-  bad: <BadWrapper />
+const questionIcon = (score) => {
+  switch(true) {
+    case score > 0:
+      return <GoodWrapper />
+    case score <= 0:
+      return <BadWrapper />
+  }
 }
 
-export default function Candidates() {
+export default function Candidate() {
+  const router = useRouter()
+  const { candidate } = router.query
+
+  const [candidateData, setCandidate] = useState({})
+  const [questionsData, setQuestionsData] = useState([])
+  const [newCandidate, setNewCandidate] = useState({})
+  const [questionsOptionsData, setQuestionsOptionsData] = useState([])
   const [axles, setAxles] = useState([])
-  const [axis, setAxis] = useState(null)
+  const [axlesWihQuestionsAnswered, setAxlesWithQuestionsAnswered] = useState([])
 
-  const makeLeftColumn = (arr) => {
-    let arrCopy = [...arr];
-    let length = Math.ceil(arrCopy.length / 2);    
-
-    let leftSide = arrCopy.splice(0, length);
-  
-    return leftSide;
-  }
-
-  const makeRightColumn = (arr) => {
-    let arrCopy = [...arr];
-    let length = Math.ceil(arrCopy.length / 2);    
-
-    let rightSide = arrCopy.splice(length);
-
-    return rightSide;
-  } 
-
-  // Ejemplo para que vean cómo hacer el fetch de los datos
   useEffect(() => {
-    const getAxles = async () => {
-      let axles = await fetchRecords('Ejes');
-      setAxles(axles);
+    const fetchCandidate = async () => {
+      if(candidate) {
+        const res = await fetchRecord('Respuestas_Candidates', candidate)
+        setCandidate(res.data.fields);
+      }
     }
-    const getAxis = async () => {
-      let axis = await fetchRecord('Ejes', 'rectVsQ5XkqjPweUq');
-      setAxis(axis);
+    fetchCandidate();
+  }, [candidate])
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const res = await fetchRecords('Preguntas')
+      setQuestionsData(res.data.records);
+  }
+    fetchQuestions();
+
+  }, [candidateData])
+
+  useEffect(() => {
+    const fetchQuestionsOptions = async () => {
+      const res = await fetchRecords('Preguntas_Opciones')
+      setQuestionsOptionsData(res.data.records);
+  }
+  fetchQuestionsOptions();
+  }, [])
+
+  useEffect(() => {
+    const fetchAxles = async () => {
+      const res = await fetchRecords('Ejes')
+      setAxles(res.data.records);
+  }
+  fetchAxles();
+  }, [])
+
+  useEffect(() => {
+    if(candidateData, questionsData, questionsOptionsData) {
+      let options = [...questionsOptionsData]
+      let candidate = {...candidateData}
+      let questions = [...questionsData]
+      let optionsArr = []
+      let questionsArr = []
+
+      console.log(options, 'options')
+      options.map(opt => {
+        if(opt.fields.Opcion === candidate[opt.fields.Name]) {
+          optionsArr.push(opt.fields)
+        }
+
+        candidate = {
+          ...candidate,
+          answers: [...optionsArr]
+        }
+      })
+
+      questions
+        .filter(q => q.fields.Pregunta !== 'Comentario')
+        .map(q => {
+
+          let objFound = candidate?.answers?.find(ca => ca.Name === q.fields.Name)
+
+          objFound = {
+            ...objFound,
+            question: q.fields.Pregunta
+          }
+
+          if(objFound.Name) {
+            questionsArr.push(objFound)
+          }
+
+          candidate = {
+            ...candidate,
+            questions: [...questionsArr]
+          }
+        })
+        setNewCandidate(candidate)
     }
-    getAxles();
-    getAxis();
-  }, []);
+  }, [candidateData, questionsData, questionsOptionsData])
 
 
-  console.log(axles, 'axles', axis, 'axis');
+  useEffect(() => {
+    if(axles, newCandidate) {
+      let axlesCopy = [...axles]
+      let candidatesCopy = {...newCandidate}
 
-  console.log(process.env.URL_AIRTABLE_TOKEN);
+      let axlesWihQuestionsAnswered = axlesCopy.map(ax => {
+        let answers = [];
+        candidatesCopy?.questions?.map(cn => {
+          if(ax.fields.Pregunta_front.includes(cn.question)) {
+            answers.push(cn)
+          }
+        })
+        return {
+          ...ax,
+          answers: [...answers]
+        }
+      })
+      setAxlesWithQuestionsAnswered(axlesWihQuestionsAnswered)
+    }
+  }, [axles, newCandidate])
+
+  const getScoreSum = (arr) => {
+    let mapedArr = arr.map(q => q.Puntaje)
+    return mapedArr.reduce((el, acc) => el + acc, 0)
+  };
+
+  console.log(newCandidate, 'candidate', axlesWihQuestionsAnswered, 'axles-with-questions')
 
   return (
     <>
@@ -78,7 +159,7 @@ export default function Candidates() {
           </PersonWrapper>
           <div>
             <Title mobileFontSize='lg' weight='bold' margin='0 2rem 0 2rem' color='white'>
-              Nombre candidate
+              {candidateData?.Nombre}
             </Title>
             <ParagraphWrapper>
               <Paragraph weight='regular' mobileFontSize='base' mobileMargin='0 1rem' desktopMargin='4rem 2rem' maxWidth='20vw'>
@@ -144,24 +225,14 @@ export default function Candidates() {
           </Title>
           <ListWrapper>
             <Separator margin={'0 2.5rem 0 0'}>
-              {makeLeftColumn(generalPositions?.positions).map(position =>
-                <Li key={position.id} >
-                  <Title mobileFontSize='customBase' color='dark' margin='2rem 0 1rem 0'>
-                    {position.title}
-                  </Title>
-                  <Positions />
-                </Li>
-              )}
-            </Separator>
-            <Separator margin={'0 0 0 4.5rem'}>
-              {makeRightColumn(generalPositions?.positions).map(position =>
-                <Li key={position.id} >
-                  <Title mobileFontSize='customBase' color='dark' margin='2rem 0 1rem 0'>
-                    {position.title}
-                  </Title>
-                  <Positions />
-                </Li>
-              )}
+           {axlesWihQuestionsAnswered?.map((axis, idx) =>
+              <Li key={idx} >
+                <Title mobileFontSize='customBase' color='dark' margin='2rem 0 1rem 0'>
+                  {axis.fields.Eje}
+                </Title>
+                <Positions score={getScoreSum(axis.answers)} />
+              </Li>
+            )}
             </Separator>
           </ListWrapper>
         </div>
@@ -173,28 +244,22 @@ export default function Candidates() {
           </Title>
           <ListWrapper>
             <div>
-              {makeLeftColumn(questions?.questions).map(q =>
-                <Li key={q.id} background={'#EFEDED'}>
-                  <Paragraph mobileFontSize='customBase' color='dark' mobileMargin='2rem 0 1rem 0' mobilePadding='2.5rem'>
-                    {q.text}
-                  </Paragraph>
-                  <span>
-                    {questionIcon[q.icon]}
-                  </span>
-                </Li>
-              )}
-            </div>
-            <div>
-              {makeRightColumn(questions?.questions).map(q =>
-                <Li key={q.id} background={'#EFEDED'}>
-                  <Paragraph mobileFontSize='customBase' color='dark' mobileMargin='2rem 0 1rem 0' mobilePadding='2.5rem'>
-                    {q.text}
-                  </Paragraph>
-                  <span>
-                    {questionIcon[q.icon]}
-                  </span>
-                </Li>
-              )}
+              {newCandidate.questions ? 
+                newCandidate.questions.map((ans, idx) =>
+                  <Li key={idx} background={'#EFEDED'}>
+                    <Paragraph mobileFontSize='customBase' color='dark' weight='bold' mobilePadding='2.5rem 2.5rem 0 2.5rem'>
+                      {ans.question}:
+                    </Paragraph>
+                    <Paragraph mobileFontSize='customBase' color='dark' weight='normal' mobilePadding='0 2.5rem 2.5rem 2.5rem'>
+                      {ans.Opcion}
+                    </Paragraph>
+                    <span>
+                      {questionIcon(ans.Puntaje)}
+                    </span>
+                  </Li>
+              )
+              : null
+            }
             </div>
           </ListWrapper>
         </div>
