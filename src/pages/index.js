@@ -58,6 +58,7 @@ const Home = () => {
   const [selectedAxle, setSelectedAxle] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [quotes, setQuotes] = useState([]);
+  const [news, setNews] = useState([]);
   const [SelectedQuestion, setSelectedQuestion] = useState(null);
 
   useEffect(() => {
@@ -73,6 +74,13 @@ const Home = () => {
       }
     };
     getQuotes();
+    const getNews = async () => {
+      let news = await fetchRecords("Novedades");
+      if (news.data.records) {
+        setNews(_.sampleSize(news.data.records, 3));
+      }
+    };
+    getNews();
   }, []);
 
   const handleChange = (value) => {
@@ -226,7 +234,7 @@ const Home = () => {
           mbMargin="0 4rem"
           dsMargin="0 auto"
           maxWidth="768px"
-          dsPadding="2rem 0"
+          dsPadding="2rem 0 4rem 0"
           mbPadding="1rem 0"
         >
           <Machifrases>
@@ -234,7 +242,10 @@ const Home = () => {
               <Machifrase key={q.id}>
                 <AvatarWrapper>
                   {q.fields.Foto_Candidate ? (
-                    <Picture src={q.fields.Foto_Candidate} />
+                    <Picture
+                      alt={q.fields.Nombre_Candidate}
+                      src={q.fields.Foto_Candidate}
+                    />
                   ) : (
                     <Avatar />
                   )}
@@ -277,6 +288,43 @@ const Home = () => {
               </Machifrase>
             ))}
           </Machifrases>
+        </Wrapper>
+      </Container>
+      <Container background="white">
+        <Wrapper
+          mbMargin="0 2rem"
+          dsMargin="0 auto"
+          maxWidth="768px"
+          dsPadding="3rem 0"
+          mbPadding="2rem 0"
+        >
+          <Title mobileFontSize="lg" desktopFontSize="lg" color="dark">
+            Novedades
+          </Title>
+        </Wrapper>
+        <Wrapper
+          display="flex"
+          justifyCont="center"
+          mbMargin="0 4rem"
+          dsMargin="0 auto"
+          maxWidth="768px"
+          dsPadding="2rem 0 4rem 0"
+          mbPadding="1rem 0"
+        >
+          <Novedades>
+            {news.map((n) => (
+              <Noveded key={n.id} href={n.fields.Fuente} target="_blank">
+                <Title
+                  mobileFontSize="medium"
+                  desktopFontSize="medium"
+                  color="white"
+                  padding="0 0.5rem 0 0.5rem"
+                >
+                  {n.fields.Bajada}
+                </Title>
+              </Noveded>
+            ))}
+          </Novedades>
         </Wrapper>
       </Container>
     </>
@@ -393,6 +441,19 @@ const Machifrases = styled.div`
   }
 `;
 
+const Novedades = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
 const Machifrase = styled.div`
   background-color: ${(props) => props.theme.colors.dark};
   height: 100%;
@@ -405,6 +466,23 @@ const Machifrase = styled.div`
     margin-bottom: 0rem;
     margin-left: 4rem;
     min-height: 15rem;
+  }
+`;
+
+const Noveded = styled.a`
+  background-color: ${(props) => props.theme.colors.backgroundGray};
+  width: 100%;
+  height: 15rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  text-decoration-color: ${(props) => props.theme.colors.white};
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-bottom: 0rem;
+    width: 30%;
   }
 `;
 
