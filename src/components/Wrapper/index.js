@@ -18,6 +18,7 @@ const Wrapper = ({
   dsMargin,
   maxWidth,
   height,
+  flexWrap
 }) => {
   return (
     <>
@@ -34,6 +35,7 @@ const Wrapper = ({
         bottom={bottom}
         maxWidth={maxWidth}
         height={height}
+        flexWrap={flexWrap}
       >
         {children}
       </StyledWrapper>
@@ -56,6 +58,7 @@ const StyledWrapper = styled.section`
   height: ${(props) => props.height};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    flex-wrap: ${props => props.flexWrap};
     max-width: ${(props) => props.maxWidth};
     margin: ${(props) => props.dsMargin};
     padding: ${(props) => props.dsPadding};

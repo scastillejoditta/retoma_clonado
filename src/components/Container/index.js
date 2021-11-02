@@ -10,7 +10,11 @@ const Container = ({
   maxWidth,
   mbHeight,
   dsHeight,
-  zIndex
+  display,
+  flexWrap,
+  flexDir,
+  zIndex,
+  dsMargin
 }) => {
   return (
     <Wrapper
@@ -21,6 +25,10 @@ const Container = ({
       mbHeight={mbHeight}
       dsHeight={dsHeight}
       maxWidth={maxWidth}
+      display={display}
+      flexWrap={flexWrap}
+      flexDir={flexDir}
+      dsMargin={dsMargin}
       zIndex={zIndex}
     >
       {children}
@@ -40,8 +48,11 @@ const Wrapper = styled.main`
   z-index: ${props => props.zIndex};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    max-width: ${(props) => props.theme.maxWidth[props.maxWidth]};
+    display: ${props => props.display};
+    flex-wrap: ${props => props.flexWrap};
+    max-width: ${(props) => props.maxWidth};
     padding: ${(props) => props.desktopPadding};
+    margin: ${(props) => props.dsMargin};
     height: ${(props) => props.dsHeight};
   }
 `;
