@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 
 import styled from 'styled-components';
 
@@ -43,8 +43,12 @@ export default function Candidate() {
   useEffect(() => {
     const fetchCandidate = async () => {
       if(candidate) {
-        const res = await fetchRecord('Respuestas_Candidates', candidate)
-        setCandidate(res.data.fields);
+        try {
+          const res = await fetchRecord('Respuestas_Candidates', candidate)
+          setCandidate(res.data.fields)
+        } catch (err) {
+          Router.push('/candidates');
+        }       
       }
     }
     fetchCandidate();

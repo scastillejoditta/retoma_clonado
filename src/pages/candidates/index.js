@@ -20,7 +20,6 @@ const Candidates = () => {
   const [inputValue, setInputValue] = useState('')
 
   const scoreIcon = (score) => {
-    console.log(score);
     switch(true) {
       case score >= 4:
         return <PositiveScore />

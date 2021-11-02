@@ -19,8 +19,6 @@ const Icon = ({ score }) => {
 
   let amount = amountOfPathsToFill(parseInt(score))
 
-  console.log(amount)
-
   return (
     <svg width="253" height="42" viewBox="0 0 253 42" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clipPath="url(#clip0_2:12260)">

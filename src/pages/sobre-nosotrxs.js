@@ -56,7 +56,7 @@ const About = () => {
       <Container background="natural" mobilePadding={"2rem 4rem"}>
         <Wrapper>
           <Title mobileFontSize="lg" desktopFontSize="lg" color="dark">
-            Preguntas y puntajes
+            Metodología
           </Title>
           <Paragraph
             mobileFontSize="base"
@@ -94,19 +94,14 @@ const About = () => {
                 color="white"
                 margin="0"
               >
-                Preguntas y puntajes
+                Preguntas
               </Title>
               <Paragraph
                 mobileFontSize="base"
                 desktopFontSize="customBase"
                 color="white"
               >
-                Estamos enviando el formulario con las preguntas del FeminIndex
-                a candidatos y candidatas de gran parte de los espacios que se
-                presentan a estas elecciones. Volcaremos sus respuestas y en
-                casos en que no nos contesten, haremos una búsqueda entre sus
-                declaraciones públicas. Quienes tengan información para
-                compartir pueden contactarnos a economiafeminita@gmail.com.
+                Las preguntas fueron elaboradas en un proceso de discusión de Ecofeminita, con la asistencia técnica del equipo de Géneros de Fundar. El indice no agota todos los temas y es por eso que está abierto a que puedan sugerir elementos y sumarse a la discusión con el fin de incorporar cada vez mas tópicos y, sobre todo, hacer llegar información precisa a toda la sociedad. No se incluye trayectoria previa de los/las candidates, dado que puede afectar el puntaje de quienes se postulan por primera vez y porque las posiciones frente a distintos temas de una misma persona pueden modificar a lo largo del tiempo. Quienes tengan comentarios o sugerencias pueden escribirnos a hola@ecofeminita.com
               </Paragraph>
             </Container>
             <AnswersWrapper>
@@ -123,7 +118,9 @@ const About = () => {
                 color="dark"
                 padding="0 1rem"
               >
-                La mayoría de las preguntas admiten como respuesta: "estoy totalmente de acuerdo", "estoy parcialmente de acuerdo", "no estoy de acuerdo", "no sabe/no contesta". En algunos casos se pregunta específicamente como votarían sobre determinados proyectos que avancen la agenda feminista.
+                La mayoría de las preguntas admiten como respuesta: "estoy totalmende de acuerdo", "estoy parcialmente de acuerdo", "no estoy de acuerdo", "no sabe/no contesta". En algunos casos se pregunta específicamente como votarían sobre determinados proyectos que avancen la agenda feminista.
+
+Les candidates tienen la posibilidad de justificar o enviar comentarios a sus respuestas. Se pide que se envien proyectos de su autoría o co-autoría que regulen temas relevados en la encuesta.
               </Paragraph>
               <Paragraph
                 mobileFontSize="base"
@@ -391,6 +388,7 @@ const ScoreWrapper = styled.div`
 const AnswersWrapper = styled.div`
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-left: 4rem;
+    margin-top: 4rem;
   }
 `;
 
