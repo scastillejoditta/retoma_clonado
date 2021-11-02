@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import _ from "lodash";
+import {
+  FacebookShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+} from "react-share";
 
 import styled from "styled-components";
 
@@ -13,7 +18,7 @@ import Mobile from "/public/images/Bancas/Mobile/Mobile.png";
 import Avatar from "../assets/Icons/Avatar";
 import Twitter from "../assets/Icons/Twitter";
 import Facebook from "../assets/Icons/Facebook";
-import Message from "../assets/Icons/Message";
+import Telegram from "../assets/Icons/Telegram";
 
 // Components
 import Container from "../components/Container";
@@ -274,13 +279,32 @@ const Home = () => {
                     <span>Compartir</span>
                     <SocialMedia>
                       <span>
-                        <Twitter />
+                        <TwitterShareButton
+                          url={`https://feminindex.com`}
+                          title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                          hashtag={"#Machifrases"}
+                          description={"Machifrases"}
+                        >
+                          <Twitter />
+                        </TwitterShareButton>
                       </span>
                       <span>
-                        <Facebook />
+                        <FacebookShareButton
+                          url={`https://feminindex.com`}
+                          quote={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                          hashtag={"#Machifrases"}
+                          description={"Machifrases"}
+                        >
+                          <Facebook />
+                        </FacebookShareButton>
                       </span>
                       <span>
-                        <Message />
+                        <TelegramShareButton
+                          url={`https://feminindex.com`}
+                          title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                        >
+                          <Telegram />
+                        </TelegramShareButton>
                       </span>
                     </SocialMedia>
                   </Share>
