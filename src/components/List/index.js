@@ -34,13 +34,13 @@ const List = ({ onShowMenuInMobile }) => {
             </a>
           </ListItems>
           <SocialMedia>
-            <MediaIconsWrapper>
+            <MediaIconsWrapper href='https://twitter.com/EcoFeminita' target='_blank'>
               <Twitter />
             </MediaIconsWrapper>
-            <MediaIconsWrapper>
+            <MediaIconsWrapper href='https://www.facebook.com/ecofeminita' target='_blank'>
               <Facebook />
             </MediaIconsWrapper>
-            <MediaIconsWrapper>
+            <MediaIconsWrapper href='https://www.instagram.com/ecofeminita' target='_blank'>
               <Instagram />
             </MediaIconsWrapper>
           </SocialMedia>
@@ -65,6 +65,8 @@ const UnorderedList = styled.ul`
 
   min-width: 100vw;
   min-height: 100vh;
+
+  z-index: 1;
 
   background: ${(props) => props.theme.colors.feminindexRed};
 
@@ -128,7 +130,7 @@ const Close = styled.button`
   background: transparent;
   border: none;
 
-  z-index: 1;
+  z-index: 2;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: none;

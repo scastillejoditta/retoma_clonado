@@ -1,15 +1,16 @@
 import React from "react";
+import Link from 'next/link';
 import styled from "styled-components";
 
 // Assets
 import Twitter from "../../assets/Icons/Twitter";
 import Facebook from "../../assets/Icons/Facebook";
 import Instagram from "../../assets/Icons/Instagram";
-import Linkedin from "../../assets/Icons/Linkedin";
+import Telegram from "../../assets/Icons/Telegram";
 import Youtube from "../../assets/Icons/Youtube";
 import FooterEcoFeminita from "../../assets/Icons/FooterEcofeminita";
 import Wingu from "../../assets/Icons/Wingu";
-import Luminate from "../../assets/Icons/Luminate";
+import Fundar from "../../assets/Images/fundar.png";
 
 // Components
 import Container from "../../components/Container";
@@ -20,42 +21,42 @@ const Footer = () => {
       <FirstSectionWrapper>
         <UnorderedList>
           <ListItems>
-            <a>Candidates</a>
+            <Link href={'/candidates'}>Candidates</Link>
           </ListItems>
           <ListItems>
-            <a>Sobre el proyecto</a>
+            <Link href={'/sobre-nosotrxs'}>Sobre el proyecto</Link>
           </ListItems>
           <ListItems>
-            <a>Economía Femini(s)ta</a>
+            <a href='https://ecofeminita.com/' target='_blank'>Economía Femini(s)ta</a>
           </ListItems>
           <ListItems>
-            <a>Club EcoFeminita</a>
+            <a href='https://ecofeminita.com/club-ecofeminita/' target='_blank'>Club EcoFeminita</a>
           </ListItems>
         </UnorderedList>
 
         <SocialMediaList>
           <MediaIconsWrapper>
-            <a>
-              <Twitter />
+            <a href='https://twitter.com/EcoFeminita' target='_blank'>
+              <Twitter  />
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a>
-              <Facebook />
+            <a href='https://www.facebook.com/ecofeminita' target='_blank'>
+              <Facebook  />
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a>
+            <a href='https://www.instagram.com/ecofeminita' target='_blank'>
               <Instagram />
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a>
-              <Linkedin />
+            <a href='https://t.me/economiafeminita' target='_blank'>
+              <Telegram  />
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a>
+            <a href='https://www.youtube.com/channel/UCfykyqoI8gBCdpohn4veXCA' target='_blank'>
               <Youtube />
             </a>
           </MediaIconsWrapper>
@@ -67,15 +68,21 @@ const Footer = () => {
         <ProjectMadeByList>
           <EcoFeminitaWrapper>
             <ProjectMadeItem>
-              <FooterEcoFeminita />
+              <a href='https://ecofeminita.com/' target='_blank'>
+                <FooterEcoFeminita />
+              </a>
             </ProjectMadeItem>
           </EcoFeminitaWrapper>
           <WinguAndLuminateWrapper>
             <ProjectMadeItem>
-              <Wingu />
+              <a href='https://www.winguweb.org' target='_blank' >
+                <Wingu />
+              </a>
             </ProjectMadeItem>
             <ProjectMadeItem>
-              <Luminate />
+              <a href='https://www.fund.ar/' target='_blank'>
+                <img src={Fundar} />
+              </a>
             </ProjectMadeItem>
           </WinguAndLuminateWrapper>
         </ProjectMadeByList>
@@ -113,6 +120,11 @@ const ListItems = styled.li`
   cursor: pointer;
 
   margin: 1rem 0;
+
+  > a {
+    color: ${(props) => props.theme.colors.white};
+    text-decoration: none;
+  }
 `;
 
 const SocialMediaList = styled.ul`

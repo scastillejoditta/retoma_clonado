@@ -10,6 +10,7 @@ const Container = ({
   maxWidth,
   mbHeight,
   dsHeight,
+  zIndex
 }) => {
   return (
     <Wrapper
@@ -20,6 +21,7 @@ const Container = ({
       mbHeight={mbHeight}
       dsHeight={dsHeight}
       maxWidth={maxWidth}
+      zIndex={zIndex}
     >
       {children}
     </Wrapper>
@@ -35,6 +37,7 @@ const Wrapper = styled.main`
 
   position: relative;
   // z-index: -1;
+  z-index: ${props => props.zIndex};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-width: ${(props) => props.theme.maxWidth[props.maxWidth]};

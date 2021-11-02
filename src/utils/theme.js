@@ -10,6 +10,7 @@ const theme = {
     extended: "28px",
     lg: "30px",
     xlg: "35px",
+    customXlg: '45px',
     xl: "50px",
     xxl: "64px",
     customXxl: "72px",

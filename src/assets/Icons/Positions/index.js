@@ -1,22 +1,25 @@
 import React, { useRef } from "react";
 
 const Icon = ({ score }) => {
-  const amountOfPathsToFill = (score) => {
-    let checkIfNegative = Math.sign(score) === -1;
+  const amountOfPathsToFill = () => {
+    let scoreCopy = score;
+    let checkIfNegative = Math.sign(scoreCopy) === -1;
     if(checkIfNegative) {
       return {
-        value: score - 1,
+        value: Math.round(scoreCopy * (-1)),
         type: 'negative'
       }
     } else {
       return {
-        value: score + 1,
+        value: Math.round(scoreCopy * 3),
         type: 'positive'
       }
     }
   } 
 
   let amount = amountOfPathsToFill(parseInt(score))
+
+  console.log(amount)
 
   return (
     <svg width="253" height="42" viewBox="0 0 253 42" fill="none" xmlns="http://www.w3.org/2000/svg">

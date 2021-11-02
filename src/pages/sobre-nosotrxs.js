@@ -3,7 +3,7 @@ import styled from "styled-components";
 // Assets
 import Congress from "../assets/Icons/Congress";
 import WorldGout from "../assets/Icons/WorldGout";
-import Score from "../assets/Icons/Score";
+import PositiveScore from "../assets/Icons/PositiveScore";
 import TeamIcon from "../assets/Icons/Team";
 import PersonIcon from "../assets/Icons/SmallPerson";
 
@@ -23,7 +23,7 @@ const About = () => {
             </span>
 
             <div>
-              <Title mobileFontSize="xlg" desktopFontSize="xl" color="white">
+              <Title mobileFontSize="xlg" desktopFontSize="xl" color="white" margin='1rem 0'>
                 Sobre el proyecto
               </Title>
               <Paragraph
@@ -31,11 +31,7 @@ const About = () => {
                 desktopFontSize="customBase"
                 color="white"
               >
-                En estos días estamos compartiendo el{" "}
-                <strong>Cuestionario del FeminIndex</strong> con candidatos y
-                candidatas de diferentes espacios. Te invitamos a que le pidas
-                sus respuestas a tu candidato/a favorito/a compartiendo el
-                siguiente formulario.
+                El Feminindex es un proyecto de Ecofeminita y Wingu, con apoyo técnico de la Fundación para el Desarrollo Argentino. La primera edición del Feminindex se elaboró en 2017, en ocasión de las elecciones legislativas de ese año, con el objetivo de mapear las posiciones de les candidates con respecto a la agenda feminista. Temas como aborto, cupo laboral trans o paridad eran indagados en esa edición y probaron ser de extrema utilidad para las futuras discusiones públicas que darían los feminismos argentinos.
               </Paragraph>
             </div>
           </div>
@@ -52,12 +48,7 @@ const About = () => {
             desktopFontSize="customBase"
             color="dark"
           >
-            El FeminIndex es una herramienta para mapear el estado del debate en
-            torno a los principales tópicos de la agenda de género: derechos
-            sexuales y reproductivos, participación política y económica,
-            violencia machista y derechos LGBTTTIQ+. Este índice pretende
-            mostrar la posición de lxs principales candidatxs que se presentan a
-            las elecciones PASO en agosto y las generales de octubre 2019.
+            FeminIndex es una plataforma digital que busca transparentar las posiciones de les candidates a las elecciones legislativas de 2021 respecto de la agenda feminista, promoviendo la participación ciudadana y la decisión informada en los comicios, asi como la rendición de cuentas de les candidates. Tenemos el objetivo de incidir en las campañas electorales y los compromisos políticos, instalando diversos temas en la agenda electoral que hacen a la igualdad real de mujeres y personas LGBTTTIQ+.
           </Paragraph>
         </Wrapper>
       </Container>
@@ -72,47 +63,14 @@ const About = () => {
             desktopFontSize="customBase"
             color="dark"
           >
-            El FeminIndex es una herramienta para mapear el estado del debate en
-            torno a los principales tópicos de la agenda de género: derechos
-            sexuales y reproductivos, participación política y económica,
-            violencia machista y derechos LGBTTTIQ+. Este índice pretende
-            mostrar la posición de lxs principales candidatxs que se presentan a
-            las elecciones PASO en agosto y las generales de octubre 2019.
+            El Feminindex es un índice elaborado en base a 15 preguntas distribuidas en 5 ejes temáticos: derechos sexuales y reproductivos, participación política, derechos LGBTTTIQ+, economía feminista y violencia machista. Les candidates pueden responder en una escala de acuerdo entre cuatro opciones que miden su nivel de acuerdo con la pregunta planteada. Las respuestas que avanzan los temas de la agenda feminista suman, las respuestas que son perjudiciales para la agenda de género restan y no sabe/no contesta no suma ningún punto. A partir de las respuestas se elabora un puntaje de cada candidate.
           </Paragraph>
-          <Container background="feminindexRed" margin={"2rem 0"}>
-            <WorldGoutWrapper>
-              <WorldGout />
-            </WorldGoutWrapper>
-            <Paragraph
-              mobileFontSize="base"
-              desktopFontSize="customBase"
-              color="white"
-              mobilePadding={"1.5rem"}
-              desktopPadding={"1.5rem 3rem"}
-            >
-              Además, hay una mención extra para quienes adhieren a la campaña{" "}
-              <span style={{ color: "#00000", fontWeight: 600 }}>
-                #MenstruAcción
-              </span>
-              . Al mismo tiempo, hay una penalización para quienes hayan
-              realizado declaraciones en contra de algunos de estos temas que
-              son sensibles a la perspectiva feminista o hayan protagonizado
-              escenas de machismo explícito.{" "}
-              <strong>En esos casos visualizaremos las «Machifrases»</strong>.
-              Si encontrás alguna que te parezca que tiene que estar si o si,
-              mandanos a economiafeminita@gmail.com
-            </Paragraph>
-          </Container>
           <Paragraph
             mobileFontSize="base"
             desktopFontSize="customBase"
             color="dark"
-            padding="1rem"
           >
-            No se incluye trayectoria previa de los/as candidates, dado que
-            puede afectar el puntaje de quienes se postulan por primera vez y
-            porque además, las posiciones frente a distintos temas de una misma
-            persona se pueden modificar a lo largo del tiempo.
+            El indice no agota todos los temas y es por eso que está abierto a que puedan sugerir elementos y sumarse a la discusión con el fin de incorporar cada vez mas tópicos y, sobre todo, hacer llegar información precisa a toda la soiedad. No se incluye trayectoria previa de los/las candidates, dado que puede afectar el puntaje de quienes se postulan por primera vez y porque las posiciones frente a distintos temas de una misma persona pueden modificar a lo largo del tiempo.
           </Paragraph>
         </Wrapper>
       </Container>
@@ -122,13 +80,13 @@ const About = () => {
           <ScoreWrapper>
             <Container
               background="dark"
-              margin="0"
+              margin="1rem 0"
               desktopPadding="5rem 2.5rem"
               mobilePadding="1.5rem"
               maxWidth="xs"
             >
               <ScoreIconWrapper>
-                <Score />
+                <PositiveScore />
               </ScoreIconWrapper>
               <Title
                 mobileFontSize="lg"
@@ -156,21 +114,16 @@ const About = () => {
                 mobileFontSize="lg"
                 desktopFontSize="lg"
                 color="feminindexRed"
-                padding="1rem"
-                margin="0"
               >
-                Todas las preguntas admiten como respuesta:
+                Respuestas:
               </Title>
               <Paragraph
                 mobileFontSize="base"
                 desktopFontSize="customBase"
                 color="dark"
+                padding="0 1rem"
               >
-                <ul>
-                  <li>Sí</li>
-                  <li>No</li>
-                  <li>No sabe/No contesta</li>
-                </ul>
+                La mayoría de las preguntas admiten como respuesta: "estoy totalmente de acuerdo", "estoy parcialmente de acuerdo", "no estoy de acuerdo", "no sabe/no contesta". En algunos casos se pregunta específicamente como votarían sobre determinados proyectos que avancen la agenda feminista.
               </Paragraph>
               <Paragraph
                 mobileFontSize="base"
@@ -178,27 +131,7 @@ const About = () => {
                 color="dark"
                 padding="0 1rem"
               >
-                Se da opción de justificar la respuesta en 300 caracteres.
-              </Paragraph>
-              <Paragraph
-                mobileFontSize="base"
-                desktopFontSize="customBase"
-                color="dark"
-                margin="1rem 0"
-                padding="0 1rem"
-              >
-                Se pide que se envíe link con proyectos de ley (de autoría de la
-                persona o de su partido/alianza) sobre la temática.
-              </Paragraph>
-              <Paragraph
-                mobileFontSize="base"
-                desktopFontSize="customBase"
-                color="dark"
-                padding="0 1rem"
-              >
-                Podés ver cómo resultó el{" "}
-                <span style={{ color: "#E5616E" }}>FeminIndex 2017</span> en
-                nuestra <span style={{ color: "#E5616E" }}>página web</span>.
+                Les candidates tienen la posibilidad de justificar o enviar comentarios a sus respuestas. Se pide que se envien proyectos de su autoría o co-autoría que regulen temas relevados en la encuesta.
               </Paragraph>
             </AnswersWrapper>
           </ScoreWrapper>
@@ -235,7 +168,7 @@ const About = () => {
                     desktopFontSize="regular"
                     color="dark"
                   >
-                    Merceedes D'Alessandro
+                    Emilia Cerra y Sebastián Neter
                   </Paragraph>
                 </PersonDescription>
               </PersonWrapper>
@@ -259,9 +192,7 @@ const About = () => {
                     desktopFontSize="regular"
                     color="dark"
                   >
-                    Andrés Snitcofsky, Emilia Cerra, Justina Lee, Lucía
-                    Espiñera, Pilar Navone, Delfina Sienra, Mercedes
-                    D'Alessandro.
+                    Emilia Cerra, Sofía Jaime, Sabina Bercovich, Manuel Rodríguez, Julieta Molina, Micaela Fernández Erlauer, Camila Piscicelli, María Torrengo, Eliana Colombo, Tatiana Encina, María Paz Rodríguez
                   </Paragraph>
                 </PersonDescription>
               </PersonWrapper>
@@ -278,14 +209,14 @@ const About = () => {
                     margin="0 0 1rem 0"
                     weight='600'
                   >
-                    Ilustraciones
+                    Planificación y asistencia organizacional:
                   </Title>
                   <Paragraph
                     mobileFontSize="base"
                     desktopFontSize="regular"
                     color="dark"
                   >
-                    Lina Castellanos
+                    Andrés Snitcofsky, Candelaria Botto
                   </Paragraph>
                 </PersonDescription>
               </PersonWrapper>
@@ -302,15 +233,14 @@ const About = () => {
                     margin="0 0 1rem 0"
                     weight='600'
                   >
-                    Colaboran
+                    Diseño gráfico
                   </Title>
                   <Paragraph
                     mobileFontSize="base"
                     desktopFontSize="regular"
                     color="dark"
                   >
-                    Cecilia Nicolini, Catherine D'Ignazio, Andrea Gil, Sol
-                    Minoldo, Anto Beccari, Belén Sanchez, Melisa Bokser.
+                    China Rodríguez, Hugo Medina
                   </Paragraph>
                 </PersonDescription>
               </PersonWrapper>
@@ -328,15 +258,14 @@ const About = () => {
                     margin="0 0 1rem 0"
                     weight='600'
                   >
-                    Equipo de metodología
+                    Asistencia técnica:
                   </Title>
                   <Paragraph
                     mobileFontSize="base"
                     desktopFontSize="regular"
                     color="dark"
                   >
-                    Laura Belli, Justina Lee, Emilia Cerra, Mercedes
-                    D'Alessandro.
+                    Equipo de Géneros de la Fundación para el Desarrollo Argentino (Fundar)
                   </Paragraph>
                 </PersonDescription>
               </PersonWrapper>
@@ -353,15 +282,14 @@ const About = () => {
                     margin="0 0 1rem 0"
                     weight='600'
                   >
-                    Equipo de comunicación
+                    Asistencia metodológica: 
                   </Title>
                   <Paragraph
                     mobileFontSize="base"
                     desktopFontSize="regular"
                     color="dark"
                   >
-                    Aldana Vales, Paloma Mila, Flor Tundis, Mercedes
-                    D'Alessandro.
+                    Equipo de Datos de la Fundación para el Desarrollo Argentino (Fundar)
                   </Paragraph>
                 </PersonDescription>
               </PersonWrapper>
@@ -378,14 +306,38 @@ const About = () => {
                     margin="0 0 1rem 0"
                     weight='600'
                   >
-                    Equipo de desarrollo
+                    Equipo de Desarrollo (Wingu):
                   </Title>
                   <Paragraph
                     mobileFontSize="base"
                     desktopFontSize="regular"
-                    color="feminindexRed"
+                    color="dark"
                   >
-                    Wingu
+                    Franco Alemandi, Brian Knoll, Martín Cravero
+                  </Paragraph>
+                </PersonDescription>
+              </PersonWrapper>
+
+              <PersonWrapper>
+                <PersonIconWrapper>
+                  <PersonIcon />
+                </PersonIconWrapper>
+                <PersonDescription>
+                  <Title
+                    mobileFontSize="regular"
+                    desktopFontSize="medium"
+                    color="dark"
+                    margin="0 0 1rem 0"
+                    weight='600'
+                  >
+                    Equipo de comunicación:
+                  </Title>
+                  <Paragraph
+                    mobileFontSize="base"
+                    desktopFontSize="regular"
+                    color="dark"
+                  >
+                    China Rodríguez, Celina Santellán, Micaela Robles
                   </Paragraph>
                 </PersonDescription>
               </PersonWrapper>
@@ -438,7 +390,7 @@ const ScoreWrapper = styled.div`
 
 const AnswersWrapper = styled.div`
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-left: 3rem;
+    margin-left: 4rem;
   }
 `;
 
