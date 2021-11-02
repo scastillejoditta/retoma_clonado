@@ -10,7 +10,7 @@ const theme = {
     extended: "28px",
     lg: "30px",
     xlg: "35px",
-    customXlg: '45px',
+    customXlg: "45px",
     xl: "50px",
     xxl: "64px",
     customXxl: "72px",
@@ -29,6 +29,7 @@ const theme = {
     natural: "#F6F4ED",
     white: "#FFF",
     backgroundRed: "#e4626f",
+    backgroundGray: "#C4C4C4",
   },
   breakpoints: {
     xxs: "374px",
