@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Router, { useRouter } from 'next/router'
+import Router, { useRouter, getQueryParams } from 'next/router'
 
 import {
   FacebookShareButton,
@@ -19,7 +19,7 @@ import Paragraph from '../../components/Paragraph';
 import Person from '../../assets/Icons/Person';
 import PositiveScore from '../../assets/Icons/PositiveScore';
 import MediumScore from '../../assets/Icons/MediumScore';
-import NegativeScore from '../../assets/Icons/NegativeScore';
+import NegativeScore from '../../assets/Icons/NegativeScoree';
 import Twitter from '../../assets/Icons/Twitter';
 import Facebook from '../../assets/Icons/Facebook';
 import Telegram from '../../assets/Icons/Telegram';
@@ -40,7 +40,8 @@ const questionIcon = (score) => {
 
 export default function Candidate() {
   const router = useRouter()
-  const { candidate } = router.query
+  const { candidate, score } = router.query
+
 
   const [candidateData, setCandidate] = useState({})
   const [questionsData, setQuestionsData] = useState([])
@@ -263,13 +264,13 @@ export default function Candidate() {
           </div>
           <SvgWrapper>
             {scoreIcon(finalScore)}
-            <span>{finalScore}</span>
+            <span>{Number.isInteger(Math.round(finalScore * 10)/10) ? Math.round(finalScore * 10)/10 + '.0' : Math.round(finalScore * 10)/10 }</span>
           </SvgWrapper>
         </Wrapper>
         <Wrapper xxsDisplay='block' display='flex' justifyCont='center' mbMargin='0 2rem' dsMargin='0 auto' maxWidth='768px'>
           <SvgWrapper mobile={true}>
             {scoreIcon(finalScore)}
-            <span>{finalScore}</span>
+            <span>{Number.isInteger(Math.round(finalScore * 10)/10) ? Math.round(finalScore * 10)/10 + '.0' : Math.round(finalScore * 10)/10 }</span>
           </SvgWrapper>
           <ParagraphWrapper mobile={true}>
             <ResumeWrapper>

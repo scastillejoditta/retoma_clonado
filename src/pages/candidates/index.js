@@ -83,7 +83,7 @@ const Candidates = () => {
               <Title>{candidate.fields.Nombre}</Title>
               <h3>{candidate.fields.Provincia}</h3>
               <h3>{candidate.fields.Partido_politico}</h3>
-              <Link href={`/candidates/${candidate.id}`}>
+              <Link href={{ pathname: `/candidates/${candidate.id}`, query: { score: finalScore } }}>
                 <LinkWrapper>
                   Ver perfil
                 </LinkWrapper>
@@ -110,7 +110,7 @@ const Candidates = () => {
                   <Title>{candidate.fields.Nombre}</Title>
                   <h3>{candidate.fields.Provincia}</h3>
                   <h3>{candidate.fields.Partido_politico}</h3>
-                  <Link href={`/candidates/${candidate.id}`}>
+                  <Link href={{ pathname: `/candidates/${candidate.id}`, query: { score: candidate.fields.Puntaje_total } }}>
                     <LinkWrapper>
                       Ver perfil
                     </LinkWrapper>
