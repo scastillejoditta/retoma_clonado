@@ -25,10 +25,10 @@ import Container from "../components/Container";
 import Title from "../components/Title";
 import Paragraph from "../components/Paragraph";
 import Wrapper from "../components/Wrapper";
+import Graph from '../components/Graph'
 import Select, { components } from "react-select";
-
 import axles from "../utils/axles.json";
-import { fetchRecords } from "../utils/api";
+import { fetchRecords, fetchCandidates } from "../utils/api";
 
 const customStyles = {
   container: (provided) => ({
@@ -65,13 +65,16 @@ const Home = () => {
   const [quotes, setQuotes] = useState([]);
   const [news, setNews] = useState([]);
   const [SelectedQuestion, setSelectedQuestion] = useState(null);
+  const [candidates, setCandidates] = useState([])
 
   useEffect(() => {
-    const getQuestions = async () => {
+    const getData = async () => {
       let questions = await fetchRecords("Preguntas");
+      let candidateData = await fetchRecords('Respuestas_Candidates');
       setQuestions(questions.data.records);
+      setCandidates(candidateData.data.records);
     };
-    getQuestions();
+    getData();
     const getQuotes = async () => {
       let quotes = await fetchRecords("Machifrases_Candidates");
       if (quotes.data.records) {
@@ -216,9 +219,20 @@ const Home = () => {
                       axles?.axles[selectedAxle].id &&
                     q.fields.Pregunta !== "Comentario"
                 )
-                .map((q) => ({ value: q.id, label: q.fields.Pregunta }))}
+                .map((q) => ({ value: q.id, label: q.fields.Pregunta, name: q.fields.Name }))}
             />
           </SelectWrapper>
+        </Wrapper>
+        <Wrapper
+          display="flex"
+          justifyCont="center"
+          mbMargin="0 4rem"
+          dsMargin="0 auto"
+          maxWidth="768px"
+          dsPadding="2rem 0"
+          position="relative"
+        >
+          <Graph data={candidates} size={{width:768, height: 400, margin: 0}} question={SelectedQuestion?.name}/>
         </Wrapper>
       </Container>
       <Container background="natural">
