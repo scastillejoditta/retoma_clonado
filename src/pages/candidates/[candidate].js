@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router'
 
+import {
+  FacebookShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
+
 import styled from 'styled-components';
 
 
@@ -13,7 +20,7 @@ import Person from '../../assets/Icons/Person';
 import PositiveScore from '../../assets/Icons/PositiveScore';
 import Twitter from '../../assets/Icons/Twitter';
 import Facebook from '../../assets/Icons/Facebook';
-import Message from '../../assets/Icons/Message';
+import Telegram from '../../assets/Icons/Telegram';
 import Positions from '../../assets/Icons/Positions';
 import GoodWrapper from '../../assets/Icons/GoodWrapper';
 import BadWrapper from '../../assets/Icons/BadWrapper';
@@ -207,13 +214,33 @@ export default function Candidate() {
                     </span>
                     <SocialMedia>
                       <span>
-                        <Twitter />
+                        <TwitterShareButton
+                          url={`https://feminindex.com${router.asPath}`}
+                          title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                          hashtag={"#Feminindex"}
+                          description={"Feminindex"}
+                        >
+                          <Twitter />
+                        </TwitterShareButton>
                       </span>
                       <span>
+                      <FacebookShareButton
+                        url={`https://feminindex.com${router.asPath}`}
+                        quote={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                        hashtag={"#Feminindex"}
+                        description={"Feminindex"}
+                      >
                         <Facebook />
+                      </FacebookShareButton>
+
                       </span>
                       <span>
-                        <Message />
+                        <TelegramShareButton
+                          url={`https://feminindex.com${router.asPath}`}
+                          title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                        >
+                          <Telegram />
+                        </TelegramShareButton>
                       </span>
                     </SocialMedia>
                   </Share>
@@ -252,13 +279,27 @@ export default function Candidate() {
                   </span>
                   <SocialMedia>
                     <span>
-                      <Twitter />
+                      <TwitterShareButton
+                          url={`https://feminindex.com${router.asPath}`}
+                          title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                          hashtag={"#Feminindex"}
+                          description={"Feminindex"}
+                        >
+                          <Twitter />
+                        </TwitterShareButton>
                     </span>
                     <span>
-                      <Facebook />
+                    <FacebookShareButton
+                        url={`https://feminindex.com${router.asPath}`}
+                        quote={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                        hashtag={"#Feminindex"}
+                        description={"Feminindex"}
+                      >
+                        <Facebook />
+                      </FacebookShareButton>
                     </span>
                     <span>
-                      <Message />
+                      <Telegram />
                     </span>
                   </SocialMedia>
                 </Share>
