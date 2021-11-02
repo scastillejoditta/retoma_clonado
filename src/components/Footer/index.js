@@ -10,7 +10,7 @@ import Telegram from "../../assets/Icons/Telegram";
 import Youtube from "../../assets/Icons/Youtube";
 import FooterEcoFeminita from "../../assets/Icons/FooterEcofeminita";
 import Wingu from "../../assets/Icons/Wingu";
-import Fundar from "../../assets/Images/fundar.png";
+import Fundar from "/public/images/Fundar/Fundar.png";
 
 // Components
 import Container from "../../components/Container";
@@ -81,7 +81,7 @@ const Footer = () => {
             </ProjectMadeItem>
             <ProjectMadeItem>
               <a href='https://www.fund.ar/' target='_blank'>
-                <img src={Fundar} />
+                <img src={Fundar.src} width='150' height='100'/>
               </a>
             </ProjectMadeItem>
           </WinguAndLuminateWrapper>
@@ -141,6 +141,10 @@ const MediaIconsWrapper = styled.li`
   margin: 0 1rem;
 
   cursor: pointer;
+
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.xxs}) {
+    margin: 0 0.5rem;
+  }
 `;
 
 const ProjectMadeByList = styled.ul`

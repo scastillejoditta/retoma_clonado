@@ -253,7 +253,7 @@ export default function Candidate() {
             <span>{finalScore}</span>
           </SvgWrapper>
         </Wrapper>
-        <Wrapper display='flex' justifyCont='center' mbMargin='0 2rem' dsMargin='0 auto' maxWidth='768px'>
+        <Wrapper xxsDisplay='block' display='flex' justifyCont='center' mbMargin='0 2rem' dsMargin='0 auto' maxWidth='768px'>
           <SvgWrapper mobile={true}>
             <PositiveScore />
             <span>{finalScore}</span>
@@ -411,6 +411,15 @@ const SvgWrapper = styled.div`
     right: 16%;
     top: 12%;
   }
+  }
+
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.xxs}) {
+    > span {
+        position: absolute;
+        left: 22%;
+        top: 40%;
+
+    }
   }
 `
 

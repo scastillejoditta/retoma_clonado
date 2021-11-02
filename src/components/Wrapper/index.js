@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Wrapper = ({
   children,
   display,
+  xxsDisplay,
   flexDir,
   justifyCont,
   alignItems,
@@ -36,6 +37,7 @@ const Wrapper = ({
         maxWidth={maxWidth}
         height={height}
         flexWrap={flexWrap}
+        xxsDisplay={xxsDisplay}
       >
         {children}
       </StyledWrapper>
@@ -62,6 +64,10 @@ const StyledWrapper = styled.section`
     max-width: ${(props) => props.maxWidth};
     margin: ${(props) => props.dsMargin};
     padding: ${(props) => props.dsPadding};
+  }
+
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.xxs}) {
+    display: ${(props) => props.xxsDisplay};
   }
 `;
 

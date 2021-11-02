@@ -313,11 +313,11 @@ const Home = () => {
         >
           <Novedades>
             {news.map((n) => (
-              <Noveded key={n.id} href={n.fields.Fuente} target="_blank">
+              <Noveded key={n.id} href={n.fields.Fuente} image={n.fields.Foto} target="_blank">
                 <Title
                   mobileFontSize="medium"
                   desktopFontSize="medium"
-                  color="white"
+                  color="dark"
                   padding="0 0.5rem 0 0.5rem"
                 >
                   {n.fields.Bajada}
@@ -374,14 +374,6 @@ const AxleTitle = styled.div`
     width: 35%;
     position: relative;
     display: block;
-  }
-`;
-
-const EconomiaWrapper = styled.div`
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    position: absolute;
-    right: 2rem;
-    top: -4rem;
   }
 `;
 
@@ -470,7 +462,8 @@ const Machifrase = styled.div`
 `;
 
 const Noveded = styled.a`
-  background-color: ${(props) => props.theme.colors.backgroundGray};
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${(props) => props.image});
+  object-fit: cover;
   width: 100%;
   height: 15rem;
   margin-bottom: 3rem;
@@ -479,7 +472,7 @@ const Noveded = styled.a`
   align-items: center;
   text-align: center;
   cursor: pointer;
-  text-decoration-color: ${(props) => props.theme.colors.white};
+  text-decoration: none;
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-bottom: 0rem;
     width: 30%;
