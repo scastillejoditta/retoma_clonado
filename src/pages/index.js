@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import _ from "lodash";
 
 import styled from "styled-components";
 
@@ -7,8 +8,12 @@ import LeftArrow from "../assets/Icons/Arrows/LeftArrow";
 import RightArrow from "../assets/Icons/Arrows/RightArrow";
 import DownArrow from "../assets/Icons/Arrows/DownArrow";
 import Economia from "../assets/Icons/Economia";
-import Desktop from "../assets/Icons/Bancas/Desktop/Desktop.png";
-import Mobile from "../assets/Icons/Bancas/Mobile/Mobile.png";
+import Desktop from "/public/images/Bancas/Desktop/Desktop.png";
+import Mobile from "/public/images/Bancas/Mobile/Mobile.png";
+import Avatar from "../assets/Icons/Avatar";
+import Twitter from "../assets/Icons/Twitter";
+import Facebook from "../assets/Icons/Facebook";
+import Message from "../assets/Icons/Message";
 
 // Components
 import Container from "../components/Container";
@@ -31,6 +36,7 @@ const customStyles = {
     border: "2px solid black",
     borderRadius: "0",
     boxShadow: "none",
+    cursor: "pointer",
     "&:hover": {},
   }),
   indicatorSeparator: () => ({}),
@@ -51,6 +57,7 @@ const DropdownIndicator = (props) => {
 const Home = () => {
   const [selectedAxle, setSelectedAxle] = useState(0);
   const [questions, setQuestions] = useState([]);
+  const [quotes, setQuotes] = useState([]);
   const [SelectedQuestion, setSelectedQuestion] = useState(null);
 
   useEffect(() => {
@@ -59,6 +66,13 @@ const Home = () => {
       setQuestions(questions.data.records);
     };
     getQuestions();
+    const getQuotes = async () => {
+      let quotes = await fetchRecords("Machifrases_Candidates");
+      if (quotes.data.records) {
+        setQuotes(_.sampleSize(quotes.data.records, 2));
+      }
+    };
+    getQuotes();
   }, []);
 
   const handleChange = (value) => {
@@ -161,12 +175,11 @@ const Home = () => {
           >
             <RightArrow />
           </RightArrowWrapper>
-          {/* )} */}
         </Wrapper>
         <Wrapper
           display="flex"
           justifyCont="center"
-          mbMargin="0 4rem"
+          mbMargin="0 4rem 2rem"
           dsMargin="0 auto"
           maxWidth="768px"
           dsPadding="2rem 0"
@@ -175,10 +188,13 @@ const Home = () => {
           <SelectWrapper>
             <Select
               styles={customStyles}
+              id={"Questions"}
+              instanceId={"Questions"}
               isSearchable={false}
               value={SelectedQuestion}
               onChange={handleChange}
               components={{ DropdownIndicator }}
+              noOptionsMessage={"Sin opciones"}
               placeholder={"Selecciona la pregunta"}
               options={questions
                 .filter(
@@ -190,6 +206,77 @@ const Home = () => {
                 .map((q) => ({ value: q.id, label: q.fields.Pregunta }))}
             />
           </SelectWrapper>
+        </Wrapper>
+      </Container>
+      <Container background="natural">
+        <Wrapper
+          mbMargin="0 2rem"
+          dsMargin="0 auto"
+          maxWidth="768px"
+          dsPadding="3rem 0"
+          mbPadding="2rem 0"
+        >
+          <Title mobileFontSize="lg" desktopFontSize="lg" color="dark">
+            Machifrases
+          </Title>
+        </Wrapper>
+        <Wrapper
+          display="flex"
+          justifyCont="center"
+          mbMargin="0 4rem"
+          dsMargin="0 auto"
+          maxWidth="768px"
+          dsPadding="2rem 0"
+          mbPadding="1rem 0"
+        >
+          <Machifrases>
+            {quotes.map((q) => (
+              <Machifrase key={q.id}>
+                <AvatarWrapper>
+                  {q.fields.Foto_Candidate ? (
+                    <Picture src={q.fields.Foto_Candidate} />
+                  ) : (
+                    <Avatar />
+                  )}
+                </AvatarWrapper>
+                <Paragraph
+                  mobileFontSize="base"
+                  desktopFontSize="base"
+                  desktopPadding="1rem 1rem 1rem 5rem"
+                  mobilePadding="1rem 1rem 1rem 5rem"
+                  color="white"
+                >
+                  "{q.fields.Frase}"
+                </Paragraph>
+                <Paragraph
+                  mobileFontSize="base"
+                  desktopFontSize="customBase"
+                  weight="600"
+                  desktopPadding="0rem 1rem 1rem 5rem"
+                  mobilePadding="0rem 1rem 1rem 5rem"
+                  color="white"
+                >
+                  {q.fields.Nombre_Candidate}
+                </Paragraph>
+                <ShareWrapper>
+                  <Share>
+                    <span>Compartir</span>
+                    <SocialMedia>
+                      <span>
+                        <Twitter />
+                      </span>
+                      <span>
+                        <Facebook />
+                      </span>
+                      <span>
+                        <Message />
+                      </span>
+                    </SocialMedia>
+                  </Share>
+                </ShareWrapper>
+              </Machifrase>
+            ))}
+          </Machifrases>
         </Wrapper>
       </Container>
     </>
@@ -291,6 +378,83 @@ const Bancas = styled.div`
 
 const SelectWrapper = styled.div`
   width: 100%;
+`;
+
+const Machifrases = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+const Machifrase = styled.div`
+  background-color: ${(props) => props.theme.colors.dark};
+  height: 100%;
+  max-width: 19rem;
+  width: 100%;
+  margin-left: 0rem;
+  position: relative;
+  margin-bottom: 3rem;
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-bottom: 0rem;
+    margin-left: 4rem;
+    min-height: 15rem;
+  }
+`;
+
+const AvatarWrapper = styled.div`
+  position: absolute;
+  left: -3.5rem;
+  top: 1rem;
+
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    left: -4rem;
+  }
+`;
+
+const ShareWrapper = styled.div`
+  position: absolute;
+  bottom: -1rem;
+  right: 1rem;
+`;
+
+const Share = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #efeded;
+  border-radius: 12px;
+
+  padding: 0.1rem 0.75rem;
+
+  > span {
+    font-size: ${(props) => props.theme.fontSizes.base};
+    color: ${(props) => props.theme.colors.dark};
+    font-weight: 600;
+
+    margin: 0 1rem 0 0;
+  }
+`;
+const SocialMedia = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > span {
+    margin: 0 0.2rem;
+  }
+`;
+
+const Picture = styled.img`
+  width: 127px;
+  border-radius: 50%;
 `;
 
 export default Home;
