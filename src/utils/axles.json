@@ -1,0 +1,29 @@
+{
+  "axles": [
+    {
+      "title": "Derechos sexuales y reproductivos",
+      "id": 1,
+      "description": "De acuerdo a los datos de Ecofeminita, en marzo del 2021 el costo promedio de menstruar es de aproximadamente $3.233. Es necesario agregar que tanto las toallitas como los tampones aumentaron un 10% durante el último año. Esto es importante si tenemos en cuenta que las mujeres tienen una brecha de ingresos de entre el 25 y 27 % con respecto a los varones y que, además, las mujeres jóvenes fueron las mas perjudicadas por la crisis del COVID en términos de regreso al mercado de trabajo. La importancia de quitar el IVA a los productos de gestión menstrual reside en esta brecha de ingresos. "
+    },
+    {
+      "title": "Economía Feminista",
+      "id": 4,
+      "description": "Los indicadores económicos sufrieron grandes retrocesos durante la crisis de la COVID-19. Entre el primer trimestre de 2020, cuando el coronavirus recién aparecía en las noticias del mundo, y el primer trimestre de 2021, la brecha de ingresos —la diferencia entre el promedio de los ingresos de los varones y las mujeres— se incrementó más de un 10% y pasó de 22,9% a 25,6%. En 2021, la desocupación fue de 12,3% para las mujeres, mientras que para los varones se ubicó en 8,5%. Tasas como la de actividad o empleo presentan diferencias entre varones y mujeres que rondan el 20%, mientras que la tasa de desocupación alcanza al 25% de las mujeres más jóvenes: 1 de cada 4 mujeres menores de 30 años busca empleo y no lo consigue. Por otro lado, la brecha de ingresos entre varones y mujeres llega al 36,3% cuando se trata de trabajo informal. Es importante destacar que todos estos datos se dan en un contexto en el que el 72% del total de personas que realizan tareas domésticas y de cuidado son mujeres. A esto se le suma el hecho de que prácticamente todas las personas que se dedican al servicio doméstico —98,8%— (es decir, que sí venden este trabajo en el mercado) son mujeres."
+    },
+    {
+      "title": "Violencia Machista",
+      "id": 5,
+      "description": "En Argentina se muere una mujer cada 31 horas a causa de la violencia de género mientras que en lo que va de 2021 se registraron 39 muertes prematuras de personas trans, entre crímenes de odio, travesticidios/trans homicidios sociales y suicidios."
+    },
+    {
+      "title": "Derechos LGBTTTIQ+",
+      "id": 3,
+      "description": "La población LGBTTTIQ+ enfrenta numerosas barreras para poder vivir una vida con pleno acceso a derechos y libre de violencias. En Argentina,la mayoría de las personas trans viven en la pobreza y la indigencia. Muchas fueron expulsadas de sus hogares durante su juventud porque sus familias rechazaban su identidad de género. Como consecuencia, el 90% de las mujeres trans subsiste ejerciendo el trabajo sexual. ometidas a tres dimensiones de opresión por su condición de mujeres, trabajadoras sexuales y trans, este colectivo tiene una esperanza de vida de entre 35 y 41 años. La población travesti, trans y no binaria también enfrenta barreras a la hora de rectificar sus documentos de identidad. Entre 2012 y abril de 2021, 9.383personas tuvieron o tienen su DNI conforme a la Ley de Identidad de Género. Sin embargo, el binarismo y la invisibilización de la población TTNB en las estadísticas oficiales complica la generación de datos para elaborar políticas públicas abarcativas. El trato digno y el acceso al empleo de calidad son otros de los tantos desafíos por delante."
+    },
+    {
+      "title": "Participacion Política",
+      "id": 2,
+      "description": "En el gabinete nacional, por ejemplo, solo 2 de sus 20 ministerios están encabezados por mujeres. Los gobiernos provinciales siguen los pasos del gobierno nacional. Solo Tierra del Fuego, Chaco y Entre Ríos tienen gabinetes paritarios mientras que La Pampa, Corrientes, Formosa y Salta tienen solo una mujer. En el Poder Legislativo Nacional, hay un 42% de mujeres diputadas mientras que en el Senado, lo son 39%. En noviembre renunció la única magistrada mujer de la Corte Suprema de Justicia de la Nación. Como si esto fuera poco, las mujeres siguen siendo minoría al encabezar las listas electorales. En las PASO de 2021, solo el 30% de las listas estaban encabezadas por ellas."
+    }
+  ]
+}

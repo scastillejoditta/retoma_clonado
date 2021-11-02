@@ -24,9 +24,10 @@ const theme = {
     primary: "#0092dd",
     feminindexRed: "#E5616E",
     dark: "#4A4A4A",
-    gray: '#EFEDED',
+    gray: "#EFEDED",
     natural: "#F6F4ED",
     white: "#FFF",
+    backgroundRed: "#e4626f",
   },
   breakpoints: {
     xxs: "374px",
