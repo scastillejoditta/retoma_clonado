@@ -18,6 +18,8 @@ import Paragraph from '../../components/Paragraph';
 
 import Person from '../../assets/Icons/Person';
 import PositiveScore from '../../assets/Icons/PositiveScore';
+import MediumScore from '../../assets/Icons/MediumScore';
+import NegativeScore from '../../assets/Icons/NegativeScore';
 import Twitter from '../../assets/Icons/Twitter';
 import Facebook from '../../assets/Icons/Facebook';
 import Telegram from '../../assets/Icons/Telegram';
@@ -46,6 +48,17 @@ export default function Candidate() {
   const [questionsOptionsData, setQuestionsOptionsData] = useState([])
   const [axles, setAxles] = useState([])
   const [axlesWihQuestionsAnswered, setAxlesWithQuestionsAnswered] = useState([])
+
+  const scoreIcon = (score) => {
+    switch(true) {
+      case score >= 4:
+        return <PositiveScore />
+      case score <= 4 && score >= 3:
+        return <MediumScore />
+      case score < 3:
+        return <NegativeScore />
+    }
+  }
 
   useEffect(() => {
     const fetchCandidate = async () => {
@@ -249,13 +262,13 @@ export default function Candidate() {
             </ParagraphWrapper>
           </div>
           <SvgWrapper>
-            <PositiveScore />
+            {scoreIcon(finalScore)}
             <span>{finalScore}</span>
           </SvgWrapper>
         </Wrapper>
         <Wrapper xxsDisplay='block' display='flex' justifyCont='center' mbMargin='0 2rem' dsMargin='0 auto' maxWidth='768px'>
           <SvgWrapper mobile={true}>
-            <PositiveScore />
+            {scoreIcon(finalScore)}
             <span>{finalScore}</span>
           </SvgWrapper>
           <ParagraphWrapper mobile={true}>
