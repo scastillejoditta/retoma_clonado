@@ -92,7 +92,10 @@ const Home = () => {
     getNews();
   }, []);
 
-  useEffect(() => (graphRef.current.scrollLeft = 260));
+  useEffect(() => {
+    graphRef.current.scrollLeft =
+      graphRef.current.scrollWidth / 2 - graphRef.current.clientWidth / 2;
+  });
 
   const handleChange = (value) => {
     setSelectedQuestion(value);
