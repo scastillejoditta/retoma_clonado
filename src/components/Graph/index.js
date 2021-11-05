@@ -1,9 +1,11 @@
 import {useRef, useState, useEffect} from 'react'
 import Link from 'next/link'
-import * as d3 from "d3"
-import {queue} from 'd3-queue'
-import * as d3Force from 'd3-force'
-import { isMobileOnly } from 'react-device-detect'
+import * as d3 from "d3";
+import { queue } from "d3-queue";
+import * as d3Force from "d3-force";
+import { isMobileOnly } from "react-device-detect";
+import styled from "styled-components";
+import Paragraph from "../../components/Paragraph";
 
 const Graph = ({data, size, question}) => {
     const svgRef = useRef(null)
@@ -189,10 +191,86 @@ const Graph = ({data, size, question}) => {
             })
         }
     },[data, question])
+  return (
+    <>
+      <svg ref={svgRef} width={svgWidth} height={svgHeight} />
+      <GraphScroll>*Deslizarse a lo ancho</GraphScroll>
+      <References>
+        <Reference>
+          <Circle color={"#FBD17E"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Frente Juntos
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#8CDDD3"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Frente de Todos
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#E4626F"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            FIT-U
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#E4626F"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Socialista
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#66B26B"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Vamos con Vos
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#999999"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Frente Renovador
+          </Paragraph>
+        </Reference>
+        <div />
+        <Reference>
+          <Circle color={"#B193CE"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Partido Vecinal
+          </Paragraph>
+        </Reference>
+        <div />
+        {/* <Reference>
+          <Circle color={"black"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Indefinido
+          </Paragraph>
+        </Reference> */}
+      </References>
+    </>
+  );
+};
 
-    return (
-        <div id='svg-wrapper'><svg  ref={svgRef} width={svgWidth} height={svgHeight}/></div>
-    )
-}
+const References = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 768px;
+`;
 
-export default Graph
+const Reference = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1rem;
+`;
+
+const Circle = styled.div`
+  background-color: ${(props) => props.color};
+  width: 15px;
+  height: 15px;
+  margin-right: 1rem;
+  border-radius: 50%;
+`;
+
+export default Graph;
