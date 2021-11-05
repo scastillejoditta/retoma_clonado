@@ -19,6 +19,8 @@ const Candidates = () => {
   const [filteredCandidates, setFilteredCandidates] = useState([])
   const [inputValue, setInputValue] = useState('')
 
+  console.log(candidates);
+
   const scoreIcon = (score) => {
     switch(true) {
       case score >= 4:
@@ -44,7 +46,7 @@ const Candidates = () => {
         candidatesCopy = candidatesCopy.filter(cp => 
           cp.fields.Nombre.toLowerCase().includes(inputValue.toLowerCase()) ||
           cp.fields.Provincia.toLowerCase().includes(inputValue.toLowerCase()) ||
-          cp.fields.Partido_politico.toLowerCase().includes(inputValue.toLowerCase())
+          cp.fields.Orientacion.toLowerCase().includes(inputValue.toLowerCase())
         )
       } else {
         return candidatesCopy
@@ -82,8 +84,8 @@ const Candidates = () => {
               </>
               <Title>{candidate.fields.Nombre}</Title>
               <h3>{candidate.fields.Provincia}</h3>
-              <h3>{candidate.fields.Partido_politico}</h3>
-              <Link href={{ pathname: `/candidates/${candidate.id}`, query: { score: finalScore } }}>
+              <h3>{candidate.fields.Orientacion}</h3>
+              <Link href={{ pathname: `/candidates/${candidate.id}`, query: { score: candidate.fields.Puntaje_total } }}>
                 <LinkWrapper>
                   Ver perfil
                 </LinkWrapper>
@@ -109,7 +111,7 @@ const Candidates = () => {
                   </>
                   <Title>{candidate.fields.Nombre}</Title>
                   <h3>{candidate.fields.Provincia}</h3>
-                  <h3>{candidate.fields.Partido_politico}</h3>
+                  <h3>{candidate.fields.Orientacion}</h3>
                   <Link href={{ pathname: `/candidates/${candidate.id}`, query: { score: candidate.fields.Puntaje_total } }}>
                     <LinkWrapper>
                       Ver perfil

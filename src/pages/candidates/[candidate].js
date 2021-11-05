@@ -49,6 +49,7 @@ export default function Candidate() {
   const [questionsOptionsData, setQuestionsOptionsData] = useState([])
   const [axles, setAxles] = useState([])
   const [axlesWihQuestionsAnswered, setAxlesWithQuestionsAnswered] = useState([])
+  const [candidateComment, setCandidateComment] = useState({})
 
   const scoreIcon = (score) => {
     switch(true) {
@@ -99,6 +100,17 @@ export default function Candidate() {
   }
   fetchAxles();
   }, [])
+
+  useEffect(() => {
+    const fetchCandidateComment = async () => {
+      const res = await fetchRecord('Comentarios_Candidates', candidate)
+      setCandidateComment(res.data.fields);
+  }
+  fetchCandidateComment();
+  }, [candidate])
+
+  console.log(candidateComment, 'candidate-comment')
+  console.log(axles)
 
   useEffect(() => {
     if(candidateData, questionsData, questionsOptionsData) {
@@ -187,11 +199,24 @@ export default function Candidate() {
 
   let axlesSplitedInTwoChunks = chunkArrayInGroups();
 
+  console.log(axlesSplitedInTwoChunks)
+
   let scoresArr = axlesWihQuestionsAnswered.map(ax => {
     return ax.answers.map(ans => ans.Puntaje)
   })
 
-  let finalScore = Math.round([].concat.apply([], scoresArr).reduce((acc, el) => el + acc, 0) * 10)/10;
+  // let score = Math.round([].concat.apply([], scoresArr).reduce((acc, el) => el + acc, 0) * 10)/10;
+
+  const getCandidateComment = (id) => {
+
+   let index = candidateComment?.Id_eje?.findIndex(val => val === id)
+    if(index === -1 || !candidateComment?.Comentarios_ejes) {
+      return <div>No encontramos nada</div>
+    } else {
+      return candidateComment.Comentarios_ejes[index]
+    }
+
+  }
 
   return (
     <>
@@ -214,7 +239,7 @@ export default function Candidate() {
               </ResumeWrapper>
               <ResumeWrapper>
                 <Title mobileFontSize='base' weight='bold' margin='0 0.5rem 0 0'>Orientación:</Title>
-                <Paragraph mobileMargin='0'>{newCandidate.Partido_politico}</Paragraph>
+                <Paragraph mobileMargin='0'>{newCandidate.Orientacion}</Paragraph>
               </ResumeWrapper>
               <ResumeWrapper>
                 <Title mobileFontSize='base' weight='bold' margin='0 0.5rem 0 0'>Cargo:</Title>
@@ -263,14 +288,14 @@ export default function Candidate() {
             </ParagraphWrapper>
           </div>
           <SvgWrapper>
-            {scoreIcon(finalScore)}
-            <span>{Number.isInteger(Math.round(finalScore * 10)/10) ? Math.round(finalScore * 10)/10 + '.0' : Math.round(finalScore * 10)/10 }</span>
+            {scoreIcon(newCandidate.Puntaje_total)}
+            <span>{Number.isInteger(Math.round(newCandidate.Puntaje_total * 10)/10) ? Math.round(newCandidate.Puntaje_total * 10)/10 + '.0' : Math.round(newCandidate.Puntaje_total * 10)/10 }</span>
           </SvgWrapper>
         </Wrapper>
         <Wrapper xxsDisplay='block' display='flex' justifyCont='center' mbMargin='0 2rem' dsMargin='0 auto' maxWidth='768px'>
           <SvgWrapper mobile={true}>
-            {scoreIcon(finalScore)}
-            <span>{Number.isInteger(Math.round(finalScore * 10)/10) ? Math.round(finalScore * 10)/10 + '.0' : Math.round(finalScore * 10)/10 }</span>
+            {scoreIcon(newCandidate.Puntaje_total)}
+            <span>{Number.isInteger(Math.round(newCandidate.Puntaje_total * 10)/10) ? Math.round(newCandidate.Puntaje_total * 10)/10 + '.0' : Math.round(newCandidate.Puntaje_total * 10)/10 }</span>
           </SvgWrapper>
           <ParagraphWrapper mobile={true}>
             <ResumeWrapper>
@@ -279,7 +304,7 @@ export default function Candidate() {
             </ResumeWrapper>
             <ResumeWrapper>
               <Title mobileFontSize='base' weight='bold' margin='0 0.5rem 0 0'>Orientación:</Title>
-              <Paragraph mobileMargin='0'>{newCandidate.Partido_politico}</Paragraph>
+              <Paragraph mobileMargin='0'>{newCandidate.Orientacion}</Paragraph>
             </ResumeWrapper>
             <ResumeWrapper>
               <Title mobileFontSize='base' weight='bold' margin='0 0.5rem 0 0'>Cargo:</Title>
@@ -327,29 +352,27 @@ export default function Candidate() {
           <Title weight='700' color='dark'>
             Posiciones Generales
           </Title>
-
           <GeneralScoreWrapper>
             <ListWrapper>
               <Separator margin={'0 2.5rem 0 0'}>
-                {axlesSplitedInTwoChunks[0].map((axis, idx) => 
+                {axlesWihQuestionsAnswered.map((axis, idx) => 
+                <AxlesWrapper>
+                  <Li key={idx} background={'#EFEDED'}>
+                    <span>
+                      {questionIcon(2)}
+                    </span>
+                    <Paragraph mobileFontSize='customBase' color='dark' weight='normal' mobilePadding='0 2.5rem 2.5rem 2.5rem'>
+                      {getCandidateComment(axis.id)} lkajsdlkajsd klajsdlkajslkdjasld jaklsdjalskjdlas jjaslkdj alsj
+                    </Paragraph>
+                  </Li>
                   <Li key={idx} >
                     <Title mobileFontSize='customBase' color='dark' margin='2rem 0 1rem 0'>
                       {axis.fields.Eje}
                     </Title>
                     <Positions score={getScoreSum(axis.answers)} />
                   </Li>
-                )}
-              </Separator>
-            </ListWrapper>
-            <ListWrapper>
-              <Separator margin={'0 2.5rem 0 0'}>
-                {axlesSplitedInTwoChunks[1].map((axis, idx) => 
-                  <Li key={idx} >
-                    <Title mobileFontSize='customBase' color='dark' margin='2rem 0 1rem 0'>
-                      {axis.fields.Eje}
-                    </Title>
-                    <Positions score={getScoreSum(axis.answers)} />
-                  </Li>
+                  
+                </AxlesWrapper>
                 )}
               </Separator>
             </ListWrapper>
@@ -453,6 +476,13 @@ const GeneralScoreWrapper = styled.div`
     display: flex;
     margin-right: 1rem;
   }
+`
+
+const AxlesWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  /* max-width: 60%; */
+  margin: 0 auto;
 `
 
 const Share = styled.div`
