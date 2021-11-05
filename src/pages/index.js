@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import _ from "lodash";
 import {
   FacebookShareButton,
@@ -25,7 +25,7 @@ import Container from "../components/Container";
 import Title from "../components/Title";
 import Paragraph from "../components/Paragraph";
 import Wrapper from "../components/Wrapper";
-import Graph from '../components/Graph'
+import Graph from "../components/Graph";
 import Select, { components } from "react-select";
 import axles from "../utils/axles.json";
 import { fetchRecords, fetchCandidates } from "../utils/api";
@@ -65,12 +65,13 @@ const Home = () => {
   const [quotes, setQuotes] = useState([]);
   const [news, setNews] = useState([]);
   const [SelectedQuestion, setSelectedQuestion] = useState(null);
-  const [candidates, setCandidates] = useState([])
+  const [candidates, setCandidates] = useState([]);
+  const graphRef = useRef();
 
   useEffect(() => {
     const getData = async () => {
       let questions = await fetchRecords("Preguntas");
-      let candidateData = await fetchRecords('Respuestas_Candidates');
+      let candidateData = await fetchRecords("Respuestas_Candidates");
       setQuestions(questions.data.records);
       setCandidates(candidateData.data.records);
     };
@@ -90,6 +91,8 @@ const Home = () => {
     };
     getNews();
   }, []);
+
+  useEffect(() => (graphRef.current.scrollLeft = 260));
 
   const handleChange = (value) => {
     setSelectedQuestion(value);
@@ -219,7 +222,11 @@ const Home = () => {
                       axles?.axles[selectedAxle].id &&
                     q.fields.Pregunta !== "Comentario"
                 )
-                .map((q) => ({ value: q.id, label: q.fields.Pregunta, name: q.fields.Name }))}
+                .map((q) => ({
+                  value: q.id,
+                  label: q.fields.Pregunta,
+                  name: q.fields.Name,
+                }))}
             />
           </SelectWrapper>
         </Wrapper>
@@ -232,7 +239,13 @@ const Home = () => {
           dsPadding="2rem 0"
           position="relative"
         >
-          <Graph data={candidates} size={{width:768, height: 400, margin: 0}} question={SelectedQuestion?.name}/>
+          <GraphWrapper ref={graphRef}>
+            <Graph
+              data={candidates}
+              size={{ width: 768, height: 400, margin: 0 }}
+              question={SelectedQuestion?.name}
+            />
+          </GraphWrapper>
         </Wrapper>
       </Container>
       <Container background="natural">
@@ -351,7 +364,12 @@ const Home = () => {
         >
           <Novedades>
             {news.map((n) => (
-              <Noveded key={n.id} href={n.fields.Fuente} image={n.fields.Foto} target="_blank">
+              <Noveded
+                key={n.id}
+                href={n.fields.Fuente}
+                image={n.fields.Foto}
+                target="_blank"
+              >
                 <Title
                   mobileFontSize="medium"
                   desktopFontSize="medium"
@@ -500,7 +518,11 @@ const Machifrase = styled.div`
 `;
 
 const Noveded = styled.a`
-  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${(props) => props.image});
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url(${(props) => props.image});
   object-fit: cover;
   width: 100%;
   height: 15rem;
@@ -564,6 +586,10 @@ const SocialMedia = styled.div`
 const Picture = styled.img`
   width: 127px;
   border-radius: 50%;
+`;
+
+const GraphWrapper = styled.div`
+  overflow-x: auto;
 `;
 
 export default Home;
