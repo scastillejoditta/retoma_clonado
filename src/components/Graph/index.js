@@ -14,8 +14,6 @@ const Graph = ({data, size, question}) => {
     const svgHeight = height
     const score = ''
 
-    console.log(data)
-
     useEffect(()=>{
         
         const svgContainer = d3.select(svgRef.current)
@@ -124,7 +122,6 @@ const Graph = ({data, size, question}) => {
             }
         })
         .on('mouseover', (d, i) => {
-            console.log(d.path[0].cx.animVal.value, 'x', d.path[0].cy.animVal.value, 'y')
             tooltip
                 .html(HtmlToDisplayInTooltip(d))
                 .style("display", "initial")
@@ -151,7 +148,6 @@ const Graph = ({data, size, question}) => {
                 }})
         })
         .on('touchstart', (d, i) => {
-            console.log(d.path[0].cx.animVal.value, 'x', d.path[0].cy.animVal.value, 'y')
             tooltip
                 .html(HtmlToDisplayInTooltip(d))
                 .style("display", "initial")
@@ -250,6 +246,16 @@ const Graph = ({data, size, question}) => {
     </>
   );
 };
+
+const GraphScroll = styled.div`
+  display: none;
+  width: 768px;
+  text-align: center;
+  margin-bottom: 1rem;
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: block;
+  }
+`;
 
 const References = styled.div`
   display: grid;

@@ -19,8 +19,6 @@ const Candidates = () => {
   const [filteredCandidates, setFilteredCandidates] = useState([])
   const [inputValue, setInputValue] = useState('')
 
-  console.log(candidates);
-
   const scoreIcon = (score) => {
     switch(true) {
       case score >= 4:
