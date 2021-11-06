@@ -31,7 +31,7 @@ const About = () => {
                 desktopFontSize="customBase"
                 color="white"
               >
-                El Feminindex es un proyecto de Ecofeminita y Wingu, con apoyo técnico de la Fundación para el Desarrollo Argentino. La primera edición del Feminindex se elaboró en 2017, en ocasión de las elecciones legislativas de ese año, con el objetivo de mapear las posiciones de les candidates con respecto a la agenda feminista. Temas como aborto, cupo laboral trans o paridad eran indagados en esa edición y probaron ser de extrema utilidad para las futuras discusiones públicas que darían los feminismos argentinos.
+                El Feminindex es un proyecto de Ecofeminita y Wingu, con apoyo técnico de la Fundación para el Desarrollo Argentino (Fundar). La primera edición del Feminindex se elaboró en 2017, en ocasión de las elecciones legislativas de ese año, con el objetivo de mapear las posiciones de les candidates con respecto a la agenda feminista. Temas como aborto, cupo laboral trans o paridad eran indagados en esa edición y probaron ser de extrema utilidad para las futuras discusiones públicas que darían los feminismos argentinos.
               </Paragraph>
             </div>
           </div>
@@ -310,7 +310,7 @@ Les candidates tienen la posibilidad de justificar o enviar comentarios a sus re
                     desktopFontSize="regular"
                     color="dark"
                   >
-                    Franco Alemandi, Brian Knoll, Martín Cravero
+                    Franco Alemandi, Brian Knoll, Martín Cravero, Juan Dans
                   </Paragraph>
                 </PersonDescription>
               </PersonWrapper>

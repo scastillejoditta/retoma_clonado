@@ -27,7 +27,7 @@ const Footer = () => {
             <Link href={'/sobre-nosotrxs'}>Sobre el proyecto</Link>
           </ListItems>
           <ListItems>
-            <a href='https://ecofeminita.com/' target='_blank'>Economía Femini(s)ta</a>
+            <a href='https://ecofeminita.com/' target='_blank'>Ecofeminita</a>
           </ListItems>
           <ListItems>
             <a href='https://ecofeminita.com/club-ecofeminita/' target='_blank'>Club EcoFeminita</a>
@@ -64,9 +64,9 @@ const Footer = () => {
       </FirstSectionWrapper>
 
       <SecondSectionWrapper>
-        <Title>Feminindex es un proyecto realizado por</Title>
         <ProjectMadeByList>
           <EcoFeminitaWrapper>
+            <Title>Feminindex es un proyecto<br /> realizado por</Title>
             <ProjectMadeItem>
               <a href='https://ecofeminita.com/' target='_blank'>
                 <FooterEcoFeminita />
@@ -74,14 +74,16 @@ const Footer = () => {
             </ProjectMadeItem>
           </EcoFeminitaWrapper>
           <WinguAndLuminateWrapper>
+            <Title>Desarrollo de</Title>
             <ProjectMadeItem>
               <a href='https://www.winguweb.org' target='_blank' >
                 <Wingu />
               </a>
             </ProjectMadeItem>
+            <Title>Con el apoyo técnico de</Title>
             <ProjectMadeItem>
               <a href='https://www.fund.ar/' target='_blank'>
-                <img src={Fundar.src} width='150' height='100'/>
+                <img src={Fundar.src} width='150' />
               </a>
             </ProjectMadeItem>
           </WinguAndLuminateWrapper>
@@ -106,7 +108,6 @@ const FirstSectionWrapper = styled.div``;
 
 const UnorderedList = styled.ul`
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
 
   list-style-type: none;
@@ -138,7 +139,7 @@ const SocialMediaList = styled.ul`
 `;
 
 const MediaIconsWrapper = styled.li`
-  margin: 0 1rem;
+  margin: 0 2rem 0 0;
 
   cursor: pointer;
 
@@ -152,8 +153,6 @@ const ProjectMadeByList = styled.ul`
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 `;
 
@@ -168,7 +167,6 @@ const ProjectMadeItem = styled.li`
 `;
 
 const SecondSectionWrapper = styled.div`
-  margin: 2rem 0;
 `;
 
 const EcoFeminitaWrapper = styled.div``;
@@ -180,7 +178,13 @@ const Title = styled.h3`
   font-size: ${(props) => props.theme.fontSizes.customBase};
   font-weight: 500;
 
-  margin: 0 2.5rem;
+  margin-top: 3rem;
+
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-right: 4rem;
+    margin-top: 1rem;
+  }
+
 `;
 
 export default Footer;

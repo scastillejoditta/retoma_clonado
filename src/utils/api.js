@@ -13,12 +13,10 @@ const headers = {
 
 export const fetchRecords = async (path) => {
   const res = await axios.get(`${process.env.URL_AIRTABLE_TOKEN}/${path}`, {headers});
-  console.log(res, 'api')
   return res;
 }
 
 export const fetchRecord = async (path, id) => {
   const res = await axios.get(`${process.env.URL_AIRTABLE_TOKEN}/${path}/${id}`, {headers});
-  console.log(res, 'api')
   return res;
 }
