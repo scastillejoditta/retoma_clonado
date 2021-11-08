@@ -86,7 +86,7 @@ const Graph = ({data, size, question}) => {
                     <li style='list-style-type: none; margin-bottom: 0.5rem;'>${Nombre}</li><br />
                     <li style='list-style-type: none; margin-bottom: 0.5rem'>${Orientacion}</li><br />
                     <li style='list-style-type: none; margin-bottom: 0.5rem'>${Provincia}</li><br />
-                    <a style='color:white; text-decoration: underline; font-weight: bold; margin-bottom: 0.5rem' href=${path}/candidates/${id}>Ver perfil</a>
+                    <a style='color:white; text-decoration: underline; font-weight: bold; margin-bottom: 0.5rem' href=${path}candidates/${id}>Ver perfil</a>
                 </ul>
                 `
             )
