@@ -81,12 +81,14 @@ const Graph = ({data, size, question}) => {
             const { id } = d.path[0].__data__
             const path = window.location.href
 
+            // Código que rompe el routing al perfil de candidate SOLO en producción. VER.
+            //  <a style='color:white; text-decoration: underline; font-weight: bold; margin-bottom: 0.5rem' href=${path}candidates/${id}>Ver perfil</a>
+
             return (
                 `<ul style='margin: 0; padding: 0;'>
                     <li style='list-style-type: none; margin-bottom: 0.5rem;'>${Nombre}</li><br />
                     <li style='list-style-type: none; margin-bottom: 0.5rem'>${Orientacion}</li><br />
                     <li style='list-style-type: none; margin-bottom: 0.5rem'>${Provincia}</li><br />
-                    <a style='color:white; text-decoration: underline; font-weight: bold; margin-bottom: 0.5rem' href=${path}candidates/${id}>Ver perfil</a>
                 </ul>
                 `
             )
