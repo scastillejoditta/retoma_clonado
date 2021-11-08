@@ -106,8 +106,14 @@ export default function Candidate() {
 
   useEffect(() => {
     const fetchCandidateComment = async () => {
-      const res = await fetchRecord('Comentarios_Candidates', candidate)
-      setCandidateComment(res.data.fields);
+      if(candidate) {
+        try {
+          const res = await fetchRecord('Comentarios_Candidates', candidate)
+          setCandidateComment(res.data.fields);(res.data.fields)
+        } catch (err) {
+          Router.push('/candidates');
+        }       
+      }
   }
   fetchCandidateComment();
   }, [candidate])

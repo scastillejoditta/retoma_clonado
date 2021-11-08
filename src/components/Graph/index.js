@@ -60,13 +60,10 @@ const Graph = ({data, size, question}) => {
         .force('collide', d3Force.forceCollide(15))
 
         let tooltip = d3.select("#svg-wrapper")
-            .on('touchend', d => {
-                tooltip
-                .style('display', 'none')
-            })
-            .on('click', d => {
-                tooltip
-                .style('display', 'none')
+            .on('click', (e) => {
+              if(e.target.tagName !== 'circle') {
+                tooltip.style('display', 'none')
+              }
             })
             .append("div")
             .attr("class", "tooltip")
@@ -76,6 +73,7 @@ const Graph = ({data, size, question}) => {
             .style("border-width", "1px")
             .style("border-radius", "5px")
             .style("padding", "20px")
+            .style("width", isMobileOnly ? '50%' : 'auto')
             .style("z-index", 1)
 
         const HtmlToDisplayInTooltip = (d) => {
@@ -126,7 +124,7 @@ const Graph = ({data, size, question}) => {
                 .html(HtmlToDisplayInTooltip(d))
                 .style("display", "initial")
                 .style("left", (`${d.path[0].cx.animVal.value + 5}px`)) // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-                .style("top", (`${d.path[0].cy.animVal.value + 30}px`))
+                .style("top", (`${d.path[0].cy.animVal.value}px`))
                 .style("background-color", () =>{
                     switch(d.path[0].__data__.fields.Orientacion){
                         case 'Frente Juntos':
@@ -152,7 +150,7 @@ const Graph = ({data, size, question}) => {
                 .html(HtmlToDisplayInTooltip(d))
                 .style("display", "initial")
                 .style("left", (`${d.path[0].cx.animVal.value + 5}px`)) // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-                .style("top", (`${d.path[0].cy.animVal.value + 30}px`))
+                .style("top", (`${d.path[0].cy.animVal.value}px`))
                 .style("background-color", () =>{
                     switch(d.path[0].__data__.fields.Orientacion){
                         case 'Frente Juntos':
@@ -189,7 +187,7 @@ const Graph = ({data, size, question}) => {
     },[data, question])
   return (
     <>
-      <svg ref={svgRef} width={svgWidth} height={svgHeight} />
+      <div id='svg-wrapper' style={{position: 'relative'}}><svg ref={svgRef} width={svgWidth} height={svgHeight} /></div>
       <GraphScroll>*Deslizarse a lo ancho</GraphScroll>
       <References>
         <Reference>
