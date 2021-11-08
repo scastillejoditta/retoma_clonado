@@ -76,23 +76,24 @@ const Graph = ({data, size, question}) => {
             .style("width", isMobileOnly ? '50%' : 'auto')
             .style("z-index", 1)
 
-        const HtmlToDisplayInTooltip = (d) => {
-            const { Nombre, Orientacion, Provincia } = d.path[0].__data__.fields
-            const { id } = d.path[0].__data__
-            const path = window.location.href
+        // const HtmlToDisplayInTooltip = (d) => {
+        //     const { Nombre, Orientacion, Provincia } = d.path[0].__data__.fields
+        //     const { id } = d.path[0].__data__
+        //     const path = window.location.href
 
             // Código que rompe el routing al perfil de candidate SOLO en producción. VER.
             //  <a style='color:white; text-decoration: underline; font-weight: bold; margin-bottom: 0.5rem' href=${path}candidates/${id}>Ver perfil</a>
 
-            return (
-                `<ul style='margin: 0; padding: 0;'>
-                    <li style='list-style-type: none; margin-bottom: 0.5rem;'>${Nombre}</li><br />
-                    <li style='list-style-type: none; margin-bottom: 0.5rem'>${Orientacion}</li><br />
-                    <li style='list-style-type: none; margin-bottom: 0.5rem'>${Provincia}</li><br />
-                </ul>
-                `
-            )
-        }
+        //     return (
+        //         `<ul style='margin: 0; padding: 0;'>
+        //             <li style='list-style-type: none; margin-bottom: 0.5rem;'>${Nombre}</li><br />
+        //             <li style='list-style-type: none; margin-bottom: 0.5rem'>${Orientacion}</li><br />
+        //             <li style='list-style-type: none; margin-bottom: 0.5rem'>${Provincia}</li><br />
+        //             <a style='color:white; text-decoration: underline; font-weight: bold; margin-bottom: 0.5rem' href=${path}candidates/${id}>Ver perfil</a>
+        //         </ul>
+        //         `
+        //     )
+        // }
            
 
         let candidates = svgContainer.selectAll('svg')
@@ -121,58 +122,60 @@ const Graph = ({data, size, question}) => {
                     return 'black'
             }
         })
-        .on('mouseover', (d, i) => {
-            tooltip
-                .html(HtmlToDisplayInTooltip(d))
-                .style("display", "initial")
-                .style("left", (`${d.path[0].cx.animVal.value + 5}px`)) // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-                .style("top", (`${d.path[0].cy.animVal.value}px`))
-                .style("background-color", () =>{
-                    switch(d.path[0].__data__.fields.Orientacion){
-                        case 'Frente Juntos':
-                            return '#FBD17E'
-                        case 'Frente de Todos':
-                            return '#8CDDD3'
-                        case 'FIT-U':
-                            return '#E4626F'
-                        case 'Socialista':
-                            return '#E4626F'
-                        case 'Vamos con Vos':
-                            return '#66B26B'
-                        case 'Frente Renovador':
-                            return '#999999'
-                        case 'Partido Vecinal':
-                            return '#B193CE'
-                        default:
-                            return 'black'
-                }})
-        })
-        .on('touchstart', (d, i) => {
-            tooltip
-                .html(HtmlToDisplayInTooltip(d))
-                .style("display", "initial")
-                .style("left", (`${d.path[0].cx.animVal.value + 5}px`)) // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-                .style("top", (`${d.path[0].cy.animVal.value}px`))
-                .style("background-color", () =>{
-                    switch(d.path[0].__data__.fields.Orientacion){
-                        case 'Frente Juntos':
-                            return '#FBD17E'
-                        case 'Frente de Todos':
-                            return '#8CDDD3'
-                        case 'FIT-U':
-                            return '#E4626F'
-                        case 'Socialista':
-                            return '#E4626F'
-                        case 'Vamos con Vos':
-                            return '#66B26B'
-                        case 'Frente Renovador':
-                            return '#999999'
-                        case 'Partido Vecinal':
-                            return '#B193CE'
-                        default:
-                            return 'black'
-                }})
-        })
+        
+        
+        // .on('mouseover', (d, i) => {
+        //     tooltip
+        //         .html(HtmlToDisplayInTooltip(d))
+        //         .style("display", "initial")
+        //         .style("left", (`${d.path[0].cx.animVal.value + 5}px`)) // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+        //         .style("top", (`${d.path[0].cy.animVal.value}px`))
+        //         .style("background-color", () =>{
+        //             switch(d.path[0].__data__.fields.Orientacion){
+        //                 case 'Frente Juntos':
+        //                     return '#FBD17E'
+        //                 case 'Frente de Todos':
+        //                     return '#8CDDD3'
+        //                 case 'FIT-U':
+        //                     return '#E4626F'
+        //                 case 'Socialista':
+        //                     return '#E4626F'
+        //                 case 'Vamos con Vos':
+        //                     return '#66B26B'
+        //                 case 'Frente Renovador':
+        //                     return '#999999'
+        //                 case 'Partido Vecinal':
+        //                     return '#B193CE'
+        //                 default:
+        //                     return 'black'
+        //         }})
+        // })
+        // .on('touchstart', (d, i) => {
+        //     tooltip
+        //         .html(HtmlToDisplayInTooltip(d))
+        //         .style("display", "initial")
+        //         .style("left", (`${d.path[0].cx.animVal.value + 5}px`)) // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+        //         .style("top", (`${d.path[0].cy.animVal.value}px`))
+        //         .style("background-color", () =>{
+        //             switch(d.path[0].__data__.fields.Orientacion){
+        //                 case 'Frente Juntos':
+        //                     return '#FBD17E'
+        //                 case 'Frente de Todos':
+        //                     return '#8CDDD3'
+        //                 case 'FIT-U':
+        //                     return '#E4626F'
+        //                 case 'Socialista':
+        //                     return '#E4626F'
+        //                 case 'Vamos con Vos':
+        //                     return '#66B26B'
+        //                 case 'Frente Renovador':
+        //                     return '#999999'
+        //                 case 'Partido Vecinal':
+        //                     return '#B193CE'
+        //                 default:
+        //                     return 'black'
+        //         }})
+        // })
 
         simulation.nodes(data)
         .on('tick', ticked)
