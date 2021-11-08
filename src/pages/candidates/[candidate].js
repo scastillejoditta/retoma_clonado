@@ -26,6 +26,7 @@ import Telegram from '../../assets/Icons/Telegram';
 import Positions from '../../assets/Icons/Positions';
 import GoodWrapper from '../../assets/Icons/GoodWrapper';
 import BadWrapper from '../../assets/Icons/BadWrapper';
+import MediumWrapper from '../../assets/Icons/MediumWrapper';
 
 import { fetchRecords, fetchRecord } from '../../utils/api';
 
@@ -33,8 +34,10 @@ const questionIcon = (score) => {
   switch(true) {
     case score > 0:
       return <GoodWrapper />
-    case score <= 0:
+    case score < 0:
       return <BadWrapper />
+    case score === 0:
+      return <MediumWrapper />
   }
 }
 
@@ -356,15 +359,18 @@ export default function Candidate() {
                     <span>
                       {questionIcon(getScoreSum(axis.answers))}
                     </span>
-                    <Paragraph mobileFontSize='customBase' color='dark' weight='normal' mobilePadding='0 2.5rem 2.5rem 2.5rem'>
+                    <Paragraph mobileFontSize='customBase' color='dark' weight='normal' mobilePadding='1rem 2rem'>
                       {getCandidateComment(axis.id)}
                     </Paragraph>
                   </Li>
                   <Li>
-                    <Title mobileFontSize='customBase' color='dark' margin='2rem 0 1rem 0'>
+                    <Title mobileFontSize='customBase' color='dark' margin='2rem 0 2rem 0' textAlign='left'>
                       {axis.fields.Eje}
                     </Title>
-                    <Positions score={getScoreSum(axis.answers)} />
+                    <PositionsWrapper>
+                      <Positions score={getScoreSum(axis.answers)} />
+                    </PositionsWrapper>
+
                   </Li>
                   
                 </AxlesWrapper>
@@ -405,6 +411,10 @@ export default function Candidate() {
     </>
   )
 }
+
+const PositionsWrapper = styled.div`
+  display: flex;
+`
 
 const PersonWrapper = styled.div`
   position: relative;
@@ -482,23 +492,24 @@ const AxlesWrapper = styled.div`
   & li{
     width: 50%;
     margin: 0;
+    margin-right: 2rem;
   }
   & li:nth-child(2){
     text-align: center;
-    margin: 0;
+    margin: 0 0 2rem 0;
     padding: 0 1rem;
     max-width: 40%;
   }
   @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     & li{
-      width: 100%
+      width: 100%;
     }
     & li:nth-child(2){
       text-align: center;
-      margin: 0;
-      max-width: 100%
+      max-width: 100%;
     }
+  }
 `
 
 const Share = styled.div`
@@ -545,6 +556,12 @@ const Li = styled.li`
   list-style-type: none;
 
   margin: 2rem 2rem 4rem 0;
+
+  > span {
+      position: absolute;
+      right: -10%;
+      top: -10%;
+    }
 `
 
 const ListWrapper = styled.ul`

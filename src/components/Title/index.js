@@ -8,7 +8,8 @@ const Title = ({
   desktopFontSize = "",
   padding = 0,
   margin = 0,
-  weight
+  weight,
+  textAlign = 'unset'
 }) => {
   return (
     <>
@@ -19,6 +20,7 @@ const Title = ({
         padding={padding}
         margin={margin}
         weight={weight}
+        textAlign={textAlign}
       >
         {children}
       </StyledTitle>
@@ -34,6 +36,8 @@ const StyledTitle = styled.h1`
   padding: ${(props) => props.padding};
 
   margin: ${(props) => props.margin};
+
+  text-align: ${props => props.textAlign}
 `;
 
 export default Title;
