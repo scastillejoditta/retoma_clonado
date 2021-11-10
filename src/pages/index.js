@@ -593,6 +593,8 @@ const Picture = styled.img`
 
 const GraphWrapper = styled.div`
   overflow-x: auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default Home;
