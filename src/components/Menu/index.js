@@ -26,13 +26,13 @@ const Menu = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+`;
 
 const ButtonWrapper = styled.button`
   color: white;
   font-size: ${(props) => props.theme.fontSizes.lg};
-
-  background: transparent;
+  
   border: none;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {

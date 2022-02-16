@@ -25,32 +25,27 @@ const List = ({ onShowMenuInMobile }) => {
           <ListItems selected={router.asPath === "/"}>
             <a onClick={() => handleSelectedSection("/")}>Inicio</a>
           </ListItems>
-          <ListItems selected={router.asPath === "/sobre-nosotrxs"}>
-            <a onClick={() => handleSelectedSection("/sobre-nosotrxs")}>Sobre el proyecto</a>
+          <ListItems selected={router.asPath === "/sobre-retoma"}>
+            <a onClick={() => handleSelectedSection("/sobre-retoma")}>Sobre Retoma</a>
           </ListItems>
-          <ListItems selected={router.asPath === "/candidates"}>
-            <a onClick={() => handleSelectedSection("/candidates")}>
-              Candidates
+          <ListItems selected={router.asPath === "/unete-a-la-red"}>
+            <a onClick={() => handleSelectedSection("/unete-a-la-red")}>
+              Únete a la Red
             </a>
           </ListItems>
-          <SocialMedia>
-            <MediaIconsWrapper href='https://twitter.com/EcoFeminita' target='_blank'>
-              <Twitter />
-            </MediaIconsWrapper>
-            <MediaIconsWrapper href='https://www.facebook.com/ecofeminita' target='_blank'>
-              <Facebook />
-            </MediaIconsWrapper>
-            <MediaIconsWrapper href='https://www.instagram.com/ecofeminita' target='_blank'>
-              <Instagram />
-            </MediaIconsWrapper>
-          </SocialMedia>
+          <ListItems selected={router.asPath === "/candidaturas"}>
+            <a onClick={() => handleSelectedSection("/candidaturas")}>
+              Candidaturas
+            </a>
+          </ListItems>
         </UnorderedList>
       </Wrapper>
     </>
   );
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+`;
 
 const UnorderedList = styled.ul`
   display: flex;
@@ -67,8 +62,6 @@ const UnorderedList = styled.ul`
   min-height: 100vh;
 
   z-index: 1;
-
-  background: ${(props) => props.theme.colors.feminindexRed};
 
   list-style-type: none;
   text-align: center;
@@ -92,16 +85,14 @@ const UnorderedList = styled.ul`
 
     min-width: unset;
     min-height: unset;
-
-    background: ${(props) => props.theme.colors.white};
   }
 `;
 
 const ListItems = styled.li`
   margin: 2.5rem 0;
 
-  font-size: ${(props) => props.theme.fontSizes.lg};
-  font-weight: 600;
+  font-size: ${(props) => props.theme.fontSizes.customBase};
+  font-weight: 800;
   color: ${(props) => props.theme.colors.white};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
@@ -111,11 +102,8 @@ const ListItems = styled.li`
 
     font-size: ${(props) => props.theme.fontSizes.customBase};
     font-weight: 600;
-    text-decoration: ${(props) => (props.selected ? "none" : "underline")};
-    color: ${(props) =>
-      props.selected
-        ? props.theme.colors.feminindexRed
-        : props.theme.colors.dark};
+    text-decoration: ${(props) => (props.selected ? "underline" : "none")};
+    color: ${props => props.theme.colors.white};
 
     cursor: pointer;
   }
@@ -135,29 +123,6 @@ const Close = styled.button`
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: none;
   }
-`;
-
-const SocialMedia = styled.div`
-  width: 100%;
-
-  margin-top: 2rem;
-
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    display: flex;
-    justify-content: space-around;
-
-    margin: 0;
-  }
-`;
-
-const MediaIconsWrapper = styled.a`
-  margin: 0 1rem;
-
-  cursor: pointer;
 `;
 
 export default List;

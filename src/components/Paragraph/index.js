@@ -12,6 +12,7 @@ const Paragraph = ({
   desktopMargin = "",
   maxWidth,
   weight,
+  style
 }) => {
   return (
     <>
@@ -25,6 +26,7 @@ const Paragraph = ({
         desktopMargin={desktopMargin}
         maxWidth={maxWidth}
         weight={weight}
+        style={style}
       >
         {children}
       </StyledParagraph>
@@ -37,7 +39,7 @@ const StyledParagraph = styled.p`
   font-size: ${(props) => props.theme.fontSizes[props.mobileFontSize]};
   padding: ${(props) => props.mobilePadding};
   line-height: 1.5;
-  margin: ${(props) => props.mobileMargin};
+  margin: ${(props) => props.mobileMargin || 0};
   font-weight: ${(props) => props.weight};
 
   font-weight: ${(props) => props.weight};
@@ -45,7 +47,7 @@ const StyledParagraph = styled.p`
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
     font-size: ${(props) => props.theme.fontSizes[props.desktopFontSize]};
     padding: ${(props) => props.desktopPadding};
-    margin: ${(props) => props.desktopMargin};
+    margin: ${(props) => props.desktopMargin || 0};
     max-width: ${(props) => props.maxWidth};
   }
 `;

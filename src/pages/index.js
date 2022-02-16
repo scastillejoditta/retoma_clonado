@@ -4,6 +4,7 @@ import {
   FacebookShareButton,
   TelegramShareButton,
   TwitterShareButton,
+  LinkedinShareButton
 } from "react-share";
 
 import styled from "styled-components";
@@ -11,14 +12,11 @@ import styled from "styled-components";
 // Assets
 import LeftArrow from "../assets/Icons/Arrows/LeftArrow";
 import RightArrow from "../assets/Icons/Arrows/RightArrow";
-import DownArrow from "../assets/Icons/Arrows/DownArrow";
-import Economia from "../assets/Icons/Economia";
-import Desktop from "/public/images/Bancas/Desktop/Desktop.png";
-import Mobile from "/public/images/Bancas/Mobile/Mobile.png";
-import Avatar from "../assets/Icons/Avatar";
+import DownArrow from '../assets/Icons/Arrows/DownArrow'
 import Twitter from "../assets/Icons/Twitter";
 import Facebook from "../assets/Icons/Facebook";
-import Telegram from "../assets/Icons/Telegram";
+import Telegram from "../assets/Icons/Whatsapp";
+import Linkedin from "../assets/Icons/Linkedin";
 
 // Components
 import Container from "../components/Container";
@@ -101,16 +99,19 @@ const Home = () => {
     setSelectedQuestion(value);
   };
 
+  console.log(questions, 'questions')
+  console.log(axles, 'axles')
+
   return (
     <>
-      <Container background="backgroundRed" mbHeight="55vh" dsHeight="45vh">
+      <Container background="backgroundGray" mbHeight="55vh" dsHeight="45vh">
         <Wrapper
           display="flex"
           justifyCont="center"
           alignItems="center"
           height="100%"
         >
-          <Bancas title="Tu herramienta para votar de manera informada" />
+          <Title color='white' mobileFontSize='customXlg'>Banner</Title>
         </Wrapper>
       </Container>
       <Container background="white">
@@ -119,7 +120,7 @@ const Home = () => {
           justifyCont="center"
           mbMargin="0 2rem"
           dsMargin="0 auto"
-          maxWidth="768px"
+          maxWidth="1024px"
           dsPadding="2rem 0"
           mbPadding="1rem 0"
         >
@@ -152,7 +153,7 @@ const Home = () => {
           justifyCont="center"
           mbMargin="0 1.5rem"
           dsMargin="0 auto"
-          maxWidth="768px"
+          maxWidth="1024px"
           position="relative"
         >
           <LeftArrowWrapper
@@ -203,7 +204,7 @@ const Home = () => {
           justifyCont="center"
           mbMargin="0 4rem 2rem"
           dsMargin="0 auto"
-          maxWidth="768px"
+          maxWidth="1024px"
           dsPadding="2rem 0"
           position="relative"
         >
@@ -216,14 +217,13 @@ const Home = () => {
               value={SelectedQuestion}
               onChange={handleChange}
               components={{ DropdownIndicator }}
-              noOptionsMessage={"Sin opciones"}
               placeholder={"Selecciona la pregunta"}
               options={questions
                 .filter(
                   (q) =>
                     q.fields["Id (from Ejes)"][0] ===
                       axles?.axles[selectedAxle].id &&
-                    q.fields.Pregunta !== "Comentario"
+                    q.fields?.Pregunta !== "Comentario"
                 )
                 .map((q) => ({
                   value: q.id,
@@ -238,7 +238,7 @@ const Home = () => {
           justifyCont="center"
           mbMargin="0 4rem"
           dsMargin="0 auto"
-          maxWidth="768px"
+          maxWidth="1024px"
           dsPadding="2rem 0"
           position="relative"
         >
@@ -251,62 +251,50 @@ const Home = () => {
           </GraphWrapper>
         </Wrapper>
       </Container>
-      <Container background="natural">
+      <Container background="backgroundLightGray">
         <Wrapper
           mbMargin="0 2rem"
           dsMargin="0 auto"
-          maxWidth="768px"
+          maxWidth="1024px"
           dsPadding="3rem 0"
           mbPadding="2rem 0"
         >
           <Title mobileFontSize="lg" desktopFontSize="lg" color="dark">
-            Machifrases
+            Frases
           </Title>
         </Wrapper>
         <Wrapper
-          display="flex"
-          justifyCont="center"
           mbMargin="0 4rem"
-          dsMargin="0 auto"
-          maxWidth="768px"
+          maxWidth="1024px"
+          dsMargin='0 auto'
           dsPadding="2rem 0 4rem 0"
           mbPadding="1rem 0"
         >
           <Machifrases>
             {quotes.map((q) => (
               <Machifrase key={q.id}>
-                <AvatarWrapper>
-                  {q.fields.Foto_Candidate ? (
-                    <Picture
-                      alt={q.fields.Nombre_Candidate}
-                      src={q.fields.Foto_Candidate}
-                    />
-                  ) : (
-                    <Avatar />
-                  )}
-                </AvatarWrapper>
                 <Paragraph
-                  mobileFontSize="base"
-                  desktopFontSize="base"
-                  desktopPadding="1rem 1rem 1rem 5rem"
-                  mobilePadding="1rem 1rem 1rem 5rem"
+                  mobileFontSize="customBase"
+                  desktopFontSize="customBase"
+                  desktopPadding="1.5rem"
+                  mobilePadding="1.5rem"
+                  weight='400'
                   color="white"
                 >
                   "{q.fields.Frase}"
                 </Paragraph>
                 <Paragraph
-                  mobileFontSize="base"
+                  mobileFontSize="customBase"
                   desktopFontSize="customBase"
+                  desktopPadding="1.5rem"
+                  mobilePadding="1.5rem"
                   weight="600"
-                  desktopPadding="0rem 1rem 1rem 5rem"
-                  mobilePadding="0rem 1rem 1rem 5rem"
                   color="white"
                 >
                   {q.fields.Nombre_Candidate}
                 </Paragraph>
                 <ShareWrapper>
                   <Share>
-                    <span>Compartir</span>
                     <SocialMedia>
                       <span>
                         <TwitterShareButton
@@ -333,6 +321,14 @@ const Home = () => {
                           url={`https://feminindex.com`}
                           title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
                         >
+                          <Linkedin />
+                        </TelegramShareButton>
+                      </span>
+                      <span>
+                        <TelegramShareButton
+                          url={`https://feminindex.com`}
+                          title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                        >
                           <Telegram />
                         </TelegramShareButton>
                       </span>
@@ -348,7 +344,7 @@ const Home = () => {
         <Wrapper
           mbMargin="0 2rem"
           dsMargin="0 auto"
-          maxWidth="768px"
+          maxWidth="1024px"
           dsPadding="3rem 0"
           mbPadding="2rem 0"
         >
@@ -361,7 +357,7 @@ const Home = () => {
           justifyCont="center"
           mbMargin="0 4rem"
           dsMargin="0 auto"
-          maxWidth="768px"
+          maxWidth="1024px"
           dsPadding="2rem 0 4rem 0"
           mbPadding="1rem 0"
         >
@@ -391,26 +387,33 @@ const Home = () => {
 };
 
 const OptionsWrapper = styled.section`
-  text-align: center;
-  display: none;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
   }
 `;
 
 const Option = styled.div`
+  width: 150px;
   max-width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 50px;
   cursor: pointer;
-  background-color: ${(props) => (props.selected ? "#E5616E" : "#494949")};
+
+  text-align: center;
+
+  margin: 0 0.8rem;
+
+  background: ${props => props.theme.colors.backgroundGray};
+
+  line-height: 1.5;
+  font-weight: 600;
+
+  cursor: pointer;
+  text-decoration: ${(props) => (props.selected ? "white underline" : "unset")};
+  text-underline-offset: 4px;
+  font-size: 12px;
 `;
 
 const AxlesWrapper = styled.div`
@@ -467,11 +470,9 @@ const RightArrowWrapper = styled.div`
 `;
 
 const Bancas = styled.div`
-  background: url(${Mobile.src}) center / contain no-repeat;
   width: 100%;
   height: 100%;
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    background: url(${Desktop.src}) center / contain no-repeat;
   }
 `;
 
@@ -486,9 +487,13 @@ const Machifrases = styled.div`
   justify-content: center;
   width: 100%;
 
+  &:first-child {
+    margin-right: 4rem;
+  }
+
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
   }
 `;
 
@@ -506,17 +511,18 @@ const Novedades = styled.div`
 `;
 
 const Machifrase = styled.div`
-  background-color: ${(props) => props.theme.colors.dark};
+  background-color: ${props => props.theme.colors.backgroundGray};
   height: 100%;
-  max-width: 19rem;
-  width: 100%;
-  margin-left: 0rem;
+  width: 50%;
   position: relative;
-  margin-bottom: 3rem;
+
+  &:first-child {
+    margin-right: 4rem;
+  }
+  
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-bottom: 0rem;
-    margin-left: 4rem;
-    min-height: 15rem;
+    min-height: 20rem;
   }
 `;
 
@@ -563,18 +569,11 @@ const Share = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  background-color: #efeded;
-  border-radius: 12px;
+  background-color: ${props => props.theme.colors.lightGray};
 
-  padding: 0.1rem 0.75rem;
+  padding: 0.5rem 0.75rem;
 
-  > span {
-    font-size: ${(props) => props.theme.fontSizes.base};
-    color: ${(props) => props.theme.colors.dark};
-    font-weight: 600;
-
-    margin: 0 1rem 0 0;
-  }
+  border-bottom: 2px solid ${props => props.theme.colors.green};
 `;
 const SocialMedia = styled.div`
   display: flex;
@@ -582,13 +581,8 @@ const SocialMedia = styled.div`
   align-items: center;
 
   > span {
-    margin: 0 0.2rem;
+    margin: 0 0.5rem;
   }
-`;
-
-const Picture = styled.img`
-  width: 127px;
-  border-radius: 50%;
 `;
 
 const GraphWrapper = styled.div`

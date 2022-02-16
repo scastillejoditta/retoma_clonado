@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // Assets
-import FeminindexLogo from "../../assets/Icons/Ecofeminita";
+import Retoma from "../../assets/Retoma";
 
 // Components
 import Menu from "../Menu";
@@ -10,8 +10,8 @@ import Menu from "../Menu";
 const Navbar = () => {
   return (
     <Wrapper>
-      <FeminindexLogo />
       <Menu />
+      <Retoma />
     </Wrapper>
   );
 };
@@ -21,7 +21,9 @@ const Wrapper = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  margin: 2rem;
+  background: ${props => props.theme.colors.backgroundGray};
+
+  padding: 2rem;
 `;
 
 export default Navbar;

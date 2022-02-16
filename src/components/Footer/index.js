@@ -6,34 +6,15 @@ import styled from "styled-components";
 import Twitter from "../../assets/Icons/Twitter";
 import Facebook from "../../assets/Icons/Facebook";
 import Instagram from "../../assets/Icons/Instagram";
-import Telegram from "../../assets/Icons/Telegram";
+import Telegram from "../../assets/Icons/Whatsapp";
 import Youtube from "../../assets/Icons/Youtube";
 import FooterEcoFeminita from "../../assets/Icons/FooterEcofeminita";
 import Wingu from "../../assets/Icons/Wingu";
 import Fundar from "/public/images/Fundar/Fundar.png";
 
-// Components
-import Container from "../../components/Container";
-
 const Footer = () => {
   return (
     <Wrapper>
-      <FirstSectionWrapper>
-        <UnorderedList>
-          <ListItems>
-            <Link href={'/candidates'}>Candidates</Link>
-          </ListItems>
-          <ListItems>
-            <Link href={'/sobre-nosotrxs'}>Sobre el proyecto</Link>
-          </ListItems>
-          <ListItems>
-            <a href='https://ecofeminita.com/' target='_blank'>Ecofeminita</a>
-          </ListItems>
-          <ListItems>
-            <a href='https://ecofeminita.com/club-ecofeminita/' target='_blank'>Club EcoFeminita</a>
-          </ListItems>
-        </UnorderedList>
-
         <SocialMediaList>
           <MediaIconsWrapper>
             <a href='https://twitter.com/EcoFeminita' target='_blank'>
@@ -61,32 +42,12 @@ const Footer = () => {
             </a>
           </MediaIconsWrapper>
         </SocialMediaList>
-      </FirstSectionWrapper>
 
       <SecondSectionWrapper>
         <ProjectMadeByList>
           <EcoFeminitaWrapper>
-            <Title>Feminindex es un proyecto<br /> realizado por</Title>
-            <ProjectMadeItem>
-              <a href='https://ecofeminita.com/' target='_blank'>
-                <FooterEcoFeminita />
-              </a>
-            </ProjectMadeItem>
+            <Title>Retoma es un proyecto realizado por</Title>
           </EcoFeminitaWrapper>
-          <WinguAndLuminateWrapper>
-            <Title>Desarrollo de</Title>
-            <ProjectMadeItem>
-              <a href='https://www.winguweb.org' target='_blank' >
-                <Wingu />
-              </a>
-            </ProjectMadeItem>
-            <Title>Con el apoyo técnico de</Title>
-            <ProjectMadeItem>
-              <a href='https://www.fund.ar/' target='_blank'>
-                <img src={Fundar.src} width='150' />
-              </a>
-            </ProjectMadeItem>
-          </WinguAndLuminateWrapper>
         </ProjectMadeByList>
       </SecondSectionWrapper>
     </Wrapper>
@@ -95,12 +56,12 @@ const Footer = () => {
 
 const Wrapper = styled.footer`
   background: ${(props) => props.theme.colors.dark};
-
-  padding: 4rem 2rem;
+  padding: 2rem;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
@@ -134,8 +95,6 @@ const SocialMediaList = styled.ul`
   align-items: center;
 
   list-style-type: none;
-
-  margin: 1.5rem 0 4rem 0;
 `;
 
 const MediaIconsWrapper = styled.li`

@@ -2,28 +2,33 @@
   "axles": [
     {
       "title": "Derechos sexuales y reproductivos",
-      "id": 1,
-      "description": "De acuerdo a los datos de Ecofeminita, en marzo del 2021 el costo promedio de menstruar es de aproximadamente $3.233. Es necesario agregar que tanto las toallitas como los tampones aumentaron un 10% durante el último año. Esto es importante si tenemos en cuenta que las mujeres tienen una brecha de ingresos de entre el 25 y 27 % con respecto a los varones y que, además, las mujeres jóvenes fueron las mas perjudicadas por la crisis del COVID en términos de regreso al mercado de trabajo. La importancia de quitar el IVA a los productos de gestión menstrual reside en esta brecha de ingresos. "
+      "id": 7,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
-      "title": "Economía Feminista",
-      "id": 4,
-      "description": "Los indicadores económicos sufrieron grandes retrocesos durante la crisis de la COVID-19. Entre el primer trimestre de 2020, cuando el coronavirus recién aparecía en las noticias, y el primer trimestre de 2021, la brecha de ingresos se incrementó más de un 10% y llegó al 25,6%. En 2021, la desocupación fue de 12,3% para las mujeres, mientras que para los varones se ubicó en 8,5%. Tasas como la de actividad o empleo presentan diferencias entre varones y mujeres que rondan el 20%, mientras que 1 de cada 4 mujeres menores de 30 años busca empleo y no lo consigue. Es importante destacar que todos estos datos se dan en un contexto en el que el 72% del total de personas que realizan tareas domésticas y de cuidado son mujeres. Adempas, prácticamente todas las personas que se dedican al servicio doméstico son mujeres."
+      "title": "Corrupción",
+      "id": 8,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
-      "title": "Violencia Machista",
+      "title": "Pliego 3",
       "id": 5,
-      "description": "En Argentina se muere una mujer cada 31 horas a causa de la violencia de género mientras que en lo que va de 2021 se registraron 39 muertes prematuras de personas trans, entre crímenes de odio, travesticidios/trans homicidios sociales y suicidios."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
-      "title": "Derechos LGBTTTIQ+",
+      "title": "Pliego 4",
       "id": 3,
-      "description": "La población LGBTTTIQ+ enfrenta numerosas barreras para poder vivir una vida con pleno acceso a derechos y libre de violencias. En Argentina, la mayoría de las personas trans viven en la pobreza y muchas fueron expulsadas de sus hogares. Como consecuencia, el 90% de las mujeres trans ejerce el trabajo sexual y tienen una esperanza de vida de entre 35 y 41 años. La población travesti, trans y no binaria también enfrenta barreras registrales. Entre 2012 y abril de 2021, 9.383 personas tuvieron o tienen su DNI conforme a la Ley de Identidad de Género. Sin embargo, el binarismo y la invisibilización de la población TTNB en las estadísticas oficiales complica la generación de datos para elaborar políticas públicas abarcativas. El trato digno y el acceso al empleo de calidad son otros de los tantos desafíos por delante."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
-      "title": "Participacion Política",
+      "title": "Pliego 5",
       "id": 2,
-      "description": "En el gabinete nacional, por ejemplo, solo 2 de sus 20 ministerios están encabezados por mujeres. Los gobiernos provinciales siguen los pasos del gobierno nacional. Solo Tierra del Fuego, Chaco y Entre Ríos tienen gabinetes paritarios mientras que La Pampa, Corrientes, Formosa y Salta tienen solo una mujer. En el Poder Legislativo Nacional, hay un 42% de mujeres diputadas mientras que en el Senado, lo son 39%. En noviembre renunció la única magistrada mujer de la Corte Suprema de Justicia de la Nación. Como si esto fuera poco, las mujeres siguen siendo minoría al encabezar las listas electorales. En las PASO de 2021, solo el 30% de las listas estaban encabezadas por ellas."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+      "title": "Pliego 6",
+      "id": 8,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     }
   ]
 }

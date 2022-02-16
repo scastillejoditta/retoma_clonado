@@ -14,7 +14,9 @@ const Container = ({
   flexWrap,
   flexDir,
   zIndex,
-  dsMargin
+  dsMargin,
+  width,
+  justifyCont
 }) => {
   return (
     <Wrapper
@@ -30,6 +32,8 @@ const Container = ({
       flexDir={flexDir}
       dsMargin={dsMargin}
       zIndex={zIndex}
+      width={width}
+      justifyCont={justifyCont}
     >
       {children}
     </Wrapper>
@@ -37,6 +41,8 @@ const Container = ({
 };
 
 const Wrapper = styled.main`
+  width: ${props => props.width};
+  
   padding: ${(props) => props.mobilePadding};
   margin: ${(props) => props.margin};
   background: ${(props) => props.theme.colors[props.background]};
@@ -44,13 +50,13 @@ const Wrapper = styled.main`
   height: ${(props) => props.mbHeight};
 
   position: relative;
-  // z-index: -1;
   z-index: ${props => props.zIndex};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: ${props => props.display};
     flex-wrap: ${props => props.flexWrap};
-    max-width: ${(props) => props.maxWidth};
+    justify-content: ${props => props.justifyCont};
+    max-width: ${(props) => props.theme.breakpoints[props.maxWidth]};
     padding: ${(props) => props.desktopPadding};
     margin: ${(props) => props.dsMargin};
     height: ${(props) => props.dsHeight};

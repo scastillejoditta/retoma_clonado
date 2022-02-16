@@ -1,19 +1,11 @@
 const theme = {
   fontSizes: {
-    xxs: "9px",
-    xs: "12px",
-    sm: "14px",
-    base: "15px",
+    base: "16px",
     customBase: "18px",
     regular: "20px",
     medium: "22px",
-    extended: "28px",
     lg: "30px",
-    xlg: "35px",
-    customXlg: "45px",
-    xl: "50px",
-    xxl: "64px",
-    customXxl: "72px",
+    customXlg: "45px"
   },
   fontFamilies: {
     main: "'Montserrat', sans-serif",
@@ -22,14 +14,13 @@ const theme = {
     dark: "#333",
   },
   colors: {
-    primary: "#0092dd",
-    feminindexRed: "#E5616E",
     dark: "#4A4A4A",
     gray: "#EFEDED",
-    natural: "#F6F4ED",
+    green: "#00D857",
     white: "#FFF",
-    backgroundRed: "#e4626f",
-    backgroundGray: "#C4C4C4",
+    lightGray: '#C4C4C4',
+    backgroundLightGray: "#E6E4E1",
+    backgroundGray: "#4A4A4A",
   },
   breakpoints: {
     xxs: "374px",
