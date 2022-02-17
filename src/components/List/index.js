@@ -51,26 +51,23 @@ const UnorderedList = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
+  inset: 0px;
   min-width: 100vw;
   min-height: 100vh;
 
   z-index: 1;
 
+  background: ${props => props.theme.colors.backgroundGray};
+
   list-style-type: none;
+
   text-align: center;
 
-  display: flex;
-  flex-direction: column;
-
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     list-style-type: none;
@@ -91,8 +88,8 @@ const UnorderedList = styled.ul`
 const ListItems = styled.li`
   margin: 2.5rem 0;
 
-  font-size: ${(props) => props.theme.fontSizes.customBase};
-  font-weight: 800;
+  font-size: ${(props) => props.theme.fontSizes.lg};
+  font-weight: 600;
   color: ${(props) => props.theme.colors.white};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {

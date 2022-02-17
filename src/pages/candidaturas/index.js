@@ -39,10 +39,10 @@ const Candidates = () => {
 
   return (
     <>
-      <Container background="backgroundGray" mobilePadding={"2rem 4rem"}>
-        <Wrapper style={{padding: '0 4rem 2rem 4rem'}}>
+      <Container background="backgroundGray" desktopPadding={"2rem 4rem"} mobilePadding={'1rem 0'}>
+        <Wrapper>
           <div> 
-            <Title mobileFontSize="xlg" desktopFontSize="xl" color='white' margin='0 0 1.5rem 0'>¿Qué opinan les candidates?</Title>
+            <Title mobileFontSize="xlg" desktopFontSize="xl" dsColor='white' mbColor='white' margin='0 0 1.5rem 0'>¿Qué opinan les candidates?</Title>
             <Input placeholder='Buscar por nombre, provincia, o frente' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
             <Select 
               name='partido'
@@ -70,10 +70,12 @@ const Candidates = () => {
       <Container dsMargin='2rem 6rem'>
         <Container display='flex' justifyCont='flex-start' flexWrap='wrap' dsMargin='0 6rem'>
           {filteredCandidates.map(candidate =>
-            <Container  width='25%' height='25%' background='gray' margin='2rem 4rem 8rem 0'>
+            <Container  dsWidth='25%' height='25%' background='gray' margin='0 2rem 12rem 2rem' dsMargin='2rem 4rem 8rem 0'>
               <Wrapper>
                 <div style={{minHeight: '15rem', maxHeight: '15rem'}}>
-                  <Image />
+                  <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <Image />
+                  </div>
                   <Title desktopFontSize='medium' weight='600'>{candidate.fields.Nombre}</Title>
                   <Title desktopFontSize='customBase' weight='400' margin='1rem 0'>{candidate.fields.Orientacion}</Title>
                 </div>
@@ -96,6 +98,7 @@ const Candidates = () => {
 
 const Wrapper = styled.section`
   position: relative;
+  margin: 4rem 2rem;
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-width: 1024px;
     margin: 0 auto;

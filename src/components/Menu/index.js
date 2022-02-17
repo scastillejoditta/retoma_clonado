@@ -27,15 +27,21 @@ const Menu = () => {
 };
 
 const Wrapper = styled.div`
+  display: flex;
+
+  margin: 1rem 0;
 `;
 
 const ButtonWrapper = styled.button`
-  color: white;
+  display: flex;
+
+  background: transparent;
   font-size: ${(props) => props.theme.fontSizes.lg};
-  
   border: none;
 
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+  margin-left: 2rem;
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}) {
     display: none;
   }
 `;

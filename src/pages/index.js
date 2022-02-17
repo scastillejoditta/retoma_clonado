@@ -75,7 +75,7 @@ const Home = () => {
     };
     getData();
     const getQuotes = async () => {
-      let quotes = await fetchRecords("Machifrases_Candidates");
+      let quotes = await fetchRecords("Frases_Candidates");
       if (quotes.data.records) {
         setQuotes(_.sampleSize(quotes.data.records, 2));
       }
@@ -110,8 +110,9 @@ const Home = () => {
           justifyCont="center"
           alignItems="center"
           height="100%"
+          style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
         >
-          <Title color='white' mobileFontSize='customXlg'>Banner</Title>
+          <Title dsColor='white' mbColor='white' mobileFontSize='customXlg'>Banner</Title>
         </Wrapper>
       </Container>
       <Container background="white">
@@ -156,48 +157,48 @@ const Home = () => {
           maxWidth="1024px"
           position="relative"
         >
-          <LeftArrowWrapper
-            selectedAxle={selectedAxle}
-            onClick={() => {
-              setSelectedQuestion(null);
-              setSelectedAxle((prevValue) => prevValue - 1);
-            }}
-          >
-            <LeftArrow />
-          </LeftArrowWrapper>
-
           <AxlesWrapper>
             <AxleTitle>
               <Title
                 mobileFontSize="lg"
                 desktopFontSize="lg"
                 color="feminindexRed"
-                margin="0"
+                margin="1rem 0"
               >
                 {axles?.axles[selectedAxle].title}
               </Title>
             </AxleTitle>
             <AxleDescription>
+              <LeftArrowWrapper
+                selectedAxle={selectedAxle}
+                onClick={() => {
+                  setSelectedQuestion(null);
+                  setSelectedAxle((prevValue) => prevValue - 1);
+                }}
+              >
+                <LeftArrow />
+              </LeftArrowWrapper>
               <Paragraph
                 mobileFontSize="base"
                 desktopFontSize="base"
                 color="dark"
                 mobilePadding="0.2rem"
                 desktopPadding="0"
+                mobileMargin='1rem 0'
               >
                 {axles?.axles[selectedAxle].description}
               </Paragraph>
-            </AxleDescription>
+              <RightArrowWrapper
+                selectedAxle={selectedAxle}
+                onClick={() => {
+                  setSelectedQuestion(null);
+                  setSelectedAxle((prevValue) => prevValue + 1);
+                }}
+              >
+                <RightArrow />
+              </RightArrowWrapper>
+            </AxleDescription>    
           </AxlesWrapper>
-          <RightArrowWrapper
-            selectedAxle={selectedAxle}
-            onClick={() => {
-              setSelectedQuestion(null);
-              setSelectedAxle((prevValue) => prevValue + 1);
-            }}
-          >
-            <RightArrow />
-          </RightArrowWrapper>
         </Wrapper>
         <Wrapper
           display="flex"
@@ -264,13 +265,13 @@ const Home = () => {
           </Title>
         </Wrapper>
         <Wrapper
-          mbMargin="0 4rem"
+          mbMargin="0 2rem"
           maxWidth="1024px"
           dsMargin='0 auto'
           dsPadding="2rem 0 4rem 0"
-          mbPadding="1rem 0"
+          mbPadding="1rem 0 4rem 0"
         >
-          <Machifrases>
+          <Frases>
             {quotes.map((q) => (
               <Machifrase key={q.id}>
                 <Paragraph
@@ -290,6 +291,7 @@ const Home = () => {
                   mobilePadding="1.5rem"
                   weight="600"
                   color="white"
+                  mobileMargin='none'
                 >
                   {q.fields.Nombre_Candidate}
                 </Paragraph>
@@ -300,8 +302,8 @@ const Home = () => {
                         <TwitterShareButton
                           url={`https://feminindex.com`}
                           title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
-                          hashtag={"#Machifrases"}
-                          description={"Machifrases"}
+                          hashtag={"#Frases"}
+                          description={"Frases"}
                         >
                           <Twitter />
                         </TwitterShareButton>
@@ -310,8 +312,8 @@ const Home = () => {
                         <FacebookShareButton
                           url={`https://feminindex.com`}
                           quote={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
-                          hashtag={"#Machifrases"}
-                          description={"Machifrases"}
+                          hashtag={"#Frases"}
+                          description={"Frases"}
                         >
                           <Facebook />
                         </FacebookShareButton>
@@ -337,7 +339,7 @@ const Home = () => {
                 </ShareWrapper>
               </Machifrase>
             ))}
-          </Machifrases>
+          </Frases>
         </Wrapper>
       </Container>
       <Container background="white">
@@ -387,6 +389,7 @@ const Home = () => {
 };
 
 const OptionsWrapper = styled.section`
+  display: none;
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
   }
@@ -440,6 +443,9 @@ const AxleTitle = styled.div`
 `;
 
 const AxleDescription = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     width: 65%;
   }
@@ -461,6 +467,7 @@ const RightArrowWrapper = styled.div`
   align-self: center;
   margin-left: 1rem;
   visibility: ${(props) => (props.selectedAxle !== 4 ? "visible" : "hidden")};
+  
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     position: absolute;
     right: -6rem;
@@ -480,7 +487,7 @@ const SelectWrapper = styled.div`
   width: 100%;
 `;
 
-const Machifrases = styled.div`
+const Frases = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -512,17 +519,20 @@ const Novedades = styled.div`
 
 const Machifrase = styled.div`
   background-color: ${props => props.theme.colors.backgroundGray};
-  height: 100%;
-  width: 50%;
   position: relative;
 
-  &:first-child {
-    margin-right: 4rem;
-  }
+  height: 100%;
+
+  margin: 1rem 0;
   
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-bottom: 0rem;
     min-height: 20rem;
+    width: 50%;
+
+    &:first-child {
+      margin-right: 4rem;
+    }
   }
 `;
 
@@ -542,9 +552,12 @@ const Noveded = styled.a`
   text-align: center;
   cursor: pointer;
   text-decoration: none;
+  padding: 2rem;
+
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-bottom: 0rem;
     width: 30%;
+    padding: unset;
   }
 `;
 

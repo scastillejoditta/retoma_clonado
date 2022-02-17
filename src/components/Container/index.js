@@ -16,7 +16,8 @@ const Container = ({
   zIndex,
   dsMargin,
   width,
-  justifyCont
+  justifyCont,
+  dsWidth
 }) => {
   return (
     <Wrapper
@@ -34,6 +35,7 @@ const Container = ({
       zIndex={zIndex}
       width={width}
       justifyCont={justifyCont}
+      dsWidth={dsWidth}
     >
       {children}
     </Wrapper>
@@ -56,6 +58,8 @@ const Wrapper = styled.main`
     display: ${props => props.display};
     flex-wrap: ${props => props.flexWrap};
     justify-content: ${props => props.justifyCont};
+
+    width: ${props => props.dsWidth};
     max-width: ${(props) => props.theme.breakpoints[props.maxWidth]};
     padding: ${(props) => props.desktopPadding};
     margin: ${(props) => props.dsMargin};

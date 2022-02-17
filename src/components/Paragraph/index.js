@@ -39,7 +39,7 @@ const StyledParagraph = styled.p`
   font-size: ${(props) => props.theme.fontSizes[props.mobileFontSize]};
   padding: ${(props) => props.mobilePadding};
   line-height: 1.5;
-  margin: ${(props) => props.mobileMargin || 0};
+  margin: ${(props) => props.mobileMargin};
   font-weight: ${(props) => props.weight};
 
   font-weight: ${(props) => props.weight};

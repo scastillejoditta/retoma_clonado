@@ -11,9 +11,9 @@ import Paragraph from "../components/Paragraph";
 const About = () => {
   return (
     <>
-      <Container background="backgroundGray" mobilePadding={"2rem 4rem"}>
-        <Wrapper style={{padding: '0 4rem 2rem 4rem'}}>
-          <Title mobileFontSize="customXlg" weight='700' desktopFontSize="lg" color="white" margin='2rem 0'>
+      <Container background="backgroundGray" mobilePadding={"2rem"}>
+        <Wrapper>
+          <Title mobileFontSize="customXlg" weight='700' desktopFontSize="lg" dsColor="white" mbColor='white' margin='2rem 0'>
             Sobre Retoma
           </Title>
           <Paragraph
@@ -26,7 +26,7 @@ const About = () => {
         </Wrapper>
       </Container>
 
-      <Container background="white" mobilePadding={"2rem 4rem"}>
+      <Container background="white" mobilePadding={"2rem"}>
         <Wrapper>
           <Title mobileFontSize="lg" desktopFontSize="lg" color="backgroundGray" margin='2rem 0'>
             Metodología
@@ -41,7 +41,7 @@ const About = () => {
         </Wrapper>
       </Container>
 
-      <Container background="lightGray" mobilePadding={"0 4rem 2rem 4rem"}>
+      <Container background="lightGray" mobilePadding={"0 2rem"} desktopPadding={'2rem'}>
         <Wrapper>
           <Title mobileFontSize="lg" desktopFontSize="lg" color="dark" margin='0 0 2rem 0'>
             Retoma
@@ -63,7 +63,7 @@ const About = () => {
         </Wrapper>
       </Container>
 
-      <Container background="white" mobilePadding={"0 4rem"}>
+      <Container background="white" width='100%'>
         <Wrapper>
           <ScoreWrapper>
             <Container
@@ -71,12 +71,13 @@ const About = () => {
               desktopPadding="5rem 2.5rem"
               mobilePadding="1.5rem"
               maxWidth="xs"
-              margin='0 2rem 0 0'
+              margin='2rem'
             >
               <Title
                 mobileFontSize="lg"
                 desktopFontSize="lg"
-                color="white"
+                dsColor="white"
+                mbColor='white'
                 margin="0 0 1rem 0"
               >
                 Proyecto
@@ -95,6 +96,7 @@ const About = () => {
               desktopPadding="5rem 2.5rem"
               mobilePadding="1.5rem"
               maxWidth="xs"
+              margin='2rem'
             >
               <Title
                 mobileFontSize="lg"
@@ -119,14 +121,14 @@ const About = () => {
             <Title
               mobileFontSize="lg"
               desktopFontSize="lg"
-              margin="0 1rem"
+              margin="0 2rem"
               color="feminindexRed"
             >
               Equipo
             </Title>
           </TeamWrapper>
           <Persons>
-            <div style={{display: 'flex', justifyContent: 'space-between', margin: '2rem 0'}}>
+            <Rows>
               <PersonWrapper>
                 <div style={{margin: '0 1rem'}}>
                   <PersonIcon />
@@ -166,8 +168,8 @@ const About = () => {
                   </div>
                 </div>
               </PersonWrapper>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', margin: '1rem 0'}}>
+            </Rows>
+            <Rows>
               <PersonWrapper>
                 <div style={{margin: '0 1rem'}}>
                   <PersonIcon />
@@ -207,7 +209,7 @@ const About = () => {
                   </div>
                 </div>
               </PersonWrapper>
-            </div>
+            </Rows>
           </Persons>
         </Wrapper>
       </Container>
@@ -216,16 +218,17 @@ const About = () => {
 };
 
 const Wrapper = styled.section`
+  padding: 2rem 0;
+  
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-width: 1024px;
     margin: 0 auto;
 
-    padding: 4rem;
+    padding: 0 4rem 2rem 4rem;
   }
 `;
 
 const ScoreWrapper = styled.div`
-  margin-top: -7rem;
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
     justify-content: center;
@@ -251,13 +254,24 @@ const TeamWrapper = styled.aside`
 `;
 
 const Persons = styled.section`
-  margin-top: 2rem;
+  margin: 2rem;
 `;
 
 const PersonWrapper = styled.div`
   background: #E8E8E8;
 
-  padding: 1rem 0.5rem;
+  padding: 1rem 0;
+  margin: 1rem 0;
 `;
+
+const Rows = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: block;
+  }
+`
 
 export default About;

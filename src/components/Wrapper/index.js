@@ -21,7 +21,10 @@ const Wrapper = ({
   height,
   flexWrap,
   width,
-  style
+  dsWidth,
+  style,
+  dsBackground,
+  mbBackground
 }) => {
   return (
     <>
@@ -42,6 +45,9 @@ const Wrapper = ({
         xxsDisplay={xxsDisplay}
         width={width}
         style={style}
+        dsWidth={dsWidth}
+        dsBackground={dsBackground}
+        mbBackground={mbBackground}
       >
         {children}
       </StyledWrapper>
@@ -50,11 +56,6 @@ const Wrapper = ({
 };
 
 const StyledWrapper = styled.section`
-  display: ${(props) => props.display};
-  flex-direction: ${(props) => props.flexDir};
-  justify-content: ${(props) => props.justifyCont};
-  align-items: ${(props) => props.alignItems};
-
   width: ${props => props.width};
 
   position: ${(props) => props.position};
@@ -65,13 +66,21 @@ const StyledWrapper = styled.section`
 
   height: ${(props) => props.height};
 
+  background: ${props => props.mbBackground};
+
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    width: ${props => props.width};
+    display: ${props => props.display};
+    flex-direction: ${(props) => props.flexDir};
+    justify-content: ${(props) => props.justifyCont};
+    align-items: ${(props) => props.alignItems};
+    width: ${props => props.dsWidth};
     
     flex-wrap: ${props => props.flexWrap};
     max-width: ${(props) => props.maxWidth};
     margin: ${(props) => props.dsMargin};
     padding: ${(props) => props.dsPadding};
+
+    background: ${props => props.dsBackground};
   }
 
   @media only screen and (max-width: ${(props) => props.theme.breakpoints.xxs}) {

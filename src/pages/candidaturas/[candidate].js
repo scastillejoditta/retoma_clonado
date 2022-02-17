@@ -247,13 +247,18 @@ export default function Candidate() {
     <Container>
       <Wrapper >
         <Wrapper 
-          style={{background: 'linear-gradient(to bottom, #4A4A4A 40%, white 40%, white 100%)', padding: '4rem 6rem'}} 
+          dsPadding={'4rem 6rem'}
+          mbPadding={'2rem'}
+          dsBackground={'linear-gradient(to bottom, #4A4A4A 40%, white 40%, white 100%)'}
+          mbBackground={'white'}
           display='flex' 
           justifyCont='space-between' 
         >
-          <div style={{width: '30%'}}>
-            <Image />
-            <SocialMedia style={{margin: '0.75rem 1rem'}}>
+          <Wrapper dsWidth={'30%'} >
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <Image />
+            </div>
+            <SocialMedia style={{display: 'flex', justifyContent: 'center', margin: '0.75rem 1rem'}}>
               <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
                 <BlackFacebook />
               </button>
@@ -270,9 +275,9 @@ export default function Candidate() {
                 <BlackYoutube />
               </button>
             </SocialMedia>
-          </div>
-          <div style={{width: '30%'}}>
-            <Title mobileFontSize='customXlg' weight='bold' margin='0 0 2rem 0' color='white'>
+          </Wrapper>
+          <Wrapper dsWidth={'30%'} >
+            <Title mobileFontSize='customXlg' weight='bold' margin='0 0 2rem 0' dsColor='white' mbColor='#4A4A4A'>
               {candidateData?.Nombre}
             </Title>
             <Paragraph
@@ -321,8 +326,8 @@ export default function Candidate() {
                 </LinkedinShareButton>
               </span>
             </Share>
-          </div>
-          <div style={{display: 'flex', flexDirection: 'column-reverse', width: '30%'}}>
+          </Wrapper>
+          <Wrapper display='flex' flexDir={'column-reverse'} dsWidth='30%'>
             <TrafficLights background={'#EFEDED'}>
               <Paragraph mobileFontSize='base' color='dark' weight='bold' style={{textAlign: 'center'}}>
                 “Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -333,11 +338,11 @@ export default function Candidate() {
                 <span style={{margin: '0 0.75rem'}}><Ellipse fill={'#FF2C2C'} /></span>
               </div>
             </TrafficLights>
-          </div>
+          </Wrapper>
         </Wrapper>
       </Wrapper>
       <Wrapper display='flex'>
-        <div style={{margin: '0 6rem'}}>
+        <Wrapper mbMargin={'0 2rem'} dsMargin={'0 6rem'}>
           <Title weight='700' color='dark' margin='2rem 0'>
             Preguntas
           </Title>
@@ -388,7 +393,7 @@ export default function Candidate() {
               }
             </div>
           </ListWrapper>
-        </div>
+        </Wrapper>
       </Wrapper>
     </Container>
     </>
@@ -438,18 +443,20 @@ const SocialMedia = styled.div`
 const Li = styled.li`
   position: relative;
 
-  max-width: 30%;
-
   background: ${props => props.background ? props.background : 'transparent'};
   list-style-type: none;
 
   margin: 2rem 0 2rem 0;
 
   > span {
-      position: absolute;
-      right: -7%;
-      top: -5%;
-    }
+    position: absolute;
+    right: -7%;
+    top: -5%;
+  }
+  
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
+    max-width: 30%;
+  }
 `
 
 const ListWrapper = styled.ul`
