@@ -73,7 +73,7 @@ const Candidates = () => {
                       <Title desktopFontSize='customBase' weight='400' margin='1rem 0'>{candidate.fields.Orientacion}</Title>
                     </div>
                     <div style={{position: 'absolute', bottom: '-8%', left: '0', right: '0', margin: '0 2.5rem'}}>
-                      <Link href="/candidaturas/[id]" as={`/candidaturas/${candidate.id}`}>
+                      <Link href={`/candidaturas/${candidate.id}`}>
                         <LinkWrapper>
                           Ver perfil
                         </LinkWrapper>

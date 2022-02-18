@@ -82,6 +82,8 @@ export default function Candidate() {
   const router = useRouter()
   const { candidate } = router.query
 
+  console.log(candidate, 'candidate')
+
   const {data: candidateData, loading: loadingCandidate} = useFetch("Respuestas_Candidates", {}, candidate)
   const {data: questionsData, loading: loadingQuestions} = useFetch("Preguntas", [])
   const {data: questionsOptionsData, loading: loadingOptions} = useFetch("Preguntas_Opciones", [])
