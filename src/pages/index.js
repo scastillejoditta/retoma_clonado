@@ -27,9 +27,6 @@ import Wrapper from "../components/Wrapper";
 import Graph from "../components/Graph";
 import Select, { components } from "react-select";
 import axles from "../utils/axles.json";
-import { fetchRecords, fetchCandidates } from "../utils/api";
-
-
 
 import {useFetch} from '../hooks/useFetch'
 
@@ -79,7 +76,7 @@ const Home = () => {
 
   const handleChange = (value) => {
     setSelectedQuestion(value);
-  };
+  }
 
   return (
     <>

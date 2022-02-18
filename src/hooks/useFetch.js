@@ -6,7 +6,6 @@ const headers = {
 }
 
 const useFetch = (url, dataType = [], id = null) => {
-  console.log(id, 'id')
   const [data, setData] = useState(dataType)
   const [loading, setLoading] = useState(null)
   const [error, setError] = useState(null)
@@ -20,7 +19,6 @@ const useFetch = (url, dataType = [], id = null) => {
        {headers}, 
        {cancelToken: source.token})
     .then(res => {
-      console.log(res, 'res')
       res.data.records && setData(res.data.records)
       res.data.fields && setData(res.data.fields)
       setLoading(false)

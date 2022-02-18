@@ -111,8 +111,6 @@ const Graph = ({ data, size, question }) => {
                 `;
     };
 
-    console.log(data, 'data in graph');
-
     let candidates = svgContainer
       .selectAll("svg")
       .data(data)
@@ -184,10 +182,8 @@ const Graph = ({ data, size, question }) => {
           .style("top", `${d.path[0].cy.animVal.value + 5}px`)
           .style("background-color", () => {
             const politicalParty = d.path[0].__data__.fields.Partido_politico
-            console.log(politicalParty);
             switch (politicalParty) {
               case "Partido Alianza verde":
-                // console.log(d, 'ddd');
                 return "#FBD17E";
               case "Alianza Verde":
                 return "#8CDDD3";

@@ -11,7 +11,7 @@ import {
 
 import Select, { components } from "react-select";
 
-import {Share, SocialMedia, Li, TrafficLights, Comments, Image, ListWrapper} from './styles'
+import {Share, SocialMedia, Li, TrafficLights, Comments, Image, ListWrapper} from '../../styles/candidate'
 import {BlackFacebook, BlackInstagram, BlackYoutube, BlackTwitter, BlackLinkedin} from '../../assets/Icons/CandidateIcons/index'
 import DownArrow from '../../assets/Icons/Arrows/DownArrow'
 
@@ -28,8 +28,8 @@ import Ellipse from '../../assets/Icons/Ellipse'
 import Spinner from '../../assets/Icons/Spinner'
 
 import {useFetch} from '../../hooks/useFetch'
-import { findQuestionsByCandidate } from './helpers/find-questions-by-candidate';
-import {findAxlesWithQuestionsAnswered} from './helpers/find-axles-with-questions-answered';
+import { findQuestionsByCandidate } from '../../helpers/find-questions-by-candidate';
+import {findAxlesWithQuestionsAnswered} from '../../helpers/find-axles-with-questions-answered';
 
 const questionIcon = (score) => {
   switch(true) {
@@ -80,7 +80,7 @@ export default function Candidate() {
     label: 'Derechos sexuales y reproductivos'
   })
   const router = useRouter()
-  const { candidate = {} } = router.query
+  const { candidate } = router.query
 
   const {data: candidateData, loading: loadingCandidate} = useFetch("Respuestas_Candidates", {}, candidate)
   const {data: questionsData, loading: loadingQuestions} = useFetch("Preguntas", [])
