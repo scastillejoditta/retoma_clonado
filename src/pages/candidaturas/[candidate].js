@@ -31,6 +31,40 @@ import {useFetch} from '../../hooks/useFetch'
 import { findQuestionsByCandidate } from '../../helpers/find-questions-by-candidate';
 import {findAxlesWithQuestionsAnswered} from '../../helpers/find-axles-with-questions-answered';
 
+const headers = {
+  'Authorization': `Bearer ${process.env.AIRTABLE_KEY}`
+}
+
+export async function getStaticProps({ params }) {
+  // Call an external API endpoint to get candidate
+  const url = "Respuestas_Candidates"
+  const res = await fetch(`${process.env.URL_AIRTABLE_TOKEN}/${url}/${params.candidate}`, {headers})
+  const candidate = await res.json()
+
+
+  // Pass post data to the page via props
+  return { props: { candidate } }
+}
+
+// This function gets called at build time
+export async function getStaticPaths() {
+  // Call an external API endpoint to get candidates
+  const url = "Respuestas_Candidates"
+  const res = await fetch(`${process.env.URL_AIRTABLE_TOKEN}/${url}`, {headers})
+  const candidates = await res.json()
+
+  // console.log(candidates, 'asdakwjdalkwd');
+
+  // Get the paths we want to pre-render based on posts
+  const paths = candidates.records.map(candidate => ({
+    params: { candidate: candidate.id },
+  }))
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: false }
+}
+
 const questionIcon = (score) => {
   switch(true) {
     case score === 1:
@@ -73,22 +107,20 @@ const DropdownIndicator = (props) => {
 };
 
 
-export default function Candidate() {
+export default function Candidate({ candidate }) {
   const [selectedAxle, setSelectedAxle] = useState({
     value: "recc4TS0OM4ICPrKb",
     name: 'Derechos sexuales y reproductivos',
     label: 'Derechos sexuales y reproductivos'
   })
+
   const router = useRouter()
-  const { candidate } = router.query
 
-  console.log(candidate, 'candidate')
-
-  const {data: candidateData, loading: loadingCandidate} = useFetch("Respuestas_Candidates", {}, candidate)
+  const {data: candidateData, loading: loadingCandidate} = useFetch("Respuestas_Candidates", {}, candidate.id)
   const {data: questionsData, loading: loadingQuestions} = useFetch("Preguntas", [])
   const {data: questionsOptionsData, loading: loadingOptions} = useFetch("Preguntas_Opciones", [])
   const {data: axles, loading: loadingAxles} = useFetch("Ejes", [])
-  const {data: candidateComment, loading: loadingComment} = useFetch("Comentarios_Candidates", {}, candidate)
+  const {data: candidateComment, loading: loadingComment} = useFetch("Comentarios_Candidates", {}, candidate.id)
 
   const newCandidate = findQuestionsByCandidate(candidateData, questionsData, questionsOptionsData)
   const axlesWithQuestionsAnswered = findAxlesWithQuestionsAnswered(axles, newCandidate)
