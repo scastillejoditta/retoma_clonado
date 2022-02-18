@@ -11,7 +11,7 @@ import {
 
 import Select, { components } from "react-select";
 
-import styled from 'styled-components';
+import {Share, SocialMedia, Li, TrafficLights, Comments, Image, ListWrapper} from './styles'
 import {BlackFacebook, BlackInstagram, BlackYoutube, BlackTwitter, BlackLinkedin} from '../../assets/Icons/CandidateIcons/index'
 import DownArrow from '../../assets/Icons/Arrows/DownArrow'
 
@@ -25,9 +25,11 @@ import Facebook from '../../assets/Icons/Facebook';
 import Telegram from '../../assets/Icons/Whatsapp';
 import Linkedin from '../../assets/Icons/Linkedin';
 import Ellipse from '../../assets/Icons/Ellipse'
+import Spinner from '../../assets/Icons/Spinner'
 
-import { fetchRecords, fetchRecord } from '../../utils/api';
-import {useAsync} from '../../utils/hooks/useAsync'
+import {useFetch} from '../../hooks/useFetch'
+import { findQuestionsByCandidate } from './helpers/find-questions-by-candidate';
+import {findAxlesWithQuestionsAnswered} from './helpers/find-axles-with-questions-answered';
 
 const questionIcon = (score) => {
   switch(true) {
@@ -72,88 +74,24 @@ const DropdownIndicator = (props) => {
 
 
 export default function Candidate() {
-  const router = useRouter()
-  const { candidate = {} } = router.query
-
-
-  // const [candidateData, setCandidate] = useState({})
-  const [questionsData, setQuestionsData] = useState([])
-  const [newCandidate, setNewCandidate] = useState({})
-  const [questionsOptionsData, setQuestionsOptionsData] = useState([])
-  const [axles, setAxles] = useState([])
   const [selectedAxle, setSelectedAxle] = useState({
     value: "recc4TS0OM4ICPrKb",
     name: 'Derechos sexuales y reproductivos',
     label: 'Derechos sexuales y reproductivos'
   })
-  const [axlesWihQuestionsAnswered, setAxlesWithQuestionsAnswered] = useState([])
-  const [candidateComment, setCandidateComment] = useState({})
+  const router = useRouter()
+  const { candidate = {} } = router.query
 
-  const {data: candidateData, setData: setCandidate, run: runAnswersCandidate} = useAsync()
-  // const {data: answers, setData: setAnswers, run: runAnswers} = useAsync()
-  // const {data: questions_options, setData: setQuestionsOpitons, run: runQuestionsOptions} = useAsync()
-  // const {data: axles, setData: setAxles, run: runAxles} = useAsync()
-  // const {data: candidates_comments, setData: setCandidateComment, runCandidateComment} = useAsync()
+  const {data: candidateData, loading: loadingCandidate} = useFetch("Respuestas_Candidates", {}, candidate)
+  const {data: questionsData, loading: loadingQuestions} = useFetch("Preguntas", [])
+  const {data: questionsOptionsData, loading: loadingOptions} = useFetch("Preguntas_Opciones", [])
+  const {data: axles, loading: loadingAxles} = useFetch("Ejes", [])
+  const {data: candidateComment, loading: loadingComment} = useFetch("Comentarios_Candidates", {}, candidate)
 
-  useEffect(() => {
-    runAnswersCandidate(fetchRecord('Respuestas_Candidates', candidate)).then(res => setCandidate(res.data.fields))
-  }, [candidate])
+  const newCandidate = findQuestionsByCandidate(candidateData, questionsData, questionsOptionsData)
+  const axlesWithQuestionsAnswered = findAxlesWithQuestionsAnswered(axles, newCandidate)
 
-  useEffect(() => {
-    const fetchCandidate = async () => {
-      if(candidate) {
-        try {
-          const res = await fetchRecord('Respuestas_Candidates', candidate)
-          setCandidate(res.data.fields)
-        } catch (err) {
-          Router.push('/candidates');
-        }       
-      }
-    }
-    fetchCandidate();
-  }, [candidate])
-
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      const res = await fetchRecords('Preguntas')
-      setQuestionsData(res.data.records);
-  }
-    fetchQuestions();
-
-  }, [candidateData])
-
-  useEffect(() => {
-    const fetchQuestionsOptions = async () => {
-      const res = await fetchRecords('Preguntas_Opciones')
-      setQuestionsOptionsData(res.data.records);
-  }
-  fetchQuestionsOptions();
-  }, [])
-
-  useEffect(() => {
-    const fetchAxles = async () => {
-      const res = await fetchRecords('Ejes')
-      setAxles(res.data.records);
-  }
-  fetchAxles();
-  }, [])
-
-  useEffect(() => {
-    const fetchCandidateComment = async () => {
-      if(candidate) {
-        try {
-          const res = await fetchRecord('Comentarios_Candidates', candidate)
-          setCandidateComment(res.data.fields)
-        } catch (err) {
-          Router.push('/candidates');
-        }       
-      }
-  }
-  fetchCandidateComment();
-  }, [candidate])
-
-  const copy = {...candidateComment}
-  const aber = candidateComment?.Comentarios_ejes?.map((cc, idx) => {
+  const commentsByAxle = candidateComment?.Comentarios_ejes?.map((cc, idx) => {
     return {
       comentario: cc,
       pregunta: candidateComment?.Preguntas_ejes[idx],
@@ -161,86 +99,9 @@ export default function Candidate() {
     }
   })
 
-  console.log(aber, 'aber')
-
-  useEffect(() => {
-    if(candidateData, questionsData, questionsOptionsData) {
-      let options = [...questionsOptionsData]
-      let candidate = {...candidateData}
-      let questions = [...questionsData]
-      let optionsArr = []
-      let questionsArr = []
-
-      options.map(opt => {
-        if(opt.fields.Opcion === candidate[opt.fields.Name]) {
-          optionsArr.push(opt.fields)
-        }
-
-        candidate = {
-          ...candidate,
-          answers: [...optionsArr]
-        }
-      })
-
-      console.log(questions, '') 
-
-      questions
-        .filter(q => q.fields.Pregunta !== 'Comentario')
-        .map(q => {
-
-          let objFound = candidate?.answers?.find(ca => ca.Name === q.fields.Name)
-
-          objFound = {
-            ...objFound,
-            question: q.fields.Pregunta,
-            axle_id: q.fields['Ejes'][0]
-          }
-
-          if(objFound.Name) {
-            questionsArr.push(objFound)
-          }
-
-          candidate = {
-            ...candidate,
-            questions: [...questionsArr]
-          }
-        })
-        setNewCandidate(candidate)
-    }
-  }, [candidateData, questionsData, questionsOptionsData])
-
-
-  useEffect(() => {
-    if(axles, newCandidate) {
-      let axlesCopy = [...axles]
-      let candidatesCopy = {...newCandidate}
-
-      let axlesWihQuestionsAnswered = axlesCopy.map(ax => {
-        let answers = [];
-        candidatesCopy?.questions?.map(cn => {
-          if(ax.fields.Pregunta_front.includes(cn.question)) {
-            answers.push(cn)
-          }
-        })
-        return {
-          ...ax,
-          answers: [...answers]
-        }
-      })
-      setAxlesWithQuestionsAnswered(axlesWihQuestionsAnswered)
-    }
-  }, [axles, newCandidate])
-
-  const getScoreSum = (arr) => {
-    let mapedArr = arr.map(q => q.Puntaje)
-    return mapedArr.reduce((el, acc) => el + acc, 0)
-  };
-
   const handleChange = (value) => {
     setSelectedAxle(value);
   };
-
-  console.log(axles, 'axles')
 
   return (
     <>
@@ -254,79 +115,84 @@ export default function Candidate() {
           display='flex' 
           justifyCont='space-between' 
         >
-          <Wrapper dsWidth={'30%'} >
-            <div style={{display: 'flex', justifyContent: 'center'}}>
-              <Image />
-            </div>
-            <SocialMedia style={{display: 'flex', justifyContent: 'center', margin: '0.75rem 1rem'}}>
-              <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                <BlackFacebook />
-              </button>
-              <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                <BlackInstagram />
-              </button>
-              <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                <BlackLinkedin />
-              </button>
-              <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                <BlackTwitter />
-              </button>
-              <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                <BlackYoutube />
-              </button>
-            </SocialMedia>
-          </Wrapper>
-          <Wrapper dsWidth={'30%'} >
-            <Title mobileFontSize='customXlg' weight='bold' margin='0 0 2rem 0' dsColor='white' mbColor='#4A4A4A'>
-              {candidateData?.Nombre}
-            </Title>
-            <Paragraph
-              mobileFontSize="base"
-              desktopFontSize="base"
-              color="backgroundGray"
-              desktopMargin='4rem 0 0 0'
-            >
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." 
-            </Paragraph>
-            <Share>
-              <span>
-                <TwitterShareButton
-                  url={`https://feminindex.com${router.asPath}`}
-                  title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
-                  hashtag={"#Feminindex"}
-                  description={"Feminindex"}
+          {loadingCandidate 
+            ? <Spinner />
+            : <>
+                <Wrapper dsWidth={'30%'} >
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                  <Image />
+                </div>
+                <SocialMedia style={{display: 'flex', justifyContent: 'center', margin: '0.75rem 1rem'}}>
+                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
+                    <BlackFacebook />
+                  </button>
+                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
+                    <BlackInstagram />
+                  </button>
+                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
+                    <BlackLinkedin />
+                  </button>
+                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
+                    <BlackTwitter />
+                  </button>
+                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
+                    <BlackYoutube />
+                  </button>
+                </SocialMedia>
+              </Wrapper> 
+              <Wrapper dsWidth={'30%'} >
+                <Title mobileFontSize='customXlg' weight='bold' margin='0 0 2rem 0' dsColor='white' mbColor='#4A4A4A'>
+                  {candidateData?.Nombre}
+                </Title>
+                <Paragraph
+                  mobileFontSize="base"
+                  desktopFontSize="base"
+                  color="backgroundGray"
+                  desktopMargin='4rem 0 0 0'
                 >
-                  <Twitter />
-                </TwitterShareButton>
-              </span>
-              <span>
-              <FacebookShareButton
-                url={`https://feminindex.com${router.asPath}`}
-                quote={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
-                hashtag={"#Feminindex"}
-                description={"Feminindex"}
-              >
-                <Facebook />
-              </FacebookShareButton>
-              </span>
-              <span>
-                <TelegramShareButton
-                  url={`https://feminindex.com${router.asPath}`}
-                  title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
-                >
-                  <Telegram />
-                </TelegramShareButton>
-              </span>
-              <span>
-                <LinkedinShareButton
-                  url={`https://feminindex.com${router.asPath}`}
-                  title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
-                >
-                  <Linkedin />
-                </LinkedinShareButton>
-              </span>
-            </Share>
-          </Wrapper>
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." 
+                </Paragraph>
+                <Share>
+                  <span>
+                    <TwitterShareButton
+                      url={`https://feminindex.com${router.asPath}`}
+                      title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                      hashtag={"#Feminindex"}
+                      description={"Feminindex"}
+                    >
+                      <Twitter />
+                    </TwitterShareButton>
+                  </span>
+                  <span>
+                  <FacebookShareButton
+                    url={`https://feminindex.com${router.asPath}`}
+                    quote={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                    hashtag={"#Feminindex"}
+                    description={"Feminindex"}
+                  >
+                    <Facebook />
+                  </FacebookShareButton>
+                  </span>
+                  <span>
+                    <TelegramShareButton
+                      url={`https://feminindex.com${router.asPath}`}
+                      title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                    >
+                      <Telegram />
+                    </TelegramShareButton>
+                  </span>
+                  <span>
+                    <LinkedinShareButton
+                      url={`https://feminindex.com${router.asPath}`}
+                      title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                    >
+                      <Linkedin />
+                    </LinkedinShareButton>
+                  </span>
+                </Share>
+              </Wrapper>
+            </>
+          }
           <Wrapper display='flex' flexDir={'column-reverse'} dsWidth='30%'>
             <TrafficLights background={'#EFEDED'}>
               <Paragraph mobileFontSize='base' color='dark' weight='bold' style={{textAlign: 'center'}}>
@@ -346,24 +212,28 @@ export default function Candidate() {
           <Title weight='700' color='dark' margin='2rem 0'>
             Preguntas
           </Title>
-          <Select
-            styles={customStyles}
-            id={"Questions"}
-            instanceId={"Questions"}
-            isSearchable={false}
-            value={selectedAxle}
-            defaultValue={selectedAxle.name}
-            onChange={handleChange}
-            components={{ DropdownIndicator }}
-            // noOptionsMessage={"Sin opciones"}
-            placeholder={"Selecciona la pregunta"}
-            options={axles
-              .map((q) => ({
-                value: q?.id,
-                label: q?.fields.Ejes,
-                name: q?.fields.Ejes,
-              }))}
-            />
+          {loadingQuestions 
+            ? <Spinner />
+            : <Select
+                styles={customStyles}
+                id={"Questions"}
+                instanceId={"Questions"}
+                isSearchable={false}
+                value={selectedAxle}
+                defaultValue={selectedAxle.name}
+                onChange={handleChange}
+                components={{ DropdownIndicator }}
+                // noOptionsMessage={"Sin opciones"}
+                placeholder={"Selecciona la pregunta"}
+                options={axles
+                  .map((q) => ({
+                    value: q?.id,
+                    label: q?.fields.Ejes,
+                    name: q?.fields.Ejes,
+                  }))}
+              />
+          }
+
           <ListWrapper>
             {newCandidate.questions && newCandidate.questions
               .filter(ncq => ncq?.axle_id === selectedAxle.value)
@@ -380,18 +250,21 @@ export default function Candidate() {
                   </span>
                 </Li>
             )}
-            <div>
-              {aber?.filter(ab => ab?.axle_id === selectedAxle.value)
-                .map(test => 
-                  <>
-                    <Title weight='700' color='dark' margin='2rem 0'>
-                      {test.pregunta}
-                    </Title>
-                    <Comments>{test.comentario}</Comments>
-                  </>      
-                )
-              }
-            </div>
+            {loadingComment 
+              ? <Spinner />
+              : <div>
+                  {commentsByAxle?.filter(cba => cba?.axle_id === selectedAxle.value)
+                    .map(cba => 
+                      <>
+                        <Title weight='700' color='dark' margin='2rem 0'>
+                          {cba.pregunta}
+                        </Title>
+                        <Comments>{cba.comentario}</Comments>
+                      </>      
+                    )
+                  }
+                </div>
+            }
           </ListWrapper>
         </Wrapper>
       </Wrapper>
@@ -399,101 +272,3 @@ export default function Candidate() {
     </>
   )
 }
-
-const ParagraphWrapper = styled.div`
-  display: ${props => props.mobile ? 'unset' : 'none'};
-
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
-    display: ${props => !props.mobile ? 'unset' : 'none'};
-  }
-`
-
-const Share = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: fit-content;
-
-  background-color: ${props => props.theme.colors.backgroundGray};
-
-  padding: 0.5rem 0.75rem;
-  margin: 1rem 0;
-
-  border-bottom: 2px solid ${props => props.theme.colors.green};
-
-  > span {
-    font-size: ${props => props.theme.fontSizes.base};
-    color: ${props => props.theme.colors.dark};
-    font-weight: 600;
-
-    margin: 0 1rem;
-  }
-`
-
-const SocialMedia = styled.div`
-  display: flex;
-  align-items: center;
-
-  > * {
-    margin: 0.75rem 0.25rem;
-  }
-`
-
-const Li = styled.li`
-  position: relative;
-
-  background: ${props => props.background ? props.background : 'transparent'};
-  list-style-type: none;
-
-  margin: 2rem 0 2rem 0;
-
-  > span {
-    position: absolute;
-    right: -7%;
-    top: -5%;
-  }
-  
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
-    max-width: 30%;
-  }
-`
-
-const ListWrapper = styled.ul`
-  padding: 0;
-
-  > div > ${Li} > span {
-    position: absolute;
-    right: -5%;
-    top: -15%;
-  }
-
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-`
-
-const Image = styled.img`
-  height: 250px;
-  width: 250px;
-  object-fit: cover;
-  border-radius: 50%;
-
-  background: ${props => props.theme.colors.lightGray};
-`
-
-const TrafficLights = styled.div`
-  padding: 2rem;
-  background: ${props => props.background ? props.background : 'transparent'};
-`
-
-const Comments = styled.div`
-  background: ${props => props.theme.colors.gray};
-  list-style-type: none;
-  line-height: 28px;
-
-  margin: 2rem 0 2rem 0;
-  padding: 2rem;
-`

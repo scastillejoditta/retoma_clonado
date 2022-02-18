@@ -111,6 +111,8 @@ const Graph = ({ data, size, question }) => {
                 `;
     };
 
+    console.log(data, 'data in graph');
+
     let candidates = svgContainer
       .selectAll("svg")
       .data(data)
@@ -119,10 +121,10 @@ const Graph = ({ data, size, question }) => {
       .style("position", "relative")
       .attr("r", isMobileOnly ? 10 : 15)
       .attr("fill", (d) => {
-        switch (d.fields.Orientacion) {
-          case "Frente Juntos":
+        switch (d.fields.Partido_politico) {
+          case "Partido Alianza verde":
             return "#FBD17E";
-          case "Frente de Todos":
+          case "Alianza Verde":
             return "#8CDDD3";
           case "FIT-U":
             return "#E4626F";
@@ -181,23 +183,14 @@ const Graph = ({ data, size, question }) => {
           .style("left", calculateTooltipPosition(d.path[0].cx.animVal.value)) // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
           .style("top", `${d.path[0].cy.animVal.value + 5}px`)
           .style("background-color", () => {
-            switch (d.path[0].__data__.fields.Orientacion) {
-              case "Frente Juntos":
-                return "rgba(251, 209, 126, .90)";
-              case "Frente de Todos":
-                return "rgba(140, 221, 211, .90)";
-              case "FIT-U":
-                return "rgba(228, 98, 111, .90)";
-              case "Socialista":
-                return "rgba(228, 98, 111, .90)";
-              case "Vamos con Vos":
-                return "rgba(102, 178, 107, .90)";
-              case "Frente Renovador":
-                return "rgba(153, 153, 153, .90)";
-              case "Partido Vecinal":
-                return "rgba(177, 147, 206, .90)";
-              default:
-                return "black";
+            const politicalParty = d.path[0].__data__.fields.Partido_politico
+            console.log(politicalParty);
+            switch (politicalParty) {
+              case "Partido Alianza verde":
+                // console.log(d, 'ddd');
+                return "#FBD17E";
+              case "Alianza Verde":
+                return "#8CDDD3";
             }
           });
       });
@@ -224,53 +217,15 @@ const Graph = ({ data, size, question }) => {
         <Reference>
           <Circle color={"#FBD17E"} />
           <Paragraph color="black" desktopFontSize="xs">
-            Frente Juntos
+            Partido Alianza Verde
           </Paragraph>
         </Reference>
         <Reference>
           <Circle color={"#8CDDD3"} />
           <Paragraph color="black" desktopFontSize="xs">
-            Frente de Todos
+            Alianza Verde
           </Paragraph>
         </Reference>
-        <Reference>
-          <Circle color={"#E4626F"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            FIT-U
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#E4626F"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Socialista
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#66B26B"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Vamos con Vos
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#999999"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Frente Renovador
-          </Paragraph>
-        </Reference>
-        <div />
-        <Reference>
-          <Circle color={"#B193CE"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Partido Vecinal
-          </Paragraph>
-        </Reference>
-        <div />
-        {/* <Reference>
-          <Circle color={"black"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Indefinido
-          </Paragraph>
-        </Reference> */}
       </References>
     </>
   );

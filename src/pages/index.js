@@ -17,6 +17,7 @@ import Twitter from "../assets/Icons/Twitter";
 import Facebook from "../assets/Icons/Facebook";
 import Telegram from "../assets/Icons/Whatsapp";
 import Linkedin from "../assets/Icons/Linkedin";
+import Spinner from '../assets/Icons/Spinner'
 
 // Components
 import Container from "../components/Container";
@@ -27,6 +28,10 @@ import Graph from "../components/Graph";
 import Select, { components } from "react-select";
 import axles from "../utils/axles.json";
 import { fetchRecords, fetchCandidates } from "../utils/api";
+
+
+
+import {useFetch} from '../hooks/useFetch'
 
 const customStyles = {
   container: (provided) => ({
@@ -59,36 +64,13 @@ const DropdownIndicator = (props) => {
 
 const Home = () => {
   const [selectedAxle, setSelectedAxle] = useState(0);
-  const [questions, setQuestions] = useState([]);
-  const [quotes, setQuotes] = useState([]);
-  const [news, setNews] = useState([]);
   const [SelectedQuestion, setSelectedQuestion] = useState(null);
-  const [candidates, setCandidates] = useState([]);
   const graphRef = useRef();
 
-  useEffect(() => {
-    const getData = async () => {
-      let questions = await fetchRecords("Preguntas");
-      let candidateData = await fetchRecords("Respuestas_Candidates");
-      setQuestions(questions.data.records);
-      setCandidates(candidateData.data.records);
-    };
-    getData();
-    const getQuotes = async () => {
-      let quotes = await fetchRecords("Frases_Candidates");
-      if (quotes.data.records) {
-        setQuotes(_.sampleSize(quotes.data.records, 2));
-      }
-    };
-    getQuotes();
-    const getNews = async () => {
-      let news = await fetchRecords("Novedades");
-      if (news.data.records) {
-        setNews(_.sampleSize(news.data.records, 3));
-      }
-    };
-    getNews();
-  }, []);
+  const {data: questions, loading: loadingQuestions} = useFetch("Preguntas", [])
+  const {data: quotes, loading: loadingQuotes} = useFetch("Frases_Candidates", [])
+  const {data: news, loading: loadingNews} = useFetch("Novedades", [])
+  const {data: candidates, loading: loadingCandidates} = useFetch("Respuestas_Candidates", [])
 
   useEffect(() => {
     graphRef.current.scrollLeft =
@@ -98,9 +80,6 @@ const Home = () => {
   const handleChange = (value) => {
     setSelectedQuestion(value);
   };
-
-  console.log(questions, 'questions')
-  console.log(axles, 'axles')
 
   return (
     <>
@@ -209,30 +188,33 @@ const Home = () => {
           dsPadding="2rem 0"
           position="relative"
         >
-          <SelectWrapper>
-            <Select
-              styles={customStyles}
-              id={"Questions"}
-              instanceId={"Questions"}
-              isSearchable={false}
-              value={SelectedQuestion}
-              onChange={handleChange}
-              components={{ DropdownIndicator }}
-              placeholder={"Selecciona la pregunta"}
-              options={questions
-                .filter(
-                  (q) =>
-                    q.fields["Id (from Ejes)"][0] ===
-                      axles?.axles[selectedAxle].id &&
-                    q.fields?.Pregunta !== "Comentario"
-                )
-                .map((q) => ({
-                  value: q.id,
-                  label: q.fields.Pregunta,
-                  name: q.fields.Name,
-                }))}
-            />
-          </SelectWrapper>
+          {loadingQuestions 
+            ? <div><Spinner /></div>
+            : <SelectWrapper>
+                <Select
+                  styles={customStyles}
+                  id={"Questions"}
+                  instanceId={"Questions"}
+                  isSearchable={false}
+                  value={SelectedQuestion}
+                  onChange={handleChange}
+                  components={{ DropdownIndicator }}
+                  placeholder={"Selecciona la pregunta"}
+                  options={questions
+                    .filter(
+                      (q) =>
+                        q.fields["Id (from Ejes)"][0] ===
+                          axles?.axles[selectedAxle].id &&
+                        q.fields?.Pregunta !== "Comentario"
+                    )
+                    .map((q) => ({
+                      value: q.id,
+                      label: q.fields.Pregunta,
+                      name: q.fields.Name,
+                    }))}
+                />
+              </SelectWrapper>
+          }
         </Wrapper>
         <Wrapper
           display="flex"
@@ -245,7 +227,7 @@ const Home = () => {
         >
           <GraphWrapper ref={graphRef}>
             <Graph
-              data={candidates}
+              data={candidates.filter(c => Object.keys(c.fields).length)}
               size={{ width: 768, height: 400, margin: 0 }}
               question={SelectedQuestion?.name}
             />
@@ -271,75 +253,78 @@ const Home = () => {
           dsPadding="2rem 0 4rem 0"
           mbPadding="1rem 0 4rem 0"
         >
-          <Frases>
-            {quotes.map((q) => (
-              <Machifrase key={q.id}>
-                <Paragraph
-                  mobileFontSize="customBase"
-                  desktopFontSize="customBase"
-                  desktopPadding="1.5rem"
-                  mobilePadding="1.5rem"
-                  weight='400'
-                  color="white"
-                >
-                  "{q.fields.Frase}"
-                </Paragraph>
-                <Paragraph
-                  mobileFontSize="customBase"
-                  desktopFontSize="customBase"
-                  desktopPadding="1.5rem"
-                  mobilePadding="1.5rem"
-                  weight="600"
-                  color="white"
-                  mobileMargin='none'
-                >
-                  {q.fields.Nombre_Candidate}
-                </Paragraph>
-                <ShareWrapper>
-                  <Share>
-                    <SocialMedia>
-                      <span>
-                        <TwitterShareButton
-                          url={`https://feminindex.com`}
-                          title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
-                          hashtag={"#Frases"}
-                          description={"Frases"}
-                        >
-                          <Twitter />
-                        </TwitterShareButton>
-                      </span>
-                      <span>
-                        <FacebookShareButton
-                          url={`https://feminindex.com`}
-                          quote={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
-                          hashtag={"#Frases"}
-                          description={"Frases"}
-                        >
-                          <Facebook />
-                        </FacebookShareButton>
-                      </span>
-                      <span>
-                        <TelegramShareButton
-                          url={`https://feminindex.com`}
-                          title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
-                        >
-                          <Linkedin />
-                        </TelegramShareButton>
-                      </span>
-                      <span>
-                        <TelegramShareButton
-                          url={`https://feminindex.com`}
-                          title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
-                        >
-                          <Telegram />
-                        </TelegramShareButton>
-                      </span>
-                    </SocialMedia>
-                  </Share>
-                </ShareWrapper>
-              </Machifrase>
-            ))}
-          </Frases>
+          {loadingQuotes 
+            ? <Spinner />
+            : <Frases>
+              {quotes.map((q) => (
+                <Machifrase key={q.id}>
+                  <Paragraph
+                    mobileFontSize="customBase"
+                    desktopFontSize="customBase"
+                    desktopPadding="1.5rem"
+                    mobilePadding="1.5rem"
+                    weight='400'
+                    color="white"
+                  >
+                    "{q.fields.Frase}"
+                  </Paragraph>
+                  <Paragraph
+                    mobileFontSize="customBase"
+                    desktopFontSize="customBase"
+                    desktopPadding="1.5rem"
+                    mobilePadding="1.5rem"
+                    weight="600"
+                    color="white"
+                    mobileMargin='none'
+                  >
+                    {q.fields.Nombre_Candidate}
+                  </Paragraph>
+                  <ShareWrapper>
+                    <Share>
+                      <SocialMedia>
+                        <span>
+                          <TwitterShareButton
+                            url={`https://feminindex.com`}
+                            title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                            hashtag={"#Frases"}
+                            description={"Frases"}
+                          >
+                            <Twitter />
+                          </TwitterShareButton>
+                        </span>
+                        <span>
+                          <FacebookShareButton
+                            url={`https://feminindex.com`}
+                            quote={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                            hashtag={"#Frases"}
+                            description={"Frases"}
+                          >
+                            <Facebook />
+                          </FacebookShareButton>
+                        </span>
+                        <span>
+                          <TelegramShareButton
+                            url={`https://feminindex.com`}
+                            title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                          >
+                            <Linkedin />
+                          </TelegramShareButton>
+                        </span>
+                        <span>
+                          <TelegramShareButton
+                            url={`https://feminindex.com`}
+                            title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                          >
+                            <Telegram />
+                          </TelegramShareButton>
+                        </span>
+                      </SocialMedia>
+                    </Share>
+                  </ShareWrapper>
+                </Machifrase>
+              ))}
+            </Frases>
+          }
         </Wrapper>
       </Container>
       <Container background="white">
@@ -363,25 +348,28 @@ const Home = () => {
           dsPadding="2rem 0 4rem 0"
           mbPadding="1rem 0"
         >
-          <Novedades>
-            {news.map((n) => (
-              <Noveded
-                key={n.id}
-                href={n.fields.Fuente}
-                image={n.fields.Foto}
-                target="_blank"
-              >
-                <Title
-                  mobileFontSize="medium"
-                  desktopFontSize="medium"
-                  color="dark"
-                  padding="0 0.5rem 0 0.5rem"
-                >
-                  {n.fields.Bajada}
-                </Title>
-              </Noveded>
-            ))}
-          </Novedades>
+          {loadingNews 
+            ? <Spinner />
+            : <Novedades>
+                {news.map((n) => (
+                  <Noveded
+                    key={n.id}
+                    href={n.fields.Fuente}
+                    image={n.fields.Foto}
+                    target="_blank"
+                  >
+                    <Title
+                      mobileFontSize="medium"
+                      desktopFontSize="medium"
+                      color="dark"
+                      padding="0 0.5rem 0 0.5rem"
+                    >
+                      {n.fields.Bajada}
+                    </Title>
+                  </Noveded>
+                ))}
+              </Novedades>
+          }
         </Wrapper>
       </Container>
     </>
