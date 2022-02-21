@@ -138,7 +138,6 @@ const Home = () => {
               <Title
                 mobileFontSize="lg"
                 desktopFontSize="lg"
-                color="feminindexRed"
                 margin="1rem 0"
               >
                 {axles?.axles[selectedAxle].title}

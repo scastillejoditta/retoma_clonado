@@ -122,7 +122,6 @@ const About = () => {
               mobileFontSize="lg"
               desktopFontSize="lg"
               margin="0 2rem"
-              color="feminindexRed"
             >
               Equipo
             </Title>

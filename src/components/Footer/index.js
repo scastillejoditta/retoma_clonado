@@ -8,9 +8,6 @@ import Facebook from "../../assets/Icons/Facebook";
 import Instagram from "../../assets/Icons/Instagram";
 import Telegram from "../../assets/Icons/Whatsapp";
 import Youtube from "../../assets/Icons/Youtube";
-import FooterEcoFeminita from "../../assets/Icons/FooterEcofeminita";
-import Wingu from "../../assets/Icons/Wingu";
-import Fundar from "/public/images/Fundar/Fundar.png";
 
 const Footer = () => {
   return (
@@ -45,9 +42,9 @@ const Footer = () => {
 
       <SecondSectionWrapper>
         <ProjectMadeByList>
-          <EcoFeminitaWrapper>
+          <RetomaWrapper>
             <Title>Retoma es un proyecto realizado por</Title>
-          </EcoFeminitaWrapper>
+          </RetomaWrapper>
         </ProjectMadeByList>
       </SecondSectionWrapper>
     </Wrapper>
@@ -62,30 +59,6 @@ const Wrapper = styled.footer`
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-`;
-
-const FirstSectionWrapper = styled.div``;
-
-const UnorderedList = styled.ul`
-  display: flex;
-  flex-direction: column;
-
-  list-style-type: none;
-`;
-
-const ListItems = styled.li`
-  color: ${(props) => props.theme.colors.white};
-  font-size: ${(props) => props.theme.fontSizes.customBase};
-  font-weight: 500;
-
-  cursor: pointer;
-
-  margin: 1rem 0;
-
-  > a {
-    color: ${(props) => props.theme.colors.white};
-    text-decoration: none;
   }
 `;
 
@@ -115,22 +88,10 @@ const ProjectMadeByList = styled.ul`
   }
 `;
 
-const ProjectMadeItem = styled.li`
-  color: ${(props) => props.theme.colors.white};
-  font-size: ${(props) => props.theme.fontSizes.customBase};
-  font-weight: 500;
-
-  cursor: pointer;
-
-  margin: 2rem 0;
-`;
-
 const SecondSectionWrapper = styled.div`
 `;
 
-const EcoFeminitaWrapper = styled.div``;
-
-const WinguAndLuminateWrapper = styled.div``;
+const RetomaWrapper = styled.div``;
 
 const Title = styled.h3`
   color: ${(props) => props.theme.colors.white};

@@ -12,6 +12,7 @@ import {useFetch} from '../../hooks/useFetch'
 const Candidates = () => {
   const [inputValue, setInputValue] = useState('')
   const [selectValue, setSelectValue] = useState('')
+  const [loadingCandidate, setLoadingCandidate] = useState(null)
   const {data: candidates, loading: loadingCandidates} = useFetch("Respuestas_Candidates", [])
   const filteredCandidates = filterByValues(inputValue, selectValue, candidates)
 
@@ -19,9 +20,12 @@ const Candidates = () => {
   const candidatesCopy = [...candidates]
   candidatesCopy
     .map(cp => cp.fields.Partido_politico)
-    .filter(pp => {
+    .filter((pp, idx) => {
       if(politicsPartiesArr.includes(pp)) return
-      politicsPartiesArr.push(pp)
+      politicsPartiesArr.push({
+        name: pp,
+        id: idx + 1
+      })
     })
 
   return (
@@ -42,16 +46,15 @@ const Candidates = () => {
               <option 
                 key='key'
                 value=''
-                selected
               >
                 Partido político
               </option>
               {politicsPartiesArr.map(fc => (
                 <option 
-                  key={fc} 
-                  value={fc}
+                  key={fc.id} 
+                  value={fc.name}
                 >
-                  {fc}
+                  {fc.name}
                 </option>
               ))}      
             </Select>
@@ -62,8 +65,15 @@ const Candidates = () => {
         {loadingCandidates 
           ? <Spinner />
           : <Container display='flex' justifyCont='flex-start' flexWrap='wrap' dsMargin='0 6rem'>
-              {filteredCandidates.map(candidate =>
-                <Container  dsWidth='25%' height='25%' background='gray' margin='0 2rem 12rem 2rem' dsMargin='2rem 4rem 8rem 0'>
+              {filteredCandidates.map((candidate) =>
+                <Container  
+                  dsWidth='25%' 
+                  height='25%' 
+                  background='gray' 
+                  margin='0 2rem 12rem 2rem' 
+                  dsMargin='2rem 4rem 8rem 0'
+                  key={candidate.id}
+                >
                   <Wrapper>
                     <div style={{minHeight: '15rem', maxHeight: '15rem'}}>
                       <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -72,14 +82,24 @@ const Candidates = () => {
                       <Title desktopFontSize='medium' weight='600'>{candidate.fields.Nombre}</Title>
                       <Title desktopFontSize='customBase' weight='400' margin='1rem 0'>{candidate.fields.Orientacion}</Title>
                     </div>
-                    <div style={{position: 'absolute', bottom: '-8%', left: '0', right: '0', margin: '0 2.5rem'}}>
-                      <Link href={`/candidaturas/${candidate.id}`} passHref>
-                        <LinkWrapper>
-                          Ver perfil
-                        </LinkWrapper>
-                      </Link>
+                    <div style={{position: 'absolute', bottom: '-8%', left: '0', right: '0', margin: '0 2.5rem'}}>       
+                      <Link 
+                        href={`/candidaturas/${candidate.id}`} 
+                        passHref
+                      >
+                        <LinkWrapper 
+                          onClick={() => setLoadingCandidate(candidate.id)}
+                        > 
+                          {loadingCandidate === candidate.id
+                            ? <Spinner 
+                                fill='white'
+                                margin='0'
+                              />
+                            : 'Ver perfil'
+                          }
+                        </LinkWrapper>             
+                        </Link>   
                     </div>
-
                   </Wrapper>
                 </Container>
               )}
@@ -132,7 +152,9 @@ const Input = styled.input`
   }
 `
 
-const LinkWrapper = styled.div`
+const LinkWrapper = styled.a`
+  display: block;
+
   padding: 1rem;
 
   background: ${props => props.theme.colors.dark};
@@ -140,12 +162,10 @@ const LinkWrapper = styled.div`
   border-bottom: 2px solid ${props => props.theme.colors.green};
 
   text-align: center;
+  text-decoration: none;
 
   cursor: pointer;
-  
-  > a {
-    text-decoration: none;
-  }
+
 `
 
 const Select = styled.select`

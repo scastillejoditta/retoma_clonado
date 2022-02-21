@@ -76,12 +76,16 @@ const questionIcon = (score) => {
   }
 }
 
+    
 const customStyles = {
   container: (provided) => ({
     ...provided,
     fontSize: "0.9rem",
     fontFamily: '"Montserrat", sans-serif',
-    width: '35%'
+    width: '35%',
+    "@media (max-width: 768px)": {
+      width: '100%'
+    } 
   }),
   control: (provided) => ({
     ...provided,
@@ -136,6 +140,10 @@ export default function Candidate({ candidate }) {
   const handleChange = (value) => {
     setSelectedAxle(value);
   };
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <>
