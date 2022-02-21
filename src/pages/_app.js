@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="keywords" content="Movilización, Transformación social, Incidencia política, Elecciones Colombia, Prosperidad social" />
         <meta name="copyright" content="MUTANTE" />
         <title>Retoma :: Red Informativa para la Toma de decisiones Democráticas</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-139327370-1"></Script>
       <Script
