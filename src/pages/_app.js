@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
         <title>Retoma :: Red Informativa para la Toma de decisiones Democráticas</title>
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-139327370-1"></Script>
+      {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-139327370-1"></Script>
       <Script
         dangerouslySetInnerHTML={{
           __html: `
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
         r=o.createElement('script');r.async=1;
         r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
         a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}} />
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}} /> */}
     <Component {...pageProps} />
   </Layout>
   )
