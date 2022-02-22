@@ -12,12 +12,14 @@ export default function Layout({children}) {
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
-        <div>
+        <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
           <Retoma />
           <Title
             desktopFontSize='customXlg'
             dsColor='white'
-            margin='4rem 0'
+            mobileFontSize='xlg'
+            mbColor='white'
+            margin='4rem'
           >
             Sitio en construcción
           </Title>
@@ -35,8 +37,8 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  min-width: 100vw;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
   background: ${props => props.theme.colors.backgroundGray};
 `
