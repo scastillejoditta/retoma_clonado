@@ -78,7 +78,7 @@ export default function Layout({children}) {
             mbColor='#000000'
           >
             Sitio en construcción <br /><br />
-            Te esperamos dentro de:
+            Únete a Retoma en:
           </Title>
           <Title
             desktopFontSize='xxl'
