@@ -1,5 +1,6 @@
 // import Layout from '../components/Layout'
 import Head from 'next/head'
+import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import '../styles/globals.css'
 
