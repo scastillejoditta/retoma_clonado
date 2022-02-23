@@ -21,8 +21,8 @@ function MyApp({ Component, pageProps }) {
         <title>Retoma :: Red Informativa para la Toma de decisiones Democráticas</title>
         <link rel="shortcut icon" href="/favicon.ico" />
 
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-L2CMG1D4Q2"></Script>
-        <Script
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-L2CMG1D4Q2"></script>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
