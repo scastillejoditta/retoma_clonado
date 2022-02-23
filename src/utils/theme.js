@@ -5,7 +5,8 @@ const theme = {
     regular: "20px",
     medium: "22px",
     lg: "30px",
-    customXlg: "45px"
+    customXlg: "45px",
+    xxl: '60px'
   },
   fontFamilies: {
     main: "'Montserrat', sans-serif",
@@ -18,6 +19,8 @@ const theme = {
     gray: "#EFEDED",
     green: "#00D857",
     white: "#FFF",
+    yellow: '#FFF60A',
+    red: '#FF2C2C',
     lightGray: '#C4C4C4',
     backgroundLightGray: "#E6E4E1",
     backgroundGray: "#4A4A4A",

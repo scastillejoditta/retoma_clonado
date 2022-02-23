@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import {SquareWrapper, Wrapper} from '../styles/unete-a-la-red'
 
 // Assets
 import Square from "../assets/Icons/Square";
@@ -13,8 +13,8 @@ const JoinToUs = () => {
     <>
       <Container background="backgroundGray" desktopPadding={'2rem 4rem'} mobilePadding={"2rem"}>
         <Wrapper>
-          <Title mobileFontSize="customXlg" weight='700' desktopFontSize="lg" dsColor="white" mbColor='white' margin='2rem 0'>
-          La movilización social no termina en las calles
+          <Title mobileFontSize="lg" weight='700' desktopFontSize="customXlg" dsColor="white" mbColor='white' margin='2rem 0'>
+            La movilización social no termina en las calles
           </Title>
           <Paragraph
             mobileFontSize="base"
@@ -93,30 +93,5 @@ const JoinToUs = () => {
     </>
   );
 };
-
-const Wrapper = styled.section`
-  display: block;
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    max-width: 1024px;
-    margin: 0 auto;
-
-    padding: 4rem;
-  }
-`;
-
-const SquareWrapper = styled.section`
-  display: block;
-  margin: 0 2rem;
-
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    display: flex;
-    justifyContent: space-between;
-    padding: 0;
-    max-width: 1024px;
-    margin: 0 auto;
-
-    padding: 4rem;
-  }
-`
 
 export default JoinToUs;
