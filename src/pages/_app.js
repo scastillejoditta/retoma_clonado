@@ -21,19 +21,27 @@ function MyApp({ Component, pageProps }) {
         <title>Retoma :: Red Informativa para la Toma de decisiones Democráticas</title>
         <link rel="shortcut icon" href="/favicon.ico" />
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-L2CMG1D4Q2"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', 'G-L2CMG1D4Q2');
-            `,
-          }}
-        />
+        <Script
+           id="google-analytics"
+           src="https://www.googletagmanager.com/gtag/js?id=G-L2CMG1D4Q2"
+           onLoad={() => {
+             window.dataLayer = window.dataLayer || [];
+             function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
+             gtag('config', 'G-L2CMG1D4Q2');
+           }}
+         />
       </Head>
+      <Script
+        id="google-analytics"
+        src="https://www.googletagmanager.com/gtag/js?id=G-L2CMG1D4Q2"
+        onLoad={() => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-L2CMG1D4Q2');
+        }}
+      />
     <Component {...pageProps} />
   </Layout>
   )
