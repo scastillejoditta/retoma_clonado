@@ -20,19 +20,20 @@ function MyApp({ Component, pageProps }) {
         <meta name="copyright" content="MUTANTE" />
         <title>Retoma :: Red Informativa para la Toma de decisiones Democráticas</title>
         <link rel="shortcut icon" href="/favicon.ico" />
+
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-L2CMG1D4Q2"></Script>
+        <Script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-L2CMG1D4Q2');
+            `,
+          }}
+        />
       </Head>
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-L2CMG1D4Q2"></Script>
-      <Script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-          
-            gtag('config', 'G-L2CMG1D4Q2');
-          `,
-        }}
-      />
     <Component {...pageProps} />
   </Layout>
   )
