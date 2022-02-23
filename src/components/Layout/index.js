@@ -77,7 +77,6 @@ export default function Layout({children}) {
             dsColor='#000000'
             mbColor='#000000'
           >
-            Sitio en construcción <br /><br />
             Únete a Retoma en:
           </Title>
           <Title
