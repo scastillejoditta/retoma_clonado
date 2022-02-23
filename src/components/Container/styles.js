@@ -12,6 +12,8 @@ const Wrapper = styled.main`
   position: relative;
   z-index: ${props => props.zIndex};
 
+  border: ${props => props.border};
+
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: ${props => props.display};
     flex-wrap: ${props => props.flexWrap};

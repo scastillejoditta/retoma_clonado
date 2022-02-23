@@ -16,7 +16,7 @@ const UnorderedList = styled.ul`
 
   z-index: 1;
 
-  background: ${props => props.theme.colors.backgroundGray};
+  /* background: ${props => props.theme.colors.backgroundGray}; */
 
   list-style-type: none;
 
@@ -46,7 +46,7 @@ const ListItems = styled.li`
 
   font-size: ${(props) => props.theme.fontSizes.lg};
   font-weight: 600;
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.color};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin: 0 4rem;
@@ -56,7 +56,7 @@ const ListItems = styled.li`
     font-size: ${(props) => props.theme.fontSizes.customBase};
     font-weight: 600;
     text-decoration: ${(props) => (props.selected ? "underline" : "none")};
-    color: ${props => props.theme.colors.white};
+    color: ${props => props.color};
 
     cursor: pointer;
   }

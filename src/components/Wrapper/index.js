@@ -8,7 +8,8 @@ const Wrapper = ({
   flexDir,
   justifyCont,
   alignItems,
-  position = "unset",
+  dsPosition,
+  mbPosition,
   bottom,
   top,
   right,
@@ -18,13 +19,15 @@ const Wrapper = ({
   mbMargin = 0,
   dsMargin,
   maxWidth,
-  height,
+  dsHeight,
+  mbHeight,
   flexWrap,
   width,
   dsWidth,
   style,
   dsBackground,
-  mbBackground
+  mbBackground,
+  bgImage
 }) => {
   return (
     <>
@@ -37,10 +40,15 @@ const Wrapper = ({
         flexDir={flexDir}
         justifyCont={justifyCont}
         alignItems={alignItems}
-        position={position}
+        dsPosition={dsPosition}
+        mbPosition={mbPosition}
         bottom={bottom}
+        top={top}
+        right={right}
+        left={left}
         maxWidth={maxWidth}
-        height={height}
+        dsHeight={dsHeight}
+        mbHeight={mbHeight}
         flexWrap={flexWrap}
         xxsDisplay={xxsDisplay}
         width={width}
@@ -48,6 +56,7 @@ const Wrapper = ({
         dsWidth={dsWidth}
         dsBackground={dsBackground}
         mbBackground={mbBackground}
+        bgImage={bgImage}
       >
         {children}
       </StyledWrapper>

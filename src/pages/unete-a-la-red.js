@@ -1,95 +1,176 @@
-import {SquareWrapper, Wrapper} from '../styles/unete-a-la-red'
+import {SquareWrapper} from '../styles/unete-a-la-red'
 
 // Assets
-import Square from "../assets/Icons/Square";
+import Motivations from '../assets/Images/Motivations'
+import Initiatives from '../assets/Images/Initiatives'
+import Participation from '../assets/Images/Participation'
+import Sharing from '../assets/Images/Sharing'
 
 // Components
 import Container from "../components/Container";
 import Title from "../components/Title";
 import Paragraph from "../components/Paragraph";
+import Wrapper from '../components/Wrapper'
+import Button from '../components/Button'
 
 const JoinToUs = () => {
   return (
     <>
-      <Container background="backgroundGray" desktopPadding={'2rem 4rem'} mobilePadding={"2rem"}>
-        <Wrapper>
-          <Title mobileFontSize="lg" weight='700' desktopFontSize="customXlg" dsColor="white" mbColor='white' margin='2rem 0'>
-            La movilización social no termina en las calles
-          </Title>
-          <Paragraph
-            mobileFontSize="base"
-            desktopFontSize="customBase"
-            color="white"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          </Paragraph>
+      <Container background="backgroundGray" dsHeight="45vh">
+        <Wrapper
+          display="flex"
+          justifyCont="center"
+          alignItems="center"
+          dsHeight="75vh"
+          width='100%'
+          bgImage="url('/images/orange-banner.png')"
+          dsPosition='absolute'
+          top='-50%'
+        >  
+          <Container mobilePadding={"2rem"} dsMargin='6rem 0 0 0'>
+            <Wrapper 
+              style={{
+                maxWidth: "1200px",
+                margin: "0 auto",
+              }}
+            >
+              <Title 
+                mobileFontSize="lg" 
+                weight='700' 
+                desktopFontSize="customXlg" 
+                dsColor="#00000" 
+                mbColor='#00000' 
+                margin='2rem 0'
+              >
+                La movilización social no termina en las calles
+              </Title>
+              <Paragraph
+                mobileFontSize="base"
+                desktopFontSize="customBase"
+                color="#00000"
+                desktopMargin='1rem 0'
+              >
+                Haz parte de nuestras brigadas de Whatsapp conformadas por jóvenes que creen en la protesta, la participación política y la conversación para lograr cambios.
+              </Paragraph>
+              <Button
+                background='#FF00A4'
+                color='#FFD039'
+                padding='1rem'
+                margin='1rem 0'
+              >
+                Registrate aquí
+              </Button>
+            </Wrapper>
+          </Container>
         </Wrapper>
       </Container>
 
-      <Container background="white" desktopPadding={'2rem 4rem'} mobilePadding={"2rem"}>
-        <Wrapper>
+      <Container
+        background="pink" 
+        desktopPadding={'2rem 4rem'}
+        mobilePadding={"2rem"}
+      >
+        <Wrapper
+          style={{
+            maxWidth: "1200px",
+            margin: "2rem auto 0 auto",
+          }}
+        >
           <Paragraph
             mobileFontSize="base"
             desktopFontSize="customBase"
-            color="backgroundGray"
+            color="#00000"
+            weight='700'
+            style={{textAlign: 'center'}}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            En esta iniciativa periodística impulsada por Mutante podrás, durante varios meses:
           </Paragraph>
+          <SquareWrapper>
+            <Wrapper maxWidth='25%' dsMargin='0 1rem' mbMargin='2rem 0' >
+              <Motivations />
+              <Paragraph
+                mobileFontSize="base"
+                desktopFontSize="customBase"
+                color="dark"
+                desktopMargin='1rem 0'
+              >
+                Conocer las preocupaciones y motivaciones de los jóvenes para salir a las calles.
+              </Paragraph>
+            </Wrapper>
+            <Wrapper maxWidth='25%' dsMargin='0 0.5rem' mbMargin='2rem 0' >
+              <Initiatives />
+              <Paragraph
+                mobileFontSize="base"
+                desktopFontSize="customBase"
+                color="dark"
+                desktopMargin='1rem 0'
+              >
+                Aprender de las iniciativas que se gestaron o potenciaron en el Paro Nacional.
+              </Paragraph>
+            </Wrapper>
+            <Wrapper maxWidth='25%' dsMargin='0 0.5rem' mbMargin='2rem 0'>
+              <Participation />
+              <Paragraph
+                mobileFontSize="base"
+                desktopFontSize="customBase"
+                color="dark"
+                desktopMargin='1rem 0'
+              >
+                Participar de la construcción de investigaciones periodísticas para visibilizar los problemas que más nos preocupan.
+              </Paragraph>
+            </Wrapper>
+            <Wrapper maxWidth='25%' dsMargin='0 0.5rem' mbMargin='2rem 0'>
+              <Sharing />
+              <Paragraph
+                mobileFontSize="base"
+                desktopFontSize="customBase"
+                color="dark"
+                desktopMargin='1rem 0'
+              >
+                Compartir y recibir información útil y práctica sobre movilización social, derechos humanos y democracia, de cara a las elecciones de 2022.
+              </Paragraph>
+            </Wrapper>
+          </SquareWrapper>
         </Wrapper>
       </Container>
-      <SquareWrapper>
-        <div style={{margin: '0 1rem 0 0'}}>
-          <Square />
+
+      <Wrapper
+        display="flex"
+        justifyCont="center"
+        height='60vh'
+        width='100%'
+        bgImage="url('/images/fingers-up.png')"
+      > 
+        <Wrapper 
+          style={{
+            maxWidth: "1025px",
+            textAlign: 'center'
+          }}
+          dsMargin='2rem 0'
+        > 
+          <div style={{margin: '0 2rem'}}>
+            <img src={'/images/quienes-participan.png'} style={{width: '100%', margin: '2rem 0'}} />
+          </div>
           <Paragraph
             mobileFontSize="base"
             desktopFontSize="customBase"
-            color="dark"
-            desktopMargin='1rem 0'
+            color="#00000"
+            desktopMargin='2rem 0 0 0'
+            desktopPadding='0 4rem'
+
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+            Cualquier persona colombiana que tenga entre 18 y 30 años, que crea en el poder transformador de la movilización social y la participación política
           </Paragraph>
-        </div>
-        <div style={{margin: '0 1rem 0 0'}}>
-          <Square />
-          <Paragraph
-            mobileFontSize="base"
-            desktopFontSize="customBase"
-            color="dark"
-            desktopMargin='1rem 0'
+          <Button
+            background='#142FF4'
+            color='#FFFFFF'
+            padding='1rem'
+            margin='1rem 0'
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-          </Paragraph>
-        </div>
-        <div style={{margin: '0 1rem 0 0'}}>
-          <Square />
-          <Paragraph
-            mobileFontSize="base"
-            desktopFontSize="customBase"
-            color="dark"
-            desktopMargin='1rem 0'
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-          </Paragraph>
-        </div>
-        <div style={{margin: '0 1rem 0 0'}}>
-          <Square />
-          <Paragraph
-            mobileFontSize="base"
-            desktopFontSize="customBase"
-            color="dark"
-            desktopMargin='1rem 0'
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-          </Paragraph>
-        </div>
-      </SquareWrapper>
-      <Container background="white" mobilePadding={"2rem"} desktopPadding={"2rem 4rem"}>
-        <Wrapper style={{background: '#C4C4C4'}}>
-          <Title color='white' mobileFontSize='customXlg'>
-            Llamado a la acción haz parte de retoma
-          </Title>
+            Haz parte de Retoma
+          </Button>
         </Wrapper>
-      </Container>
+      </Wrapper>
     </>
   );
 };

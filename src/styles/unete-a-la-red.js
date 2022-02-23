@@ -11,15 +11,14 @@ const Wrapper = styled.section`
 const SquareWrapper = styled.section`
   display: block;
   margin: 0 2rem;
+  text-align: center;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
     justifyContent: space-between;
-    padding: 0;
-    max-width: 1024px;
     margin: 0 auto;
 
-    padding: 4rem;
+    padding: 2rem;
   }
 `
 

@@ -130,7 +130,7 @@ const Novedades = styled.div`
 `;
 
 const Machifrase = styled.div`
-  background-color: ${props => props.theme.colors.backgroundGray};
+  background-color: ${props => props.theme.colors.violet};
   position: relative;
 
   height: 100%;
@@ -191,10 +191,8 @@ const ShareWrapper = styled.div`
 
 const Share = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  background-color: ${props => props.theme.colors.lightGray};
+  background-color: ${props => props.theme.colors.green};
 
   padding: 0.5rem 0.75rem;
 

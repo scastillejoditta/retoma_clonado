@@ -19,9 +19,8 @@ function MyApp({ Component, pageProps }) {
         <meta name="copyright" content="MUTANTE" />
         <title>Retoma :: Red Informativa para la Toma de decisiones Democráticas</title>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="preload" href="/fonts/Switzer-ThinItalic.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </Head>
-      {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-139327370-1"></Script>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-L2CMG1D4Q2"></Script>
       <Script
         dangerouslySetInnerHTML={{
           __html: `
@@ -29,18 +28,10 @@ function MyApp({ Component, pageProps }) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
           
-            gtag('config', 'UA-139327370-1');
+            gtag('config', 'G-L2CMG1D4Q2');
           `,
         }}
       />
-      <Script dangerouslySetInnerHTML={{__html: `(function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:2687476,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}} /> */}
     <Component {...pageProps} />
   </Layout>
   )

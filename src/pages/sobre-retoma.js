@@ -1,4 +1,4 @@
-import {Rows, PersonWrapper, Persons, TeamWrapper, AnswersWrapper, ScoreWrapper, Wrapper} from '../styles/sobre-retoma'
+import {Rows, PersonWrapper, Persons, TeamWrapper, AnswersWrapper, ScoreWrapper} from '../styles/sobre-retoma'
 
 // Assets
 import PersonIcon from "../assets/Icons/SmallPerson";
@@ -7,27 +7,58 @@ import PersonIcon from "../assets/Icons/SmallPerson";
 import Container from "../components/Container";
 import Title from "../components/Title";
 import Paragraph from "../components/Paragraph";
+import Wrapper from '../components/Wrapper'
 
 const About = () => {
   return (
     <>
-      <Container background="backgroundGray" mobilePadding={"2rem"}>
-        <Wrapper>
-          <Title mobileFontSize="lg" weight='700' desktopFontSize="customXlg" dsColor="white" mbColor='white' margin='2rem 0'>
-            Sobre Retoma
-          </Title>
-          <Paragraph
-            mobileFontSize="base"
-            desktopFontSize="customBase"
-            color="white"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          </Paragraph>
+      <Container mbHeight="50vh" dsHeight="45vh">
+        <Wrapper
+          display="flex"
+          justifyCont="center"
+          alignItems="center"
+          dsHeight="75vh"
+          width='100%'
+          bgImage="url('/images/green-banner.png')"
+          dsPosition='absolute'
+          top='-50%'
+        > 
+          <Container mobilePadding={"2rem"}>
+            <Wrapper 
+              style={{
+                maxWidth: "1200px",
+                margin: "0 auto",
+              }}
+            >
+              <Title 
+                mobileFontSize="lg" 
+                weight='700' 
+                desktopFontSize="customXlg" 
+                dsColor="#00000" 
+                mbColor='#00000' 
+                margin='2rem 0'
+              >
+                Sobre Retoma
+              </Title>
+              <Paragraph
+                mobileFontSize="base"
+                desktopFontSize="customBase"
+                color="#00000"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+              </Paragraph>
+            </Wrapper>
+          </Container>
         </Wrapper>
       </Container>
 
       <Container background="white" mobilePadding={"2rem"}>
-        <Wrapper>
+        <Wrapper
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+          }}
+        >
           <Title mobileFontSize="lg" desktopFontSize="lg" color="backgroundGray" margin='2rem 0'>
             Metodología
           </Title>
@@ -42,7 +73,12 @@ const About = () => {
       </Container>
 
       <Container background="lightGray" mobilePadding={"0 2rem"} desktopPadding={'2rem'}>
-        <Wrapper>
+        <Wrapper
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+          }}
+        >
           <Title mobileFontSize="lg" desktopFontSize="lg" color="dark" margin='0 0 2rem 0'>
             Retoma
           </Title>
@@ -64,7 +100,12 @@ const About = () => {
       </Container>
 
       <Container background="white" width='100%'>
-        <Wrapper>
+        <Wrapper
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+          }}
+        >
           <ScoreWrapper>
             <Container
               background="dark"

@@ -3,8 +3,8 @@ import {StyledTitle} from './styles'
 
 const Title = ({
   children,
-  dsColor = "",
-  mbColor = '',
+  dsColor,
+  mbColor,
   mobileFontSize = "",
   desktopFontSize = "",
   padding = 0,

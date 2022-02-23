@@ -17,7 +17,8 @@ const Container = ({
   dsMargin,
   width,
   justifyCont,
-  dsWidth
+  dsWidth,
+  border
 }) => {
   return (
     <Wrapper
@@ -36,6 +37,7 @@ const Container = ({
       width={width}
       justifyCont={justifyCont}
       dsWidth={dsWidth}
+      border={border}
     >
       {children}
     </Wrapper>

@@ -27,6 +27,7 @@ import Wrapper from "../components/Wrapper";
 import Graph from "../components/Graph";
 import Select, { components } from "react-select";
 import axles from "../utils/axles.json";
+import Button from '../components/Button';
 
 import {useFetch} from '../hooks/useFetch'
 
@@ -34,7 +35,7 @@ const customStyles = {
   container: (provided) => ({
     ...provided,
     fontSize: "0.9rem",
-    fontFamily: '"Montserrat", sans-serif',
+    fontFamily: '"Montserrat", sans-serif'
   }),
   control: (provided) => ({
     ...provided,
@@ -82,15 +83,36 @@ const Home = () => {
 
   return (
     <>
-      <Container background="backgroundGray" mbHeight="55vh" dsHeight="45vh">
+      <Container background="backgroundGray" dsHeight="45vh">
         <Wrapper
           display="flex"
           justifyCont="center"
           alignItems="center"
-          height="100%"
-          style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
-        >
-          <Title dsColor='white' mbColor='white' mobileFontSize='customXlg'>Banner</Title>
+          dsHeight="75vh"
+          width='100%'
+          bgImage="url('/images/yellow-banner.png')"
+          dsPosition='absolute'
+          top='-50%'
+        > 
+          <Container mobilePadding={"2rem"}>
+            <Wrapper 
+              style={{
+                maxWidth: "1200px",
+                margin: "0 auto",
+              }}
+            >
+              <Title mobileFontSize="lg" weight='700' desktopFontSize="customXlg" dsColor="#00000" mbColor='#00000' margin='2rem 0'>
+                Luego del Paro Nacional de 2021, convocamos a más de 400 jóvenes en todo el país
+              </Title>
+              <Paragraph
+                mobileFontSize="base"
+                desktopFontSize="customBase"
+                color="#00000"
+              >
+                frente a la realidad de Colombia. Nuestro objetivo final: construir pliegos temáticos para que las candidaturas políticas sienten sus posturas al respecto y lograr así que la ciudadanía pueda ejercer su voto de manera informada.
+              </Paragraph>
+            </Wrapper>
+          </Container>
         </Wrapper>
       </Container>
       <Container background="white">
@@ -177,7 +199,7 @@ const Home = () => {
             </AxleDescription>    
           </AxlesWrapper>
         </Wrapper>
-        <Wrapper
+        {/* <Wrapper
           display="flex"
           justifyCont="center"
           mbMargin="0 4rem 2rem"
@@ -213,7 +235,7 @@ const Home = () => {
                 />
               </SelectWrapper>
           }
-        </Wrapper>
+        </Wrapper> */}
         <Wrapper
           display="flex"
           justifyCont="center"
@@ -232,17 +254,16 @@ const Home = () => {
           </GraphWrapper>
         </Wrapper>
       </Container>
-      <Container background="backgroundLightGray">
+      <Container>
         <Wrapper
           mbMargin="0 2rem"
           dsMargin="0 auto"
           maxWidth="1024px"
           dsPadding="3rem 0"
           mbPadding="2rem 0"
+          style={{textAlign: 'center'}}
         >
-          <Title mobileFontSize="lg" desktopFontSize="lg" color="dark">
-            Frases
-          </Title>
+          <img src={'/images/nuestras-voces.png'} width='100%' />
         </Wrapper>
         <Wrapper
           mbMargin="0 2rem"
@@ -325,6 +346,43 @@ const Home = () => {
           }
         </Wrapper>
       </Container>
+      <Wrapper
+        display="flex"
+        justifyCont="center"
+        height='60vh'
+        width='100%'
+        bgImage="url('/images/fingers-up.png')"
+      > 
+        <Wrapper 
+          style={{
+            maxWidth: "1025px",
+            textAlign: 'center'
+          }}
+          dsMargin='2rem 0'
+        > 
+          <div style={{margin: '0 2rem'}}>
+            <img src={'/images/quienes-participan.png'} style={{width: '100%', margin: '2rem 0'}} />
+          </div>
+          <Paragraph
+            mobileFontSize="base"
+            desktopFontSize="customBase"
+            color="#00000"
+            desktopMargin='2rem 0 0 0'
+            desktopPadding='0 4rem'
+            mobileMargin='1rem 2rem'
+          >
+            Cualquier persona colombiana que tenga entre 18 y 30 años, que crea en el poder transformador de la movilización social y la participación política
+          </Paragraph>
+          <Button
+            background='#142FF4'
+            color='#FFFFFF'
+            padding='1rem'
+            margin='1rem 0'
+          >
+            Haz parte de Retoma
+          </Button>
+        </Wrapper>
+      </Wrapper>
       <Container background="white">
         <Wrapper
           mbMargin="0 2rem"
@@ -332,10 +390,9 @@ const Home = () => {
           maxWidth="1024px"
           dsPadding="3rem 0"
           mbPadding="2rem 0"
+          style={{textAlign: 'center'}}
         >
-          <Title mobileFontSize="lg" desktopFontSize="lg" color="dark">
-            Novedades
-          </Title>
+          <img src={'/images/nuestras-voces.png'} width='100%' />
         </Wrapper>
         <Wrapper
           display="flex"
