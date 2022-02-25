@@ -149,7 +149,6 @@ const Home = () => {
                 onClick={() => {
                   setSelectedQuestion(null);
                   setSelectedAxleIndex(index);
-                  setSelectedAxleId(a.fields.Id)
                 }}
                 key={a.id}
               >

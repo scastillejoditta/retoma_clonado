@@ -52,13 +52,13 @@ const Graph = ({ data, size, question }) => {
         const ans = `QN_${question.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
         const score = d.fields[ans]; //scores are -0.33, 0, 0.165, 0.33
         switch (score) {
-          case -0.33:
-            return 0 + 50;
           case 0:
+            return 0 + 50;
+          case 0.5:
             return width * 0.25;
           case 0.165:
             return width * 0.5;
-          case 0.33:
+          case 1:
             return width - 100;
           default:
             return width / 2;
@@ -182,9 +182,9 @@ const Graph = ({ data, size, question }) => {
           }
 
           if (isPositive && windowWidth > 768 && position < windowWidth / 2) {
-            return `${xAxis}px`;
+            return `${xAxis - 45}px`;
           } else {
-            return `${xAxis - 180}px`;
+            return `${xAxis - 45}px`;
           }
         }
 
