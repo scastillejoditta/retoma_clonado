@@ -1,5 +1,12 @@
 import styled from 'styled-components'
 
+const SvgWrapper = styled.div`
+  position: relative;
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    display: flex;
+    justify-content: center;
+  }
+`
 
 const GraphScroll = styled.div`
   display: none;
@@ -44,4 +51,4 @@ const Circle = styled.div`
   border-radius: 50%;
 `;
 
-export {Circle, Reference, References, GraphScroll}
+export {Circle, Reference, References, GraphScroll, SvgWrapper}

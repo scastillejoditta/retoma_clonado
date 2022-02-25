@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import * as d3Force from "d3-force";
 import {isMobileOnly} from "react-device-detect";
 
-import {Circle, Reference, References, GraphScroll} from './styles'
+import {Circle, Reference, References, GraphScroll, SvgWrapper} from './styles'
 import Paragraph from "../../components/Paragraph";
 
 const Graph = ({ data, size, question }) => {
@@ -242,9 +242,9 @@ const Graph = ({ data, size, question }) => {
   }, [data, question]);
   return (
     <>
-      <div id="svg-wrapper" style={{ position: "relative", display: "flex", justifyContent: "center" }}>
+      <SvgWrapper id="svg-wrapper" >
         <svg id="svg" ref={svgRef} width={svgWidth} height={svgHeight} />
-      </div>
+      </SvgWrapper>
       <GraphScroll>*Deslizarse a lo ancho</GraphScroll>
       <References>
         <Reference>
