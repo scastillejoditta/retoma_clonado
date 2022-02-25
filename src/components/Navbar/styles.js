@@ -7,9 +7,9 @@ const Wrapper = styled.header`
   align-items: center;
   flex-direction: row-reverse;
 
-  background: ${props => props.theme.colors.backgroundGray};
-
   padding: 2rem;
+
+  background: ${props => props.bg};
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     flex-direction: initial;

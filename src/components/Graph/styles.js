@@ -19,6 +19,8 @@ const References = styled.div`
 
   @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 768px;
     align-self: unset;
   }

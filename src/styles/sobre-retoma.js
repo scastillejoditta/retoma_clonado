@@ -57,4 +57,16 @@ const Rows = styled.div`
   }
 `
 
-export {Rows, PersonWrapper, Persons, TeamWrapper, AnswersWrapper, ScoreWrapper, Wrapper}
+const Image = styled.img`
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: none;
+  }
+`
+
+const SpeakerWrapper = styled.div`
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: none;
+  }
+`
+
+export {Rows, PersonWrapper, Persons, TeamWrapper, AnswersWrapper, ScoreWrapper, Wrapper, Image, SpeakerWrapper}

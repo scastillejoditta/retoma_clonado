@@ -16,7 +16,7 @@ import Button from '../components/Button'
 const JoinToUs = () => {
   return (
     <>
-      <Container background="backgroundGray" dsHeight="45vh">
+      <Container dsHeight="45vh">
         <Wrapper
           display="flex"
           justifyCont="center"

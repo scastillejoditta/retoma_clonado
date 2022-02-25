@@ -7,7 +7,7 @@ const Share = styled.div`
 
   width: fit-content;
 
-  background-color: ${props => props.theme.colors.backgroundGray};
+  background-color: ${props => props.theme.colors.violet};
 
   padding: 0.5rem 0.75rem;
   margin: 1rem 0;
@@ -36,9 +36,11 @@ const Li = styled.li`
   position: relative;
 
   background: ${props => props.background ? props.background : 'transparent'};
+  
+  border: 2px solid ${props => props.theme.colors.violet};
   list-style-type: none;
 
-  margin: 2rem 0 2rem 0;
+  margin: 2rem 0;
 
   > span {
     position: absolute;
@@ -47,7 +49,8 @@ const Li = styled.li`
   }
   
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
-    max-width: 30%;
+    max-width: 25%;
+    margin: 4rem 2rem 2rem 0;
   }
 `
 
@@ -59,26 +62,32 @@ const ListWrapper = styled.ul`
     right: -5%;
     top: -15%;
   }
+  margin: 0 2rem;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    margin: 0 6rem
   }
 `
 
 const Image = styled.img`
   height: 250px;
   width: 250px;
-  object-fit: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   border-radius: 50%;
 
-  background: ${props => props.theme.colors.lightGray};
+  background-image: url('/images/motivations.png');
 `
 
-const TrafficLights = styled.div`
-  padding: 2rem;
-  background: ${props => props.background ? props.background : 'transparent'};
+const TrafficLightsWrapper = styled.div`
+
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    margin: 0 2rem;
+    width: 425px;
+  }
 `
 
 const Comments = styled.div`
@@ -90,4 +99,25 @@ const Comments = styled.div`
   padding: 2rem;
 `
 
-export {Share, SocialMedia, Li, TrafficLights, Comments, Image, ListWrapper}
+const SectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+`
+
+const TicksWrapper = styled.div`
+  display: flex;
+
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    display: flex;
+    margin: .5rem 2rem;
+  }
+`
+
+export {Share, SocialMedia, Li, TrafficLightsWrapper, Comments, Image, ListWrapper, SectionWrapper, TicksWrapper}

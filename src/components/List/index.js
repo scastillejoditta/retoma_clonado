@@ -9,10 +9,11 @@ const colors = {
   '/': '#FF2C2C',
   '/sobre-retoma': '#142FF4',
   '/unete-a-la-red': '#FF00A4',
-  '/candidaturas': '#7E3BFF'
+  '/candidaturas': '#7E3BFF',
+  '/candidaturas/[candidate]': '#000000'
 }
 
-const List = ({ onShowMenuInMobile }) => {
+const List = ({bg, closeColor, onShowMenuInMobile}) => {
   const router = useRouter()
 
   const handleSelectedSection = (section) => {
@@ -23,10 +24,10 @@ const List = ({ onShowMenuInMobile }) => {
   return (
     <>
       <Close onClick={() => onShowMenuInMobile(false)}>
-        <CloseIcon />
+        <CloseIcon fill={closeColor} />
       </Close>
       <Wrapper>
-        <UnorderedList>
+        <UnorderedList bg={bg}>
           <ListItems color={colors[router.pathname]} selected={router.asPath === "/"}>
             <a onClick={() => handleSelectedSection("/")}>Inicio</a>
           </ListItems>

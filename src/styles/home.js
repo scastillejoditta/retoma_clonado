@@ -20,13 +20,14 @@ const Option = styled.div`
 
   margin: 0 0.8rem;
 
-  background: ${props => props.theme.colors.backgroundGray};
+  background: ${props => props.bg ? props.bg : 'black'};
+  color: ${props => props.theme.colors.black};
 
   line-height: 1.5;
   font-weight: 600;
 
   cursor: pointer;
-  text-decoration: ${(props) => (props.selected ? "white underline" : "unset")};
+  text-decoration: ${(props) => (props.selected ? "black underline" : "unset")};
   text-underline-offset: 4px;
   font-size: 12px;
 `;
@@ -40,6 +41,9 @@ const AxlesWrapper = styled.div`
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     flex-direction: row;
     text-align: left;
+    > * {
+      margin: 0 2rem;
+    }
   }
 `;
 
@@ -67,26 +71,37 @@ const LeftArrowWrapper = styled.div`
   align-self: center;
   margin-right: 1rem;
   visibility: ${(props) => (props.selectedAxle !== 0 ? "visible" : "hidden")};
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    position: absolute;
-    left: -6rem;
-    top: 45%;
-    cursor: pointer;
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: none;
   }
 `;
 
 const RightArrowWrapper = styled.div`
   align-self: center;
   margin-left: 1rem;
-  visibility: ${(props) => (props.selectedAxle !== 4 ? "visible" : "hidden")};
-  
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    position: absolute;
-    right: -6rem;
-    top: 45%;
-    cursor: pointer;
+  visibility: ${(props) => (props.selectedAxle !== 2 ? "visible" : "hidden")};
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: none;
   }
 `;
+
+const MobileLeftArrowWrapper = styled.div`
+  align-self: center;
+  margin-left: 1rem;
+  visibility: ${(props) => (props.selectedAxle !== 0 ? "visible" : "hidden")};
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    display: none;
+  }
+`
+
+const MobileRightArrowWrapper = styled.div`
+  align-self: center;
+  margin-left: 1rem;
+  visibility: ${(props) => (props.selectedAxle !== 2 ? "visible" : "hidden")};
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    display: none;
+  }
+`
 
 const Bancas = styled.div`
   width: 100%;
@@ -124,6 +139,7 @@ const Novedades = styled.div`
   width: 100%;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -154,7 +170,7 @@ const Noveded = styled.a`
       rgba(255, 255, 255, 0.5)
     ),
     url(${(props) => props.image});
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   height: 15rem;
   margin-bottom: 3rem;
@@ -167,7 +183,7 @@ const Noveded = styled.a`
   padding: 2rem;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-bottom: 0rem;
+    margin: 1rem;
     width: 30%;
     padding: unset;
   }
@@ -192,11 +208,9 @@ const ShareWrapper = styled.div`
 const Share = styled.div`
   display: flex;
 
-  background-color: ${props => props.theme.colors.green};
+  background-color: ${props => props.theme.colors.white};
 
   padding: 0.5rem 0.75rem;
-
-  border-bottom: 2px solid ${props => props.theme.colors.green};
 `;
 const SocialMedia = styled.div`
   display: flex;
@@ -214,4 +228,4 @@ const GraphWrapper = styled.div`
   flex-direction: column;
 `;
 
-export {GraphWrapper, SocialMedia, Share, ShareWrapper, AvatarWrapper, Noveded, Machifrase, Novedades, Frases, SelectWrapper, Bancas, RightArrowWrapper, LeftArrowWrapper, AxleDescription, AxlesWrapper, AxleTitle, Option, OptionsWrapper}
+export {GraphWrapper, SocialMedia, Share, ShareWrapper, AvatarWrapper, Noveded, Machifrase, Novedades, Frases, SelectWrapper, Bancas, RightArrowWrapper, LeftArrowWrapper, AxleDescription, AxlesWrapper, AxleTitle, Option, OptionsWrapper, MobileLeftArrowWrapper, MobileRightArrowWrapper}

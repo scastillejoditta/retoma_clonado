@@ -16,7 +16,7 @@ const UnorderedList = styled.ul`
 
   z-index: 1;
 
-  /* background: ${props => props.theme.colors.backgroundGray}; */
+  background: ${props => props.bg};
 
   list-style-type: none;
 
@@ -38,6 +38,8 @@ const UnorderedList = styled.ul`
 
     min-width: unset;
     min-height: unset;
+
+    background: transparent;
   }
 `;
 

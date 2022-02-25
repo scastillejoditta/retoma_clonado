@@ -25,19 +25,25 @@ const Candidates = () => {
     .map(cp => cp.fields.Partido_politico)
     .filter((pp, idx) => {
       if(politicsPartiesArr.includes(pp)) return
-      politicsPartiesArr.push({
-        name: pp,
-        id: idx + 1
-      })
+      politicsPartiesArr.push(pp)
     })
+
+  const corporationsArr = []
+  candidatesCopy
+  .map(cp => cp.fields.Corporación)
+  .filter((corp, idx) => {
+    if(corporationsArr.includes(corp)) return
+    corporationsArr.push(corp)
+  })
+    
   return (
     <>
-      <Container background="backgroundGray" dsHeight="45vh">
+      <Container dsHeight="45vh">
         <Wrapper
           display="flex"
-          justifyCont="center"
           alignItems="center"
           dsHeight="75vh"
+          
           width='100%'
           bgImage="url('/images/pink-banner.png')"
           dsPosition='absolute'
@@ -47,7 +53,7 @@ const Candidates = () => {
               mbPadding='2rem'
               style={{
                 maxWidth: "1200px",
-                margin: "0 auto",
+                margin: '0 auto 0 auto'
               }}
             >
             <Title 
@@ -61,10 +67,29 @@ const Candidates = () => {
               ¿Qué opinan les candidates?
             </Title>
             <Input 
-              placeholder='Nombre, departamento, o corporación' 
+              placeholder='Nombre, departamento' 
               value={inputValue} 
               onChange={(e) => setInputValue(e.target.value)} 
             />
+                        <Select 
+              name='corporación'
+              onChange={(e) => setSelectValue(e.target.value)}
+            >
+              <Option 
+                key='key'
+                value=''
+              >
+                Corporación
+              </Option>
+              {corporationsArr.map(corp => (
+                <option 
+                  key={corp} 
+                  value={corp}
+                >
+                  {corp}
+                </option>
+              ))}      
+            </Select>
             <Select 
               name='partido'
               onChange={(e) => setSelectValue(e.target.value)}
@@ -77,10 +102,10 @@ const Candidates = () => {
               </Option>
               {politicsPartiesArr.map(fc => (
                 <option 
-                  key={fc.id} 
-                  value={fc.name}
+                  key={fc} 
+                  value={fc}
                 >
-                  {fc.name}
+                  {fc}
                 </option>
               ))}      
             </Select>
@@ -102,9 +127,9 @@ const Candidates = () => {
                   key={candidate.id}
                 >
                   <Wrapper>
-                    <div style={{minHeight: '22.5rem', maxHeight: '22.5rem'}}>
+                    <div style={{minHeight: '26rem', maxHeight: '26rem'}}>
                       <div style={{display: 'flex', justifyContent: 'center'}}>
-                        <Image />
+                        <Image src={candidate?.fields?.Foto} />
                       </div>
                       <Title 
                         dsColor='violet' 
@@ -115,16 +140,16 @@ const Candidates = () => {
                       >
                         {candidate.fields.Nombre}
                       </Title>
-                      <Title 
+                      <Paragraph 
                         dsColor='black' 
                         mbColor='black' 
                         desktopFontSize='medium' 
                         weight='400'
-                        margin='1rem'
+                        desktopMargin='1rem'
+                        mobileMargin='1rem'
                       >
-                        Partido
-                        {/* {candidate.fields.Orientacion} */}
-                      </Title>
+                        {candidate.fields.Partido_politico}
+                      </Paragraph>
                     </div>
                     <div style={{position: 'absolute', bottom: '-8%', left: '0', right: '0', margin: '0 2rem'}}>       
                       <Link 

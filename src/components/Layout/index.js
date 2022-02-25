@@ -66,7 +66,7 @@ export default function Layout({children}) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Wrapper>
+      {/* <Wrapper>
         <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
           <Retoma />
           <Title
@@ -90,10 +90,10 @@ export default function Layout({children}) {
             {twoDigits(daysToDisplay)}:{twoDigits(hoursToDisplay)}:{twoDigits(minutesToDisplay)}:{twoDigits(secondsToDisplay)}
           </Title>
         </div> 
-      </Wrapper>
-      {/* <Navbar />
+      </Wrapper> */}
+      <Navbar />
       <main>{children}</main>
-      <Footer /> */}
+      <Footer />
     </ThemeProvider>
   )
 }

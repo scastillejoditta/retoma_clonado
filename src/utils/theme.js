@@ -15,6 +15,7 @@ const theme = {
     dark: "#333",
   },
   colors: {
+    black: '#00000',
     dark: "#4A4A4A",
     gray: "#EFEDED",
     green: "#00D857",

@@ -36,7 +36,7 @@ const Input = styled.input`
   }
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    max-width: 50%;
+    max-width: 30%;
   }
 `
 
@@ -97,7 +97,7 @@ const Image = styled.img`
   margin-top: -2rem;
   margin-left: 1rem;
 
-  background-image: url('/images/motivations.png');
+  /* background-image: url('/images/motivations.png'); */
 `
 
 export {Image, Select, LinkWrapper, Input, Wrapper, Option}

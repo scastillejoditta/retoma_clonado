@@ -10,6 +10,7 @@ const Title = ({
   padding = 0,
   margin = 0,
   weight,
+  dsMargin,
   textAlign = 'unset',
   style
 }) => {
@@ -22,6 +23,7 @@ const Title = ({
         mbColor={mbColor}
         padding={padding}
         margin={margin}
+        dsMargin={dsMargin}
         weight={weight}
         textAlign={textAlign}
         style={style}

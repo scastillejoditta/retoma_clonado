@@ -4,10 +4,11 @@ import {
   FacebookShareButton,
   TelegramShareButton,
   TwitterShareButton,
-  LinkedinShareButton
+  LinkedinShareButton,
+  WhatsappShareButton
 } from "react-share";
 
-import {GraphWrapper, SocialMedia, Share, ShareWrapper, AvatarWrapper, Noveded, Machifrase, Novedades, Frases, SelectWrapper, Bancas, RightArrowWrapper, LeftArrowWrapper, AxleDescription, AxlesWrapper, AxleTitle, Option, OptionsWrapper} from '../styles/home'
+import {GraphWrapper, SocialMedia, Share, ShareWrapper, AvatarWrapper, Noveded, Machifrase, Novedades, Frases, SelectWrapper, Bancas, RightArrowWrapper, LeftArrowWrapper, AxleDescription, AxlesWrapper, AxleTitle, Option, OptionsWrapper, MobileRightArrowWrapper, MobileLeftArrowWrapper} from '../styles/home'
 
 // Assets
 import LeftArrow from "../assets/Icons/Arrows/LeftArrow";
@@ -15,8 +16,7 @@ import RightArrow from "../assets/Icons/Arrows/RightArrow";
 import DownArrow from '../assets/Icons/Arrows/DownArrow'
 import Twitter from "../assets/Icons/Twitter";
 import Facebook from "../assets/Icons/Facebook";
-import Telegram from "../assets/Icons/Whatsapp";
-import Linkedin from "../assets/Icons/Linkedin";
+import Whatsapp from "../assets/Icons/Whatsapp";
 import Spinner from '../assets/Icons/Spinner'
 
 // Components
@@ -60,15 +60,31 @@ const DropdownIndicator = (props) => {
   );
 };
 
+const axlesProperties = {
+  'Corrupción': {
+    color: '#FFCCF1',
+    image: '/images/corrupcion-thumbnail.png'
+  },
+  'Mujeres\n': {
+    color: '#00D857',
+    image: '/images/mujeres-thumbnail.png'
+  },
+  'Diversidad sexual y de género': {
+    color: '#FFF422',
+    image: '/images/lgbtq-thumbnail.png'
+  }
+}
+
 const Home = () => {
-  const [selectedAxle, setSelectedAxle] = useState(0);
+  const [selectedAxleIndex, setSelectedAxleIndex] = useState(0);
   const [SelectedQuestion, setSelectedQuestion] = useState(null);
   const graphRef = useRef();
 
   const {data: questions, loading: loadingQuestions} = useFetch("Preguntas", [])
-  const {data: quotes, loading: loadingQuotes} = useFetch("Frases_Candidates", [])
+  // const {data: quotes, loading: loadingQuotes} = useFetch("Frases_Candidates", [])
   const {data: news, loading: loadingNews} = useFetch("Novedades", [])
   const {data: candidates, loading: loadingCandidates} = useFetch("Respuestas_Candidates", [])
+  const {data: axles, loading: loadingAxles} = useFetch("Ejes", [])
 
   useEffect(() => {
     graphRef.current.scrollLeft =
@@ -79,11 +95,11 @@ const Home = () => {
     setSelectedQuestion(value);
   }
 
-  console.log(questions, 'questions')
+  const filterQuestions = questions?.filter(q => JSON.stringify(q.fields) !== "{}")
 
   return (
     <>
-      <Container background="backgroundGray" dsHeight="45vh">
+      <Container dsHeight="45vh">
         <Wrapper
           display="flex"
           justifyCont="center"
@@ -126,22 +142,24 @@ const Home = () => {
           mbPadding="1rem 0"
         >
           <OptionsWrapper>
-            {axles?.axles.map((a, index) => (
+            {axles?.map((a, index) => (
               <Option
-                selected={selectedAxle === index}
+                bg={axlesProperties[a.fields.Ejes].color}
+                selected={selectedAxleIndex === index}
                 onClick={() => {
                   setSelectedQuestion(null);
-                  setSelectedAxle(index);
+                  setSelectedAxleIndex(index);
+                  setSelectedAxleId(a.fields.Id)
                 }}
                 key={a.id}
               >
                 <Paragraph
                   weight="600"
                   desktopMargin="0 0.8rem;"
-                  color="white"
+                  color="black"
                   desktopFontSize="xs"
                 >
-                  {a.title}
+                  {a.fields.Ejes}
                 </Paragraph>
               </Option>
             ))}
@@ -158,25 +176,26 @@ const Home = () => {
           position="relative"
         >
           <AxlesWrapper>
-            <AxleTitle>
-              <Title
-                mobileFontSize="lg"
-                desktopFontSize="lg"
-                margin="1rem 0"
-              >
-                {axles?.axles[selectedAxle].title}
-              </Title>
-            </AxleTitle>
+            <LeftArrowWrapper
+              selectedAxle={selectedAxleIndex}
+              onClick={() => {
+                setSelectedQuestion(null);
+                setSelectedAxleIndex((prevValue) => prevValue - 1);
+              }}
+            >
+              <LeftArrow />
+            </LeftArrowWrapper> 
+            <img src={axlesProperties[axles[selectedAxleIndex]?.fields?.Ejes]?.image} width='200px' height='200px' />
             <AxleDescription>
-              <LeftArrowWrapper
-                selectedAxle={selectedAxle}
+              <MobileLeftArrowWrapper
+                selectedAxle={selectedAxleIndex}
                 onClick={() => {
                   setSelectedQuestion(null);
-                  setSelectedAxle((prevValue) => prevValue - 1);
+                  setSelectedAxleIndex((prevValue) => prevValue - 1);
                 }}
               >
                 <LeftArrow />
-              </LeftArrowWrapper>
+              </MobileLeftArrowWrapper>
               <Paragraph
                 mobileFontSize="base"
                 desktopFontSize="base"
@@ -185,21 +204,30 @@ const Home = () => {
                 desktopPadding="0"
                 mobileMargin='1rem 0'
               >
-                {axles?.axles[selectedAxle].description}
+                {axles[selectedAxleIndex]?.fields?.Contexto}
               </Paragraph>
-              <RightArrowWrapper
-                selectedAxle={selectedAxle}
+              <MobileRightArrowWrapper
+                selectedAxle={selectedAxleIndex}
                 onClick={() => {
                   setSelectedQuestion(null);
-                  setSelectedAxle((prevValue) => prevValue + 1);
+                  setSelectedAxleIndex((prevValue) => prevValue + 1);
                 }}
               >
                 <RightArrow />
-              </RightArrowWrapper>
-            </AxleDescription>    
+              </MobileRightArrowWrapper>
+            </AxleDescription> 
+            <RightArrowWrapper
+              selectedAxle={selectedAxleIndex}
+              onClick={() => {
+                setSelectedQuestion(null);
+                setSelectedAxleIndex((prevValue) => prevValue + 1);
+              }}
+            >
+              <RightArrow />
+            </RightArrowWrapper>
           </AxlesWrapper>
         </Wrapper>
-        {/* <Wrapper
+        <Wrapper
           display="flex"
           justifyCont="center"
           mbMargin="0 4rem 2rem"
@@ -220,13 +248,7 @@ const Home = () => {
                   onChange={handleChange}
                   components={{ DropdownIndicator }}
                   placeholder={"Selecciona la pregunta"}
-                  options={questions
-                    .filter(
-                      (q) =>
-                        q.fields["Id (from Ejes)"][0] ===
-                          axles?.axles[selectedAxle].id &&
-                        q.fields?.Pregunta !== "Comentario"
-                    )
+                  options={filterQuestions.filter((q) => q.fields["Id (from Ejes)"][0] === axles[selectedAxleIndex]?.fields.Id)
                     .map((q) => ({
                       value: q.id,
                       label: q.fields.Pregunta,
@@ -235,7 +257,7 @@ const Home = () => {
                 />
               </SelectWrapper>
           }
-        </Wrapper> */}
+        </Wrapper>
         <Wrapper
           display="flex"
           justifyCont="center"
@@ -254,7 +276,7 @@ const Home = () => {
           </GraphWrapper>
         </Wrapper>
       </Container>
-      <Container>
+      {/* <Container background='pink'>
         <Wrapper
           mbMargin="0 2rem"
           dsMargin="0 auto"
@@ -322,20 +344,12 @@ const Home = () => {
                           </FacebookShareButton>
                         </span>
                         <span>
-                          <TelegramShareButton
+                          <WhatsappShareButton
                             url={`https://feminindex.com`}
                             title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
                           >
-                            <Linkedin />
-                          </TelegramShareButton>
-                        </span>
-                        <span>
-                          <TelegramShareButton
-                            url={`https://feminindex.com`}
-                            title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
-                          >
-                            <Telegram />
-                          </TelegramShareButton>
+                            <Whatsapp />
+                          </WhatsappShareButton>
                         </span>
                       </SocialMedia>
                     </Share>
@@ -345,7 +359,7 @@ const Home = () => {
             </Frases>
           }
         </Wrapper>
-      </Container>
+      </Container> */}
       <Wrapper
         display="flex"
         justifyCont="center"

@@ -21,9 +21,9 @@ const Graph = ({ data, size, question }) => {
     x.domain([-10, 10]);
     let tickLabels = [];
     tickLabels[1] = [
-      "No avanza la agenda feminista",
-      "Avanza parcialmente la agenda feminista",
-      "Avanza la agenda feminista",
+      "En contra/Baja o nula prioridad",
+      "No tiene posición definida",
+      "A favor/Alta prioridad",
     ];
     svgContainer
       .attr("height", svgHeight)
@@ -97,7 +97,7 @@ const Graph = ({ data, size, question }) => {
       .style("z-index", 1);
 
     const HtmlToDisplayInTooltip = (d) => {
-      const { Nombre, Orientacion, Provincia } = d.path[0].__data__.fields;
+      const { Nombre, Corporación, Partido_politico } = d.path[0].__data__.fields;
       const { id } = d.path[0].__data__;
       const path = window.location.href;
 
@@ -106,8 +106,8 @@ const Graph = ({ data, size, question }) => {
 
       return `<ul style='margin: 0; padding: 0; text-align: center'>
                     <li style='list-style-type: none; margin-bottom: 0.5rem; font-weight: bold'>${Nombre}</li>
-                    <li style='list-style-type: none; margin-bottom: 0.5rem'>${Orientacion}</li>
-                    <li style='list-style-type: none; margin-bottom: 0.5rem'>${Provincia}</li>
+                    <li style='list-style-type: none; margin-bottom: 0.5rem'>${Corporación}</li>
+                    <li style='list-style-type: none; margin-bottom: 0.5rem'>${Partido_politico}</li>
                 </ul>
                 `;
     };
@@ -122,19 +122,31 @@ const Graph = ({ data, size, question }) => {
       .attr("fill", (d) => {
         switch (d.fields.Partido_politico) {
           case "Partido Alianza verde":
-            return "#FBD17E";
+            return "#00D857";
           case "Alianza Verde":
             return "#8CDDD3";
-          case "FIT-U":
-            return "#E4626F";
-          case "Socialista":
-            return "#E4626F";
-          case "Vamos con Vos":
-            return "#66B26B";
-          case "Frente Renovador":
+          case "Movimiento Político de Mujeres Estamos Listas Colombia":
+            return "#FF00A4";
+          case "Coalición Centro Esperanza":
+            return "#64FFA3";
+          case "Partido de la U":
+            return "#FFF422";
+          case "Coalición Alianza Verde Centro Esperanza":
             return "#999999";
-          case "Partido Vecinal":
-            return "#B193CE";
+          case "Cambio Radical":
+            return "#142FF4";
+          case "Partido de la Unión por la gente":
+            return "#FFF422";
+          case "Pacto Histórico":
+            return "#7E3BFF";
+          case "Partido Liberal":
+            return "#FF2928";
+          case "Fuerza Ciudadana":
+            return "#FF9D00";
+          case "Nuevo Liberalismo":
+            return "#FFCCF1";
+          case "Centro Democrático":
+            return "#839EFF";
           default:
             return "black";
         }
@@ -185,9 +197,33 @@ const Graph = ({ data, size, question }) => {
             const politicalParty = d.path[0].__data__.fields.Partido_politico
             switch (politicalParty) {
               case "Partido Alianza verde":
-                return "#FBD17E";
+                return "#00D857";
               case "Alianza Verde":
                 return "#8CDDD3";
+              case "Movimiento Político de Mujeres Estamos Listas Colombia":
+                return "#FF00A4";
+              case "Coalición Centro Esperanza":
+                return "#64FFA3";
+              case "Partido de la U":
+                return "#FFF422";
+              case "Coalición Alianza Verde Centro Esperanza":
+                return "#999999";
+              case "Cambio Radical":
+                return "#142FF4";
+              case "Partido de la Unión por la gente":
+                return "#FFF422";
+              case "Pacto Histórico":
+                return "#7E3BFF";
+              case "Partido Liberal":
+                return "#FF2928";
+              case "Fuerza Ciudadana":
+                return "#FF9D00";
+              case "Nuevo Liberalismo":
+                return "#FFCCF1";
+              case "Centro Democrático":
+                return "#839EFF";
+              default:
+                return "black";
             }
           });
       });
@@ -206,13 +242,13 @@ const Graph = ({ data, size, question }) => {
   }, [data, question]);
   return (
     <>
-      <div id="svg-wrapper" style={{ position: "relative" }}>
+      <div id="svg-wrapper" style={{ position: "relative", display: "flex", justifyContent: "center" }}>
         <svg id="svg" ref={svgRef} width={svgWidth} height={svgHeight} />
       </div>
       <GraphScroll>*Deslizarse a lo ancho</GraphScroll>
       <References>
         <Reference>
-          <Circle color={"#FBD17E"} />
+          <Circle color={"#00D857"} />
           <Paragraph color="black" desktopFontSize="xs">
             Partido Alianza Verde
           </Paragraph>
@@ -221,6 +257,72 @@ const Graph = ({ data, size, question }) => {
           <Circle color={"#8CDDD3"} />
           <Paragraph color="black" desktopFontSize="xs">
             Alianza Verde
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#FF00A4"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Movimiento Político de Mujeres Estamos Listas Colombia
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#64FFA3"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Coalición Centro Esperanza
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#FFF422"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Partido de la U
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#999999"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Coalición Alianza Verde Centro Esperanza
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#142FF4"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Cambio Radical
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#FFF422"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Partido de la Unión por la gente
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#7E3BFF"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Pacto Histórico
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#FF2928"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Partido Liberal
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#FF9D00"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Fuerza Ciudadana
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#FFCCF1"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Nuevo Liberalismo
+          </Paragraph>
+        </Reference>
+        <Reference>
+          <Circle color={"#839EFF"} />
+          <Paragraph color="black" desktopFontSize="xs">
+            Centro Democrático
           </Paragraph>
         </Reference>
       </References>

@@ -22,10 +22,12 @@ const findQuestionsByCandidate = (candidateData = {}, questionsData = [], questi
 
       let objFound = candidate?.answers?.find(ca => ca.Name === q.fields.Name)
 
+      if(JSON.stringify(q.fields) === "{}") return
+
       objFound = {
         ...objFound,
         question: q.fields.Pregunta,
-        axle_id: q.fields['Ejes'][0]
+        axle_id: q.fields['Ejes'][0],
       }
 
       if(objFound.Name) {

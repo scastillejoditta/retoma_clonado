@@ -3,29 +3,33 @@ import Router, { useRouter } from 'next/router'
 
 import {
   FacebookShareButton,
-  LinkedinShareButton,
-  TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
 
 import Select, { components } from "react-select";
 
-import {Share, SocialMedia, Li, TrafficLights, Comments, Image, ListWrapper} from '../../styles/candidate'
-import {BlackFacebook, BlackInstagram, BlackYoutube, BlackTwitter, BlackLinkedin} from '../../assets/Icons/CandidateIcons/index'
+import {Share, SocialMedia, Li, TrafficLightsWrapper, SectionWrapper, Image, ListWrapper, TicksWrapper} from '../../styles/candidate'
+import {BlackTwitter} from '../../assets/Icons/CandidateIcons/index'
 import DownArrow from '../../assets/Icons/Arrows/DownArrow'
 
 import Container from '../../components/Container';
 import Wrapper from '../../components/Wrapper';
 import Title from '../../components/Title';
 import Paragraph from '../../components/Paragraph';
+import Button from '../../components/Button'
 
 import Twitter from '../../assets/Icons/Twitter';
 import Facebook from '../../assets/Icons/Facebook';
 import Telegram from '../../assets/Icons/Whatsapp';
 import Linkedin from '../../assets/Icons/Linkedin';
-import Ellipse from '../../assets/Icons/Ellipse'
+import GreenLight from '../../assets/Icons/GreenLight'
+import YellowLight from '../../assets/Icons/YellowLight'
+import RedLight from '../../assets/Icons/RedLight'
 import Spinner from '../../assets/Icons/Spinner'
+import TrafficLights from '../../assets/Icons/TrafficLights'
+import Tick from '../../assets/Icons/Tick'
+import Cross from '../../assets/Icons/Cross'
 
 import {useFetch} from '../../hooks/useFetch'
 import { findQuestionsByCandidate } from '../../helpers/find-questions-by-candidate';
@@ -53,8 +57,6 @@ export async function getStaticPaths() {
   const res = await fetch(`${process.env.URL_AIRTABLE_TOKEN}/${url}`, {headers})
   const candidates = await res.json()
 
-  // console.log(candidates, 'asdakwjdalkwd');
-
   // Get the paths we want to pre-render based on posts
   const paths = candidates.records.map(candidate => ({
     params: { candidate: candidate.id },
@@ -68,21 +70,25 @@ export async function getStaticPaths() {
 const questionIcon = (score) => {
   switch(true) {
     case score === 1:
-      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><Ellipse fill={'#00D857'} /></span>
+      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><GreenLight /></span>
     case score === 0:
-      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><Ellipse fill={'#FF2C2C'} /></span>
+      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><YellowLight /></span>
     case score === 0.5:
-      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><Ellipse fill={'#FFF300'} /></span>
+      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><RedLight /></span>
   }
 }
 
     
 const customStyles = {
-  container: (provided) => ({
+  singleValue: (provided, state) => ({
+    ...provided,
+    color: 'black'
+  }),
+  container: (provided, state) => ({
     ...provided,
     fontSize: "0.9rem",
     fontFamily: '"Montserrat", sans-serif',
-    width: '35%',
+    width: '40%',
     "@media (max-width: 768px)": {
       width: '100%'
     } 
@@ -98,7 +104,7 @@ const customStyles = {
   indicatorSeparator: () => ({}),
   dropdownIndicator: (provided) => ({
     ...provided,
-    padding: "0.5rem 1rem 0.5rem 0"
+    padding: "1.5rem 1rem 1.5rem 0"
   }),
 };
 
@@ -141,10 +147,6 @@ export default function Candidate({ candidate }) {
     setSelectedAxle(value);
   };
 
-  useEffect(() => {
-
-  }, [])
-
   return (
     <>
     <Container>
@@ -152,163 +154,184 @@ export default function Candidate({ candidate }) {
         <Wrapper 
           dsPadding={'4rem 6rem'}
           mbPadding={'2rem'}
-          dsBackground={'linear-gradient(to bottom, #4A4A4A 40%, white 40%, white 100%)'}
+          dsBackground={'linear-gradient(to bottom, #FFCCF1 40%, white 40%, white 100%)'}
           mbBackground={'white'}
           display='flex' 
-          justifyCont='space-between' 
+          justifyCont='flex-start' 
         >
           {loadingCandidate 
             ? <Spinner />
             : <>
                 <Wrapper dsWidth={'30%'} >
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                  <Image />
-                </div>
-                <SocialMedia style={{display: 'flex', justifyContent: 'center', margin: '0.75rem 1rem'}}>
-                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                    <BlackFacebook />
-                  </button>
-                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                    <BlackInstagram />
-                  </button>
-                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                    <BlackLinkedin />
-                  </button>
-                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                    <BlackTwitter />
-                  </button>
-                  <button style={{background: 'transparent', border: 'none', cursor: 'pointer'}}>
-                    <BlackYoutube />
-                  </button>
-                </SocialMedia>
-              </Wrapper> 
-              <Wrapper dsWidth={'30%'} >
-                <Title mobileFontSize='customXlg' weight='bold' margin='0 0 2rem 0' dsColor='white' mbColor='#4A4A4A'>
-                  {candidateData?.Nombre}
-                </Title>
-                <Paragraph
-                  mobileFontSize="base"
-                  desktopFontSize="base"
-                  color="backgroundGray"
-                  desktopMargin='4rem 0 0 0'
-                >
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." 
-                </Paragraph>
-                <Share>
-                  <span>
-                    <TwitterShareButton
-                      url={`https://feminindex.com${router.asPath}`}
-                      title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
-                      hashtag={"#Feminindex"}
-                      description={"Feminindex"}
+                  <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <Image />
+                  </div>
+                  <SocialMedia style={{display: 'flex', justifyContent: 'center', margin: '0.75rem 1rem'}}>
+                    <a 
+                      style={{
+                        background:'transparent',
+                        color:'#7E3BFF',
+                        textDecoration: 'none'
+                      }}
+                      target='_blank'
+                      href={candidateData?.Twitter}
                     >
-                      <Twitter />
-                    </TwitterShareButton>
-                  </span>
-                  <span>
-                  <FacebookShareButton
-                    url={`https://feminindex.com${router.asPath}`}
-                    quote={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
-                    hashtag={"#Feminindex"}
-                    description={"Feminindex"}
-                  >
-                    <Facebook />
-                  </FacebookShareButton>
-                  </span>
-                  <span>
-                    <TelegramShareButton
-                      url={`https://feminindex.com${router.asPath}`}
-                      title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                      @/{candidateData?.Twitter?.substr(20)}
+                    </a>
+                  </SocialMedia>
+                </Wrapper> 
+                <Wrapper dsWidth={'30%'} >
+                  <Title mobileFontSize='customXlg' weight='bold' margin='0 0 2rem 0' dsColor='#' mbColor='#7E3BFF'>
+                    {candidateData?.Nombre}
+                  </Title>
+                  <Paragraph desktopMargin='4rem 0 1rem 0' mbMargin='1rem 0'>
+                    Partido político: <span style={{color: '#7E3BFF'}}>{candidateData?.Partido_politico}</span>
+                  </Paragraph>
+                  <Paragraph>
+                    Partido político: <span style={{color: '#7E3BFF'}}>{candidateData?.Corporación}</span>
+                  </Paragraph>
+                  <Share>
+                    <span>
+                      <TwitterShareButton
+                        url={`https://retoma.co${router.asPath}`}
+                        title={`Mira lo que respondió ${candidateData?.Nombre} en cuestiones de género!`}
+                        hashtag={"#Retoma"}
+                        description={"Retoma"}
+                      >
+                        <Twitter />
+                      </TwitterShareButton>
+                    </span>
+                    <span>
+                    <FacebookShareButton
+                      url={`https://retoma.co${router.asPath}`}
+                      title={`Mira lo que respondió ${candidateData?.Nombre} en cuestiones de género!`}
+                      hashtag={"#Retoma"}
+                      description={"Retoma"}
                     >
-                      <Telegram />
-                    </TelegramShareButton>
-                  </span>
-                  <span>
-                    <LinkedinShareButton
-                      url={`https://feminindex.com${router.asPath}`}
-                      title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
-                    >
-                      <Linkedin />
-                    </LinkedinShareButton>
-                  </span>
-                </Share>
-              </Wrapper>
-            </>
+                      <Facebook />
+                    </FacebookShareButton>
+                    </span>
+                    <span>
+                      <WhatsappShareButton
+                        url={`https://feminindex.com${router.asPath}`}
+                        title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
+                      >
+                        <Telegram />
+                      </WhatsappShareButton>
+                    </span>
+                  </Share>
+                </Wrapper>
+              </>
           }
-          <Wrapper display='flex' flexDir={'column-reverse'} dsWidth='30%'>
-            <TrafficLights background={'#EFEDED'}>
-              <Paragraph mobileFontSize='base' color='dark' weight='bold' style={{textAlign: 'center'}}>
-                “Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Paragraph>
-              <div style={{display: 'flex', justifyContent: 'space-between', width: 'fit-content', margin: '0 auto', marginTop: '3rem', padding: '1rem', background: '#060606'}}>
-                <span style={{margin: '0 0.75rem'}}><Ellipse fill={'#00D857'} /></span>
-                <span style={{margin: '0 0.75rem'}}><Ellipse fill={'#FFF300'} /></span>
-                <span style={{margin: '0 0.75rem'}}><Ellipse fill={'#FF2C2C'} /></span>
-              </div>
-            </TrafficLights>
-          </Wrapper>
         </Wrapper>
       </Wrapper>
-      <Wrapper display='flex'>
+      <Wrapper display='flex' justifyCont='space-between'>
         <Wrapper mbMargin={'0 2rem'} dsMargin={'0 6rem'}>
-          <Title weight='700' color='dark' margin='2rem 0'>
-            Preguntas
-          </Title>
           {loadingQuestions 
             ? <Spinner />
-            : <Select
-                styles={customStyles}
-                id={"Questions"}
-                instanceId={"Questions"}
-                isSearchable={false}
-                value={selectedAxle}
-                defaultValue={selectedAxle.name}
-                onChange={handleChange}
-                components={{ DropdownIndicator }}
-                // noOptionsMessage={"Sin opciones"}
-                placeholder={"Selecciona la pregunta"}
-                options={axles
-                  .map((q) => ({
-                    value: q?.id,
-                    label: q?.fields.Ejes,
-                    name: q?.fields.Ejes,
-                  }))}
-              />
+            : <SectionWrapper>
+                <Select
+                  styles={customStyles}
+                  id={"Questions"}
+                  instanceId={"Questions"}
+                  isSearchable={false}
+                  isSelected={selectedAxle}
+                  value={selectedAxle}
+                  onChange={handleChange}
+                  components={{ DropdownIndicator }}
+                  placeholder={"Selecciona la pregunta"}
+                  options={axlesWithQuestionsAnswered
+                    .filter(awqa => awqa.answers.length !== 0)
+                    .map((q) => ({
+                      value: q?.id,
+                      label: q?.fields.Ejes,
+                      name: q?.fields.Ejes,
+                    }))}
+                />
+                <Wrapper display='flex' justifyCont='flex-start' alignItems='center'>
+                  <TrafficLightsWrapper>
+                    <TrafficLights />
+                    <Paragraph  mobileFontSize='base' color='black' weight='500' style={{textAlign: 'justify'}}>
+                      <b>Verde:</b> le dio prioridad alta al problema o está a favor de la solución. <b>Amarillo:</b> le dio prioridad media al problema o no ha definido una postura respecto a la solución. <b>rojo:</b> le dio prioridad baja al problema o está en contra de la solución.
+                    </Paragraph>
+                  </TrafficLightsWrapper>
+                  <div style={{width: '250px'}}>
+                    <div>
+                      <TicksWrapper>
+                        <div 
+                          style={{
+                            width: 'fit-content',
+                            height: 'fit-content',
+                            padding: '0.5rem', 
+                            background: '#060606',
+                            margin: '0 1rem'
+                          }}
+                        >
+                          <Tick />
+                        </div>
+                        <div 
+                          style={{
+                            width: 'fit-content',
+                            height: 'fit-content',
+                            padding: '0.5rem', 
+                            background: '#060606'
+                          }}
+                        >
+                          <Cross />
+                        </div>
+                      </TicksWrapper>
+                    </div>
+                    <Paragraph mobileFontSize='base' color='black' weight='500' style={{textAlign: 'justify'}}>
+                      <b>Si</b> se comprometió a resolver el problema o implementar. <b>No</b> se comprometió a resolver el problema o implementar.
+                    </Paragraph>
+                  </div>
+                </Wrapper>
+              </SectionWrapper>
           }
-
-          <ListWrapper>
-            {newCandidate.questions && newCandidate.questions
-              .filter(ncq => ncq?.axle_id === selectedAxle.value)
-              .map((ans, idx) =>
-                <Li key={idx} background={'#EFEDED'}>
-                  <Paragraph desktopMargin='0 0 1rem 0' desktopFontSize='base' mobileFontSize='base' color='dark' weight='bold' mobilePadding='1.5rem 1.5rem 0 1.5rem'>
-                    {ans.question}:
-                  </Paragraph>
-                  <Paragraph desktopFontSize='base' mobileFontSize='base' color='dark' weight='normal' mobilePadding='0 1.5rem 1.5rem 1.5rem'>
-                    {ans.Opcion}
-                  </Paragraph>
-                  <span>
-                    {questionIcon(ans.Puntaje)}
-                  </span>
-                </Li>
-            )}
-            {loadingComment 
-              ? <Spinner />
-              : <div>
-                  {commentsByAxle?.filter(cba => cba?.axle_id === selectedAxle.value)
-                    .map(cba => 
-                      <>
-                        <Title weight='700' color='dark' margin='2rem 0'>
-                          {cba.pregunta}
-                        </Title>
-                        <Comments>{cba.comentario}</Comments>
-                      </>      
-                    )
-                  }
-                </div>
-            }
-          </ListWrapper>
         </Wrapper>
+      </Wrapper>
+      <Wrapper>
+        <ListWrapper>
+          {newCandidate.questions && newCandidate.questions
+            .filter(ncq => ncq?.axle_id === selectedAxle.value)
+            .map((ans, idx) =>
+              <Li key={idx}>
+                <Paragraph style={{lineHeight: '25px'}} desktopMargin='0 0 1rem 0' desktopFontSize='base' mobileFontSize='base' color='black' weight='normal' mobilePadding='1.5rem 1.5rem 0 1.5rem'>
+                  {ans.question}:
+                </Paragraph>
+                <Paragraph style={{lineHeight: '25px'}} desktopFontSize='regular' mobileFontSize='regular' color='black' weight='900' mobilePadding='0 1.5rem 1.5rem 1.5rem'>
+                  {ans.Opcion}
+                </Paragraph>
+                <span>
+                  {questionIcon(ans.Puntaje)}
+                </span>
+              </Li>
+          )}
+        </ListWrapper>
+      </Wrapper>
+      
+      <Wrapper dsPadding='1rem 0' dsBackground='#FFCCF1' mbBackground='#FFCCF1'>
+        {loadingComment 
+          ? <Spinner />
+          : <ListWrapper>
+              {commentsByAxle?.filter(cba => cba?.axle_id === selectedAxle.value)
+                .map(cba => 
+                  <>
+                    <Title weight='700' color='dark' margin='2rem 0'>
+                      {cba.pregunta}
+                    </Title>
+                    <Paragraph
+                      style={{lineHeight: '25px', border: '2px solid black', background: 'white'}}
+                      desktopPadding='1rem'
+                      mobilePadding='1rem'
+                    >
+                      {cba.comentario}
+                    </Paragraph>
+                  </>      
+                )
+              }
+            </ListWrapper>
+        }
       </Wrapper>
     </Container>
     </>
