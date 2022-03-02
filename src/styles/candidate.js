@@ -73,13 +73,11 @@ const ListWrapper = styled.ul`
 `
 
 const Image = styled.img`
-  height: 250px;
-  width: 250px;
-  background-size: contain;
+  height: 225px;
+  width: 225px;
+  object-fit: cover;
   background-repeat: no-repeat;
   border-radius: 50%;
-
-  background-image: url('/images/motivations.png');
 `
 
 const TrafficLightsWrapper = styled.div`

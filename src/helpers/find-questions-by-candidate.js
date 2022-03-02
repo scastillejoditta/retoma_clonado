@@ -15,11 +15,11 @@ const findQuestionsByCandidate = (candidateData = {}, questionsData = [], questi
       answers: [...optionsArr]
     }
   }) 
-  
-  questions
-    .filter(q => q.fields.Pregunta !== 'Comentario')
-    .map(q => {
 
+  const test = options.find(opt => opt.fields.Opcion ===  candidate['QN_017_Q'])
+
+  questions
+    .map(q => {
       let objFound = candidate?.answers?.find(ca => ca.Name === q.fields.Name)
 
       if(JSON.stringify(q.fields) === "{}") return

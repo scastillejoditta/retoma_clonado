@@ -67,14 +67,16 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
+const trafficLightsStyles = {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}
+
 const questionIcon = (score) => {
   switch(true) {
     case score === 1:
-      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><GreenLight /></span>
-    case score === 0:
-      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><YellowLight /></span>
+      return <span style={trafficLightsStyles}><GreenLight /></span>
     case score === 0.5:
-      return <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}}><RedLight /></span>
+      return <span style={trafficLightsStyles}><YellowLight /></span>
+    case score === 0:
+      return <span style={trafficLightsStyles}><RedLight /></span>
   }
 }
 
@@ -147,6 +149,8 @@ export default function Candidate({ candidate }) {
     setSelectedAxle(value);
   };
 
+  console.log(newCandidate)
+
   return (
     <>
     <Container>
@@ -164,7 +168,7 @@ export default function Candidate({ candidate }) {
             : <>
                 <Wrapper dsWidth={'30%'} >
                   <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <Image />
+                    <Image src={candidateData?.Foto} />
                   </div>
                   <SocialMedia style={{display: 'flex', justifyContent: 'center', margin: '0.75rem 1rem'}}>
                     <a 
@@ -188,7 +192,7 @@ export default function Candidate({ candidate }) {
                     Partido político: <span style={{color: '#7E3BFF'}}>{candidateData?.Partido_politico}</span>
                   </Paragraph>
                   <Paragraph>
-                    Partido político: <span style={{color: '#7E3BFF'}}>{candidateData?.Corporación}</span>
+                    Corporación: <span style={{color: '#7E3BFF'}}>{candidateData?.Corporación}</span>
                   </Paragraph>
                   <Share>
                     <span>
@@ -315,8 +319,8 @@ export default function Candidate({ candidate }) {
           ? <Spinner />
           : <ListWrapper>
               {commentsByAxle?.filter(cba => cba?.axle_id === selectedAxle.value)
-                .map(cba => 
-                  <>
+                .map((cba, idx) => 
+                  <div key={idx}>
                     <Title weight='700' color='dark' margin='2rem 0'>
                       {cba.pregunta}
                     </Title>
@@ -327,7 +331,7 @@ export default function Candidate({ candidate }) {
                     >
                       {cba.comentario}
                     </Paragraph>
-                  </>      
+                  </div>      
                 )
               }
             </ListWrapper>

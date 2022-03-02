@@ -6,12 +6,16 @@ import {isMobileOnly} from "react-device-detect";
 import {Circle, Reference, References, GraphScroll, SvgWrapper} from './styles'
 import Paragraph from "../../components/Paragraph";
 
-const Graph = ({ data, size, question }) => {
+const xAxles = {
+  "¿Estaría usted a favor o en contra de hacer control político y exigencias al Ministerio de Salud y Protección Social para que garantice el cumplimiento de la Ley 1257 para que las EPS y las administradoras del régimen subsidado garanticen la atención y alojamiento de mujeres víctimas de violencias?": ['Hola', 'Chau'],
+  "Las mujeres en el campo, sobre todo si son jóvenes y empobrecidas, no tienen acceso a la propiedad de la tierra, ni posibilidades equitativas de acceder a programas productivos y de empleo, lo que repercute en su autonomía y autodeterminación. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?": ['Si', 'No']
+}
+
+const Graph = ({ data, size, question, label}) => {
   const svgRef = useRef(null);
   const { width, height, margin } = size;
   const svgWidth = width - margin * 2;
   const svgHeight = height;
-  const score = "";
 
   useEffect(() => {
     const svgContainer = d3.select(svgRef.current);
@@ -50,18 +54,17 @@ const Graph = ({ data, size, question }) => {
           return width / 2;
         }
         const ans = `QN_${question.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
-        const score = d.fields[ans]; //scores are -0.33, 0, 0.165, 0.33
+        const score = d.fields[ans]; //scores are 1, 0.5, 0
+        if(!score) return
         switch (score) {
           case 0:
             return 0 + 50;
           case 0.5:
-            return width * 0.25;
-          case 0.165:
             return width * 0.5;
           case 1:
             return width - 100;
           default:
-            return width / 2;
+            return width - 100;
         }
       })
       .strength(0.05);
@@ -112,9 +115,12 @@ const Graph = ({ data, size, question }) => {
                 `;
     };
 
+    const ans = `QN_${question?.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
+    const filterData = data.filter(d => d.fields[ans])
+
     let candidates = svgContainer
       .selectAll("svg")
-      .data(data)
+      .data(filterData)
       .enter()
       .append("circle")
       .style("position", "relative")

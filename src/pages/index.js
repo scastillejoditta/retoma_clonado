@@ -65,7 +65,7 @@ const axlesProperties = {
     color: '#FFCCF1',
     image: '/images/corrupcion-thumbnail.png'
   },
-  'Mujeres\n': {
+  'Mujeres': {
     color: '#00D857',
     image: '/images/mujeres-thumbnail.png'
   },
@@ -97,6 +97,7 @@ const Home = () => {
 
   const filterQuestions = questions?.filter(q => JSON.stringify(q.fields) !== "{}")
 
+  console.log(axles, 'axles')
   return (
     <>
       <Container dsHeight="45vh">
@@ -141,28 +142,31 @@ const Home = () => {
           dsPadding="2rem 0"
           mbPadding="1rem 0"
         >
-          <OptionsWrapper>
-            {axles?.map((a, index) => (
-              <Option
-                bg={axlesProperties[a.fields.Ejes].color}
-                selected={selectedAxleIndex === index}
-                onClick={() => {
-                  setSelectedQuestion(null);
-                  setSelectedAxleIndex(index);
-                }}
-                key={a.id}
-              >
-                <Paragraph
-                  weight="600"
-                  desktopMargin="0 0.8rem;"
-                  color="black"
-                  desktopFontSize="xs"
+          {loadingAxles 
+          ? <Spinner />
+          : <OptionsWrapper>
+              {axles?.map((a, index) => (
+                <Option
+                  bg={axlesProperties[a.fields.Ejes].color}
+                  selected={selectedAxleIndex === index}
+                  onClick={() => {
+                    setSelectedQuestion(null);
+                    setSelectedAxleIndex(index);
+                  }}
+                  key={a.id}
                 >
-                  {a.fields.Ejes}
-                </Paragraph>
-              </Option>
-            ))}
-          </OptionsWrapper>
+                  <Paragraph
+                    weight="600"
+                    desktopMargin="0 0.8rem;"
+                    color="black"
+                    desktopFontSize="xs"
+                  >
+                    {a.fields.Ejes}
+                  </Paragraph>
+                </Option>
+              ))}
+            </OptionsWrapper>
+        }
         </Wrapper>
       </Container>
       <Container>
@@ -271,6 +275,7 @@ const Home = () => {
               data={candidates.filter(c => Object.keys(c.fields).length)}
               size={{ width: 768, height: 400, margin: 0 }}
               question={SelectedQuestion?.name}
+              label={SelectedQuestion?.label.trim()}
             />
           </GraphWrapper>
         </Wrapper>
