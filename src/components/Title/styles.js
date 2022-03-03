@@ -16,6 +16,8 @@ const StyledTitle = styled.h1`
     font-size: ${(props) => props.theme.fontSizes[props.desktopFontSize]};
     color: ${(props) => props.theme.colors[props.dsColor]};
     margin: ${props => props.dsMargin ? props.dsMargin : props.margin};
+
+    max-width: ${props => props.dsMaxWidth};
   }
 `;
 

@@ -14,7 +14,7 @@ const StyledParagraph = styled.p`
     font-size: ${(props) => props.theme.fontSizes[props.desktopFontSize]};
     padding: ${(props) => props.desktopPadding};
     margin: ${(props) => props.desktopMargin || 0};
-    max-width: ${(props) => props.maxWidth};
+    max-width: ${(props) => props.dsMaxWidth};
   }
 `;
 

@@ -12,6 +12,7 @@ const Title = ({
   weight,
   dsMargin,
   textAlign = 'unset',
+  dsMaxWidth,
   style
 }) => {
   return (
@@ -26,6 +27,7 @@ const Title = ({
         dsMargin={dsMargin}
         weight={weight}
         textAlign={textAlign}
+        dsMaxWidth={dsMaxWidth}
         style={style}
       >
         {children}

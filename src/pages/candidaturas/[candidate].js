@@ -120,12 +120,7 @@ const DropdownIndicator = (props) => {
 
 
 export default function Candidate({ candidate }) {
-  const [selectedAxle, setSelectedAxle] = useState({
-    value: "recc4TS0OM4ICPrKb",
-    name: 'Derechos sexuales y reproductivos',
-    label: 'Derechos sexuales y reproductivos'
-  })
-
+  const [selectedAxle, setSelectedAxle] = useState(null)
   const router = useRouter()
 
   const {data: candidateData, loading: loadingCandidate} = useFetch("Respuestas_Candidates", {}, candidate.id)
@@ -149,12 +144,32 @@ export default function Candidate({ candidate }) {
     setSelectedAxle(value);
   };
 
-  console.log(newCandidate)
+  const filterAnswersByAxle = newCandidate?.questions?.filter(ncq => {
+    if(selectedAxle) {
+      return ncq?.axle_id === selectedAxle?.value
+    } else {
+      return  ncq?.axle_id === axlesWithQuestionsAnswered[0]?.value
+    }
+  })
 
+  const filterCommentsByAxle = commentsByAxle?.filter(cba => {
+    if(selectedAxle) {
+      return cba?.axle_id === selectedAxle?.value
+    } else {
+      console.log(axlesWithQuestionsAnswered[0])
+      console.log(commentsByAxle)
+      return cba?.axle_id === axlesWithQuestionsAnswered[0]?.value
+    }
+  })
+
+  console.log(filterCommentsByAxle)
+
+  
+  
   return (
     <>
     <Container>
-      <Wrapper >
+    <Wrapper >
         <Wrapper 
           dsPadding={'4rem 6rem'}
           mbPadding={'2rem'}
@@ -240,17 +255,11 @@ export default function Candidate({ candidate }) {
                   instanceId={"Questions"}
                   isSearchable={false}
                   isSelected={selectedAxle}
-                  value={selectedAxle}
+                  value={selectedAxle ? selectedAxle : axlesWithQuestionsAnswered[0]}
                   onChange={handleChange}
                   components={{ DropdownIndicator }}
                   placeholder={"Selecciona la pregunta"}
-                  options={axlesWithQuestionsAnswered
-                    .filter(awqa => awqa.answers.length !== 0)
-                    .map((q) => ({
-                      value: q?.id,
-                      label: q?.fields.Ejes,
-                      name: q?.fields.Ejes,
-                    }))}
+                  options={axlesWithQuestionsAnswered}
                 />
                 <Wrapper display='flex' justifyCont='flex-start' alignItems='center'>
                   <TrafficLightsWrapper>
@@ -296,8 +305,7 @@ export default function Candidate({ candidate }) {
       </Wrapper>
       <Wrapper>
         <ListWrapper>
-          {newCandidate.questions && newCandidate.questions
-            .filter(ncq => ncq?.axle_id === selectedAxle.value)
+          {filterAnswersByAxle && filterAnswersByAxle
             .map((ans, idx) =>
               <Li key={idx}>
                 <Paragraph style={{lineHeight: '25px'}} desktopMargin='0 0 1rem 0' desktopFontSize='base' mobileFontSize='base' color='black' weight='normal' mobilePadding='1.5rem 1.5rem 0 1.5rem'>
@@ -315,10 +323,10 @@ export default function Candidate({ candidate }) {
       </Wrapper>
       
       <Wrapper dsPadding='1rem 0' dsBackground='#FFCCF1' mbBackground='#FFCCF1'>
-        {loadingComment 
-          ? <Spinner />
-          : <ListWrapper>
-              {commentsByAxle?.filter(cba => cba?.axle_id === selectedAxle.value)
+        <ListWrapper>
+          {filterCommentsByAxle && 
+            filterCommentsByAxle.length !== 0
+            ?  filterCommentsByAxle
                 .map((cba, idx) => 
                   <div key={idx}>
                     <Title weight='700' color='dark' margin='2rem 0'>
@@ -332,10 +340,12 @@ export default function Candidate({ candidate }) {
                       {cba.comentario}
                     </Paragraph>
                   </div>      
-                )
-              }
-            </ListWrapper>
-        }
+              )
+            : <Title weight='700' color='dark' padding='1rem' margin='2rem 0'>
+                Le candidate aún no hizo comentarios sobre este eje, por favor selecciona uno distinto.
+              </Title>
+          }
+        </ListWrapper>
       </Wrapper>
     </Container>
     </>

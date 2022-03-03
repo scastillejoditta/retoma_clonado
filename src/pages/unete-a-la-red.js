@@ -29,10 +29,7 @@ const JoinToUs = () => {
         >  
           <Container mobilePadding={"2rem"} dsMargin='6rem 0 0 0'>
             <Wrapper 
-              style={{
-                maxWidth: "1200px",
-                margin: "0 auto",
-              }}
+              dsWidth={'1024px'}
             >
               <Title 
                 mobileFontSize="lg" 
@@ -41,6 +38,7 @@ const JoinToUs = () => {
                 dsColor="#00000" 
                 mbColor='#00000' 
                 margin='2rem 0'
+                dsMaxWidth='768px'
               >
                 La movilización social no termina en las calles
               </Title>
@@ -49,8 +47,9 @@ const JoinToUs = () => {
                 desktopFontSize="customBase"
                 color="#00000"
                 desktopMargin='1rem 0'
+                dsMaxWidth='768px'
               >
-                Haz parte de nuestras brigadas de Whatsapp conformadas por jóvenes que creen en la protesta, la participación política y la conversación para lograr cambios.
+                Haz parte de nuestras brigadas de WhatsApp conformadas por jóvenes que creen en la protesta, la participación política y la conversación para lograr cambios.
               </Paragraph>
               <Button
                 background='#FF00A4'
@@ -72,7 +71,7 @@ const JoinToUs = () => {
       >
         <Wrapper
           style={{
-            maxWidth: "1200px",
+            maxWidth: "1024px",
             margin: "2rem auto 0 auto",
           }}
         >
@@ -143,7 +142,7 @@ const JoinToUs = () => {
       > 
         <Wrapper 
           style={{
-            maxWidth: "1025px",
+            maxWidth: "1024px",
             textAlign: 'center'
           }}
           dsMargin='2rem 0'

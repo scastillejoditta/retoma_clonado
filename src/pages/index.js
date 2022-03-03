@@ -8,15 +8,15 @@ import {
   WhatsappShareButton
 } from "react-share";
 
-import {GraphWrapper, SocialMedia, Share, ShareWrapper, AvatarWrapper, Noveded, Machifrase, Novedades, Frases, SelectWrapper, Bancas, RightArrowWrapper, LeftArrowWrapper, AxleDescription, AxlesWrapper, AxleTitle, Option, OptionsWrapper, MobileRightArrowWrapper, MobileLeftArrowWrapper} from '../styles/home'
+import {GraphWrapper, SocialMedia, Share, ShareWrapper, AvatarWrapper, Noveded, Frase, Novedades, Frases, SelectWrapper, Bancas, RightArrowWrapper, LeftArrowWrapper, AxleDescription, AxlesWrapper, AxleTitle, Option, OptionsWrapper, MobileRightArrowWrapper, MobileLeftArrowWrapper} from '../styles/home'
 
 // Assets
 import LeftArrow from "../assets/Icons/Arrows/LeftArrow";
 import RightArrow from "../assets/Icons/Arrows/RightArrow";
 import DownArrow from '../assets/Icons/Arrows/DownArrow'
-import Twitter from "../assets/Icons/Twitter";
-import Facebook from "../assets/Icons/Facebook";
-import Whatsapp from "../assets/Icons/Whatsapp";
+import Twitter from "../assets/Icons/OurVoices/Twitter";
+import Facebook from "../assets/Icons/OurVoices/Facebook";
+import Whatsapp from "../assets/Icons/OurVoices/Whatsapp";
 import Spinner from '../assets/Icons/Spinner'
 
 // Components
@@ -26,16 +26,22 @@ import Paragraph from "../components/Paragraph";
 import Wrapper from "../components/Wrapper";
 import Graph from "../components/Graph";
 import Select, { components } from "react-select";
-import axles from "../utils/axles.json";
 import Button from '../components/Button';
 
 import {useFetch} from '../hooks/useFetch'
 
 const customStyles = {
+  placeholder: (defaultStyles) => {
+      return {
+          ...defaultStyles,
+          color: '#00000',
+      }
+  },
   container: (provided) => ({
     ...provided,
     fontSize: "0.9rem",
-    fontFamily: '"Montserrat", sans-serif'
+    fontFamily: '"Supreme-Medium"',
+    fontWeight: '700'
   }),
   control: (provided) => ({
     ...provided,
@@ -81,7 +87,7 @@ const Home = () => {
   const graphRef = useRef();
 
   const {data: questions, loading: loadingQuestions} = useFetch("Preguntas", [])
-  // const {data: quotes, loading: loadingQuotes} = useFetch("Frases_Candidates", [])
+  const {data: quotes, loading: loadingQuotes} = useFetch("Frases_Candidates", [])
   const {data: news, loading: loadingNews} = useFetch("Novedades", [])
   const {data: candidates, loading: loadingCandidates} = useFetch("Respuestas_Candidates", [])
   const {data: axles, loading: loadingAxles} = useFetch("Ejes", [])
@@ -97,7 +103,7 @@ const Home = () => {
 
   const filterQuestions = questions?.filter(q => JSON.stringify(q.fields) !== "{}")
 
-  console.log(axles, 'axles')
+  console.log(quotes, 'quotes')
   return (
     <>
       <Container dsHeight="45vh">
@@ -113,20 +119,26 @@ const Home = () => {
         > 
           <Container mobilePadding={"2rem"}>
             <Wrapper 
-              style={{
-                maxWidth: "1200px",
-                margin: "0 auto",
-              }}
+              dsWidth={'1024px'}
             >
-              <Title mobileFontSize="lg" weight='700' desktopFontSize="customXlg" dsColor="#00000" mbColor='#00000' margin='2rem 0'>
+              <Title 
+                mobileFontSize="lg" 
+                weight='700' 
+                desktopFontSize="customXlg" 
+                dsColor="#00000" 
+                mbColor='#00000' 
+                margin='2rem 0'
+                dsMaxWidth={'768px'}
+              >
                 Luego del Paro Nacional de 2021, convocamos a más de 400 jóvenes en todo el país
               </Title>
               <Paragraph
                 mobileFontSize="base"
                 desktopFontSize="customBase"
                 color="#00000"
+                dsMaxWidth={'768px'}
               >
-                frente a la realidad de Colombia. Nuestro objetivo final: construir pliegos temáticos para que las candidaturas políticas sienten sus posturas al respecto y lograr así que la ciudadanía pueda ejercer su voto de manera informada.
+                para conversar acerca de sus principales reclamos y preocupaciones frente a la realidad de Colombia. Nuestro objetivo final: construir pliegos temáticos para que las candidaturas políticas sienten sus posturas al respecto y lograr así que la ciudadanía pueda ejercer su voto de manera informada. 
               </Paragraph>
             </Wrapper>
           </Container>
@@ -147,7 +159,7 @@ const Home = () => {
           : <OptionsWrapper>
               {axles?.map((a, index) => (
                 <Option
-                  bg={axlesProperties[a.fields.Ejes].color}
+                  bg={selectedAxleIndex === index}
                   selected={selectedAxleIndex === index}
                   onClick={() => {
                     setSelectedQuestion(null);
@@ -155,14 +167,14 @@ const Home = () => {
                   }}
                   key={a.id}
                 >
-                  <Paragraph
+                  <Title
                     weight="600"
                     desktopMargin="0 0.8rem;"
                     color="black"
                     desktopFontSize="xs"
                   >
                     {a.fields.Ejes}
-                  </Paragraph>
+                  </Title>
                 </Option>
               ))}
             </OptionsWrapper>
@@ -280,7 +292,7 @@ const Home = () => {
           </GraphWrapper>
         </Wrapper>
       </Container>
-      {/* <Container background='pink'>
+      <Container background='pink'>
         <Wrapper
           mbMargin="0 2rem"
           dsMargin="0 auto"
@@ -289,7 +301,7 @@ const Home = () => {
           mbPadding="2rem 0"
           style={{textAlign: 'center'}}
         >
-          <img src={'/images/nuestras-voces.png'} width='100%' />
+          <img src={'/images/nuestras-voces.png'} style={{maxWidth: '100%'}} />
         </Wrapper>
         <Wrapper
           mbMargin="0 2rem"
@@ -302,7 +314,7 @@ const Home = () => {
             ? <Spinner />
             : <Frases>
               {quotes.map((q) => (
-                <Machifrase key={q.id}>
+                <Frase key={q.id}>
                   <Paragraph
                     mobileFontSize="customBase"
                     desktopFontSize="customBase"
@@ -312,25 +324,14 @@ const Home = () => {
                     color="white"
                   >
                     "{q.fields.Frase}"
-                  </Paragraph>
-                  <Paragraph
-                    mobileFontSize="customBase"
-                    desktopFontSize="customBase"
-                    desktopPadding="1.5rem"
-                    mobilePadding="1.5rem"
-                    weight="600"
-                    color="white"
-                    mobileMargin='none'
-                  >
-                    {q.fields.Nombre_Candidate}
-                  </Paragraph>
+                  </Paragraph>      
                   <ShareWrapper>
                     <Share>
                       <SocialMedia>
                         <span>
                           <TwitterShareButton
                             url={`https://feminindex.com`}
-                            title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                            title={`"${q.fields.Frase}"`}
                             hashtag={"#Frases"}
                             description={"Frases"}
                           >
@@ -340,7 +341,7 @@ const Home = () => {
                         <span>
                           <FacebookShareButton
                             url={`https://feminindex.com`}
-                            quote={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                            quote={`"${q.fields.Frase}"`}
                             hashtag={"#Frases"}
                             description={"Frases"}
                           >
@@ -350,7 +351,7 @@ const Home = () => {
                         <span>
                           <WhatsappShareButton
                             url={`https://feminindex.com`}
-                            title={`"${q.fields.Frase}" - ${q.fields.Nombre_Candidate}`}
+                            title={`"${q.fields.Frase}"`}
                           >
                             <Whatsapp />
                           </WhatsappShareButton>
@@ -358,12 +359,12 @@ const Home = () => {
                       </SocialMedia>
                     </Share>
                   </ShareWrapper>
-                </Machifrase>
+                </Frase>
               ))}
             </Frases>
           }
         </Wrapper>
-      </Container> */}
+      </Container>
       <Wrapper
         display="flex"
         justifyCont="center"
@@ -410,7 +411,7 @@ const Home = () => {
           mbPadding="2rem 0"
           style={{textAlign: 'center'}}
         >
-          <img src={'/images/nuestras-voces.png'} width='100%' />
+          <img src={'/images/novedades.png'} style={{maxWidth: '100%'}} />
         </Wrapper>
         <Wrapper
           display="flex"
@@ -434,7 +435,8 @@ const Home = () => {
                     <Title
                       mobileFontSize="medium"
                       desktopFontSize="medium"
-                      color="dark"
+                      dsColor="black"
+                      mbColor="black"
                       padding="0 0.5rem 0 0.5rem"
                     >
                       {n.fields.Bajada}

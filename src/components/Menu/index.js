@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import {ListWrapper, ButtonWrapper, Wrapper} from './styles'
+// Assets
+import Retoma from "../../assets/Retoma"
 
 // Assets
 import Burger from "../../assets/Icons/Burguer";
@@ -16,7 +18,6 @@ const Menu = ({bg, burgerColor, showMenuInMobile, setShowMenuInMobile}) => {
       >
         <Burger fill={burgerColor} />
       </ButtonWrapper>
-
       <ListWrapper showMenuInMobile={showMenuInMobile}>
         <List closeColor={burgerColor} bg={bg} onShowMenuInMobile={setShowMenuInMobile} />
       </ListWrapper>

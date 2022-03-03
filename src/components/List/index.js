@@ -4,6 +4,7 @@ import {Close, ListItems, UnorderedList, Wrapper} from './styles'
 
 // Assets
 import CloseIcon from "../../assets/Icons/Close";
+import Retoma from "../../assets/Retoma"
 
 const colors = {
   '/': '#FF2C2C',
@@ -28,18 +29,18 @@ const List = ({bg, closeColor, onShowMenuInMobile}) => {
       </Close>
       <Wrapper>
         <UnorderedList bg={bg}>
-          <ListItems color={colors[router.pathname]} selected={router.asPath === "/"}>
+          <ListItems selected={router.asPath === "/"}>
             <a onClick={() => handleSelectedSection("/")}>Inicio</a>
           </ListItems>
-          <ListItems color={colors[router.pathname]} selected={router.asPath === "/candidaturas"}>
+          <ListItems selected={router.asPath === "/candidaturas"}>
             <a onClick={() => handleSelectedSection("/candidaturas")}>
               Candidaturas
             </a>
           </ListItems>
-          <ListItems color={colors[router.pathname]} selected={router.asPath === "/sobre-retoma"}>
+          <ListItems selected={router.asPath === "/sobre-retoma"}>
             <a onClick={() => handleSelectedSection("/sobre-retoma")}>Sobre Retoma</a>
           </ListItems>
-          <ListItems color={colors[router.pathname]}selected={router.asPath === "/unete-a-la-red"}>
+          <ListItems selected={router.asPath === "/unete-a-la-red"}>
             <a onClick={() => handleSelectedSection("/unete-a-la-red")}>
               Únete a la Red
             </a>

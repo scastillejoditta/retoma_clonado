@@ -10,7 +10,7 @@ const Paragraph = ({
   desktopPadding = "",
   mobileMargin = "",
   desktopMargin = "",
-  maxWidth,
+  dsMaxWidth,
   weight,
   style
 }) => {
@@ -24,7 +24,7 @@ const Paragraph = ({
         desktopPadding={desktopPadding}
         mobileMargin={mobileMargin}
         desktopMargin={desktopMargin}
-        maxWidth={maxWidth}
+        dsMaxWidth={dsMaxWidth}
         weight={weight}
         style={style}
       >

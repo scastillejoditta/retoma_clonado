@@ -1,16 +1,39 @@
 import React from "react";
-import {Wrapper, SocialMediaList, MediaIconsWrapper, ProjectMadeByList, SecondSectionWrapper, RetomaWrapper, Title} from './styles'
+import {SocialMediaList, MediaIconsWrapper, ProjectMadeByList, SecondSectionWrapper, RetomaWrapper, Title} from './styles'
 
 // Assets
-import Twitter from "../../assets/Icons/Twitter";
-import Facebook from "../../assets/Icons/Facebook";
-import Instagram from "../../assets/Icons/Instagram";
-import Telegram from "../../assets/Icons/Whatsapp";
-import Youtube from "../../assets/Icons/Youtube";
+import Facebook from '../../assets/Icons/Footer/Facebook/index'
+import Twitter from '../../assets/Icons/Footer/Twitter/index'
+import Youtube from '../../assets/Icons/Footer/Youtube/index'
+import Instagram from '../../assets/Icons/Footer/Instagram/index'
+import Linkedin from '../../assets/Icons/Footer/Linkedin/index'
+
+
+
+import Wrapper from '../../components/Wrapper'
 
 const Footer = () => {
   return (
-    <Wrapper>
+    <Wrapper
+      style={{
+        background: '#000000'
+      }}
+    dsPadding='2rem'
+    mbPadding='0.5rem 0'
+    >
+      <Wrapper 
+        display={'flex'}
+        justifyCont='space-between'
+        dsWidth={'1024px'}
+        dsMargin='0 auto'
+      >
+        <SecondSectionWrapper>
+          <ProjectMadeByList>
+            <RetomaWrapper>
+              <Title>Una iniciativa de <b>MUTANTE</b> con el apoyo en seguridad digital de Colnodo</Title>
+            </RetomaWrapper>
+          </ProjectMadeByList>
+        </SecondSectionWrapper>
         <SocialMediaList>
           <MediaIconsWrapper>
             <a href='https://twitter.com/EcoFeminita' target='_blank'>
@@ -28,24 +51,17 @@ const Footer = () => {
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a href='https://t.me/economiafeminita' target='_blank'>
-              <Telegram  />
-            </a>
-          </MediaIconsWrapper>
-          <MediaIconsWrapper>
             <a href='https://www.youtube.com/channel/UCfykyqoI8gBCdpohn4veXCA' target='_blank'>
               <Youtube />
             </a>
           </MediaIconsWrapper>
+          <MediaIconsWrapper>
+            <a href='https://www.youtube.com/channel/UCfykyqoI8gBCdpohn4veXCA' target='_blank'>
+              <Linkedin />
+            </a>
+          </MediaIconsWrapper>
         </SocialMediaList>
-
-      <SecondSectionWrapper>
-        <ProjectMadeByList>
-          <RetomaWrapper>
-            <Title>Retoma es un proyecto realizado por</Title>
-          </RetomaWrapper>
-        </ProjectMadeByList>
-      </SecondSectionWrapper>
+      </Wrapper>
     </Wrapper>
   );
 };

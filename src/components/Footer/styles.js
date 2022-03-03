@@ -1,16 +1,5 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.footer`
-  background: ${(props) => props.theme.colors.dark};
-  padding: 2rem;
-
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
 const SocialMediaList = styled.ul`
   display: flex;
   justify-content: flex-start;
@@ -50,9 +39,8 @@ const Title = styled.h3`
   margin-top: 3rem;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-right: 4rem;
     margin-top: 1rem;
   }
 `;
 
-export {Wrapper, SocialMediaList, MediaIconsWrapper, ProjectMadeByList, SecondSectionWrapper, RetomaWrapper, Title}
+export {SocialMediaList, MediaIconsWrapper, ProjectMadeByList, SecondSectionWrapper, RetomaWrapper, Title}

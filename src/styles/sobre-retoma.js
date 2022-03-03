@@ -59,7 +59,13 @@ const Rows = styled.div`
 
 const Image = styled.img`
   @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
-    display: none;
+  }
+`
+
+const PliegosImage = styled.img`
+  margin: 0 auto;
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    margin: 2rem 0 1rem 2rem;
   }
 `
 
@@ -69,4 +75,4 @@ const SpeakerWrapper = styled.div`
   }
 `
 
-export {Rows, PersonWrapper, Persons, TeamWrapper, AnswersWrapper, ScoreWrapper, Wrapper, Image, SpeakerWrapper}
+export {Rows, PersonWrapper, Persons, TeamWrapper, AnswersWrapper, ScoreWrapper, Wrapper, Image, PliegosImage, SpeakerWrapper}

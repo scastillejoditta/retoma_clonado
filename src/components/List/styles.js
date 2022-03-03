@@ -48,17 +48,14 @@ const ListItems = styled.li`
 
   font-size: ${(props) => props.theme.fontSizes.lg};
   font-weight: 600;
-  color: ${(props) => props.color};
+  color: ${(props) => props.theme.colors.black};
 
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin: 0 4rem;
-
-    min-width: max-content;
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {;
+    margin: 0 2rem;
 
     font-size: ${(props) => props.theme.fontSizes.customBase};
     font-weight: 600;
     text-decoration: ${(props) => (props.selected ? "underline" : "none")};
-    color: ${props => props.color};
 
     cursor: pointer;
   }

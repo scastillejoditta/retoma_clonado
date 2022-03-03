@@ -20,15 +20,14 @@ const Option = styled.div`
 
   margin: 0 0.8rem;
 
-  background: ${props => props.bg ? props.bg : 'black'};
+  background: ${props => props.bg ? '#FFCCF1' : 'white'};
   color: ${props => props.theme.colors.black};
+  border: 1px solid black;
 
   line-height: 1.5;
   font-weight: 600;
 
   cursor: pointer;
-  text-decoration: ${(props) => (props.selected ? "black underline" : "unset")};
-  text-underline-offset: 4px;
   font-size: 12px;
 `;
 
@@ -128,6 +127,7 @@ const Frases = styled.div`
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
   }
 `;
 
@@ -145,7 +145,7 @@ const Novedades = styled.div`
   }
 `;
 
-const Machifrase = styled.div`
+const Frase = styled.div`
   background-color: ${props => props.theme.colors.violet};
   position: relative;
 
@@ -154,13 +154,15 @@ const Machifrase = styled.div`
   margin: 1rem 0;
   
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin-bottom: 0rem;
-    min-height: 20rem;
-    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-direction: space-between;
 
-    &:first-child {
-      margin-right: 4rem;
-    }
+    min-height: 20rem;
+    width: 30%;
+
+    margin: 1rem;
   }
 `;
 
@@ -228,4 +230,4 @@ const GraphWrapper = styled.div`
   flex-direction: column;
 `;
 
-export {GraphWrapper, SocialMedia, Share, ShareWrapper, AvatarWrapper, Noveded, Machifrase, Novedades, Frases, SelectWrapper, Bancas, RightArrowWrapper, LeftArrowWrapper, AxleDescription, AxlesWrapper, AxleTitle, Option, OptionsWrapper, MobileLeftArrowWrapper, MobileRightArrowWrapper}
+export {GraphWrapper, SocialMedia, Share, ShareWrapper, AvatarWrapper, Noveded, Frase, Novedades, Frases, SelectWrapper, Bancas, RightArrowWrapper, LeftArrowWrapper, AxleDescription, AxlesWrapper, AxleTitle, Option, OptionsWrapper, MobileLeftArrowWrapper, MobileRightArrowWrapper}

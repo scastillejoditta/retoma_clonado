@@ -127,7 +127,7 @@ const Candidates = () => {
                   key={candidate.id}
                 >
                   <Wrapper>
-                    <div style={{minHeight: '26rem', maxHeight: '26rem'}}>
+                    <div style={{minHeight: '22rem', maxHeight: '22rem'}}>
                       <div style={{display: 'flex', justifyContent: 'center'}}>
                         <Image src={candidate?.fields?.Foto} />
                       </div>

@@ -33,16 +33,17 @@ const Navbar = () => {
     <Wrapper 
       bg={bgs}
     >
+      <Retoma 
+        fill={fillByPage} 
+        bg={bgs} 
+        isMobile={showMenuInMobile}
+        style={{margin: '0 2.5rem 0 0'}}
+      />
       <Menu 
         showMenuInMobile={showMenuInMobile} 
         setShowMenuInMobile={setShowMenuInMobile} 
         bg={bgs} 
         burgerColor={fillByPage} 
-      />
-      <Retoma 
-        fill={fillByPage} 
-        bg={bgs} 
-        isMobile={showMenuInMobile}
       />
     </Wrapper>
   );
