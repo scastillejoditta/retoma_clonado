@@ -23,7 +23,19 @@ const xAxles = {
   'QN_015_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
   'QN_016_Q': ['Baja', 'Media', 'Alta'],
   'QN_017_Q': ['Baja', 'Media', 'Alta'],
-  'QN_018_Q': ['Baja', 'Media', 'Alta'] 
+  'QN_018_Q': ['Baja', 'Media', 'Alta'],
+  'QN_019_Q': ['Baja', 'Media', 'Alta'],
+  'QN_020_Q': ['Baja', 'Media', 'Alta'],
+  'QN_021_Q': ['Baja', 'Media', 'Alta'],
+  'QN_022_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_023_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_024_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_025_Q': ['Baja', 'Media', 'Alta'],
+  'QN_026_Q': ['Baja', 'Media', 'Alta'],
+  'QN_027_Q': ['Baja', 'Media', 'Alta'],
+  'QN_028_Q': ['Baja', 'Media', 'Alta'],
+  'QN_029_Q': ['Baja', 'Media', 'Alta'],
+  'QN_030_Q': ['Baja', 'Media', 'Alta'],
 }
 
 const Graph = ({ data, size, question, label}) => {
