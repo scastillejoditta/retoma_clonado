@@ -5,6 +5,7 @@ const SvgWrapper = styled.div`
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
     justify-content: center;
+    width: 1024px;
   }
 `
 
