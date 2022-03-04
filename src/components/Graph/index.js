@@ -32,8 +32,6 @@ const Graph = ({ data, size, question, label}) => {
   const svgWidth = width - margin * 2;
   const svgHeight = height;
 
-  console.log(data)
-
   useEffect(() => {
     const svgContainer = d3.select(svgRef.current);
     svgContainer.selectAll("*").remove(); //cleanup
@@ -68,7 +66,7 @@ const Graph = ({ data, size, question, label}) => {
         }
         const ans = `QN_${question.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
         const score = d.fields[ans]; //scores are 1, 0.5, 0
-        if(!score) return
+
         switch (score) {
           case 0:
             return 0 + 50;
@@ -129,7 +127,14 @@ const Graph = ({ data, size, question, label}) => {
     };
 
     const ans = `QN_${question?.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
-    const filterData = data?.filter(d => d.fields[ans] && d?.vx?.toString() !== 'NaN')
+    const filterData = data?.filter(d => d.fields[ans] >= 0)
+
+    const nombre = filterData.find(n  => n.fields.Nombre === 'Diana Rodríguez Uribe')
+
+    console.log(nombre, 'nombre')
+    console.log(ans, 'ans')
+    console.log(filterData, 'filter-data')
+    console.log(data, 'data')
 
     let candidates = svgContainer
       .selectAll("svg")
