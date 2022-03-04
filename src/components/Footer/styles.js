@@ -14,7 +14,7 @@ const MediaIconsWrapper = styled.li`
   cursor: pointer;
 
   @media only screen and (max-width: ${(props) => props.theme.breakpoints.xxs}) {
-    margin: 0 0.5rem;
+    margin: 0 2rem 0 0;
   }
 `;
 
@@ -36,7 +36,7 @@ const Title = styled.p`
   font-size: ${(props) => props.theme.fontSizes.customBase};
   font-weight: 500;
 
-  margin-top: 3rem;
+  margin: 2rem 0 3rem 0;
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-top: 1rem;
