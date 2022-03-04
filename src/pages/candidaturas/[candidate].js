@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import {
@@ -194,12 +193,7 @@ export default function Candidate({ candidate }) {
             : <>
                 <Wrapper  dsWidth={'30%'} >
                   <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <Image
-                      src={candidateData?.Foto}
-                      width={175}
-                      height={175}
-                      style={{objectFit: 'cover', marginTop: '-2rem'}}
-                    /> 
+                    <StyledImage src={candidateData?.Foto} />
                   </div>
                   <SocialMedia style={{display: 'flex', justifyContent: 'center', margin: '0.75rem 1rem'}}>
                     <a 

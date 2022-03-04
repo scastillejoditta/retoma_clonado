@@ -78,7 +78,7 @@ const ListWrapper = styled.ul`
   }
 `
 
-const Image = styled.img`
+const StyledImage = styled.img`
   height: 225px;
   width: 225px;
   object-fit: cover;
@@ -128,4 +128,4 @@ const TicksWrapper = styled.div`
   }
 `
 
-export {Share, SocialMedia, Li, TrafficLightsWrapper, Comments, Image, ListWrapper, SectionWrapper, TicksWrapper}
+export {Share, SocialMedia, Li, TrafficLightsWrapper, Comments, StyledImage, ListWrapper, SectionWrapper, TicksWrapper}
