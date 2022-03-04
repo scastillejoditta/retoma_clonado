@@ -42,7 +42,7 @@ const Graph = ({ data, size, question, label}) => {
     const x = d3.scaleLinear().range([100, width - 100]);
     x.domain([-10, 10]);
     let tickLabels = [];
-    tickLabels[1] = xAxles[label]
+    tickLabels[1] = label ? xAxles[label] : ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
     svgContainer
       .attr("height", svgHeight)
       .attr("width", svgWidth)

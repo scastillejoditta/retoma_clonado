@@ -81,7 +81,7 @@ const axlesProperties = {
 
 const Home = () => {
   const [selectedAxleIndex, setSelectedAxleIndex] = useState(0);
-  const [SelectedQuestion, setSelectedQuestion] = useState({value: 'recCZGAvjHl9VXWA8', label: "Las personas LGBTIQ+ son víctimas de discursos de odio, discriminación, amenazas y asesinatos, sobre todo en regiones donde operan grupos armados ilegales. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?", name: 'QN_014_Q'});
+  const [SelectedQuestion, setSelectedQuestion] = useState(null);
   const graphRef = useRef();
 
   const {data: questions, loading: loadingQuestions} = useFetch("Preguntas", [])
@@ -96,6 +96,7 @@ const Home = () => {
   });
 
   const handleChange = (value) => {
+    console.log(value)
     setSelectedQuestion(value);
   }
 
