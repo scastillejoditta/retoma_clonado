@@ -76,6 +76,14 @@ const axlesProperties = {
   'LGBTIQ+': {
     color: '#FFF422',
     image: '/images/lgbtq-thumbnail.png'
+  },
+  'Educación': {
+    color: '#FFD039',
+    image: '/images/thumbnail-educacion.png'
+  },
+  'Derecho a la protesta': {
+    color: '#FFF422',
+    image: '/images/thumbnail-protesta.png'
   }
 }
 
@@ -166,7 +174,7 @@ const Home = () => {
               {axles?.map((a, index) => (
                 <>
                   <Option
-                    bg={axlesProperties[a?.fields?.Ejes]?.color}
+                    bg={axlesProperties[a?.fields?.Ejes]?.color ? axlesProperties[a?.fields?.Ejes]?.color : 'white'}
                     selected={selectedAxleIndex === index}
                     onClick={() => {
                       setSelectedQuestion(null);
