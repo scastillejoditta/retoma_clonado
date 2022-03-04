@@ -78,7 +78,7 @@ const axlesProperties = {
     image: '/images/lgbtq-thumbnail.png'
   },
   'Educación': {
-    color: '#FFD039',
+    color: '#FFF422',
     image: '/images/thumbnail-educacion.png'
   },
   'Derecho a la protesta': {
@@ -104,7 +104,6 @@ const Home = () => {
   });
 
   const handleChange = (value) => {
-    console.log(value)
     setSelectedQuestion(value);
   }
 
@@ -296,8 +295,7 @@ const Home = () => {
             <Graph
               data={candidates.filter(c => Object.keys(c.fields).length)}
               size={{ width: 768, height: 400, margin: 0 }}
-              question={SelectedQuestion ? SelectedQuestion.name : questionsAsSelectOption[selectedAxleIndex]?.name}
-              label={SelectedQuestion?.label.trim()}
+              question={SelectedQuestion ? SelectedQuestion?.name : questionsAsSelectOption[selectedAxleIndex]?.name}
             />
           </GraphWrapper>
         </Wrapper>

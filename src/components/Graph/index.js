@@ -7,23 +7,23 @@ import {Circle, Reference, References, GraphScroll, SvgWrapper} from './styles'
 import Paragraph from "../../components/Paragraph";
 
 const xAxles = {
-  "Las personas LGBTIQ+ son víctimas de discursos de odio, discriminación, amenazas y asesinatos, sobre todo en regiones donde operan grupos armados ilegales. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?": ['Baja', 'Media', 'Alta'],
-  "Algunas entidades estatales como notarías, registradurías, la rama judicial, la fuerza pública, y otras como las entidades de salud, estigmatizan, discriminan y violentan a la población LGBTIQ+. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?": ['Baja', 'Media', 'Alta'],
-  'Existe desatención de la salud mental y desconocimiento sobre protocolos de tratamiento de la depresión causada por el matoneo, la discriminación y la exclusión en las instituciones educativas, especialmente hacia menores de edad LGBTIQ+. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?': ['Baja', 'Media', 'Alta'],
-  '¿Estaría usted a favor o en contra de impulsar una ley que aborde problemáticas específicas de la población LGBTIQ+ y elimine inequidades en ámbitos como atención en salud, inclusión laboral, acceso a la educación y derechos patrimoniales, y que garantice el respeto por la identidad, el nombre, los procesos de tránsito y el libre desarrollo de la personalidad?':  ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  '¿Estaría usted a favor o en contra de hacer control político al Ministerio de Educación frente a los lineamientos impartidos a las secretarías de Educación y las instituciones educativas sobre políticas antidiscriminación a estudiantes LGBTIQ+ en manuales de convivencia y el seguimiento que hace a su cumplimiento?': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  '¿Estaría usted a favor o en contra de incluir en el Plan Nacional de Desarrollo metas y acciones claras sobre temas relacionados con población LGBTIQ+ que aseguren la asignación de recursos?': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  '¿Estaría usted a favor o en contra de aprobar la muerte política para políticos corruptos?': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  '¿Estaría usted a favor o en contra de aprobar proyectos de ley para implementar estímulos y canales de participación para las veedurías ciudadanas contra la corrupción?': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  '¿Estaría usted a favor o en contra de aprobar que los procesos judiciales por corrupción sean públicos e imprescriptibles?': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  'Las mujeres son víctimas de un amplio rango de violencias por ser mujeres: intrafamiliar, sexual, política y feminicida. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?': ['Baja', 'Media', 'Alta'],
-  'Hay una alta inoperancia del Estado en casos de violencias contra las mujeres e impunidad en la justicia que termina en estrategias como el ‘escrache’, alta tolerancia social frente al tema, y falta de garantías para la atención tanto de salud física como mental para las víctimas de violencias. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?': ['Baja', 'Media', 'Alta'],
-  'Las mujeres en el campo, sobre todo si son jóvenes y empobrecidas, no tienen acceso a la propiedad de la tierra, ni posibilidades equitativas de acceder a programas productivos y de empleo, lo que repercute en su autonomía y autodeterminación. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?': ['Baja', 'Media', 'Alta'],
-  '¿Estaría usted a favor o en contra de hacer control político y exigencias al Ministerio de Salud y Protección Social para que garantice el cumplimiento de la Ley 1257 para que las EPS y las administradoras del régimen subsidado garanticen la atención y alojamiento de mujeres víctimas de violencias?': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  '¿Estaría usted a favor o en contra de hacer control político a la implementación del acuerdo de paz, especialmente en relación con el enfoque de género, por ejemplo, en temas como la formalización de las tierras para mujeres rurales?': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  '¿Estaría usted a favor o en contra de impulsar un proyecto de ley que garantice la implementación de un sistema educativo con enfoque de género y territorial desde la primera infancia?': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
-  'La policía incurre en prácticas corruptas como la complicidad con actores ilegales y la aceptación de sobornos. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?': ['Baja', 'Media', 'Alta'],
-  'Las campañas políticas incumplen las reglas de financiación e ingreso de recursos ilícitos, practican la compra y trasteo de votos en periodos electorales. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?': ['Baja', 'Media', 'Alta'] 
+  "QN_001_Q": ['Baja', 'Media', 'Alta'],
+  "QN_002_Q": ['Baja', 'Media', 'Alta'],
+  'QN_003_Q': ['Baja', 'Media', 'Alta'],
+  'QN_005_Q':  ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_006_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_007_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_008_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_009_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_010_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_011_Q': ['Baja', 'Media', 'Alta'],
+  'QN_012_Q': ['Baja', 'Media', 'Alta'],
+  'QN_013_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_014_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_015_Q': ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+  'QN_016_Q': ['Baja', 'Media', 'Alta'],
+  'QN_017_Q': ['Baja', 'Media', 'Alta'],
+  'QN_018_Q': ['Baja', 'Media', 'Alta'] 
 }
 
 const Graph = ({ data, size, question, label}) => {
@@ -39,7 +39,8 @@ const Graph = ({ data, size, question, label}) => {
     const x = d3.scaleLinear().range([100, width - 100]);
     x.domain([-10, 10]);
     let tickLabels = [];
-    tickLabels[1] = label ? xAxles[label] : ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+    tickLabels[1] = question ? xAxles[question] : ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+
     svgContainer
       .attr("height", svgHeight)
       .attr("width", svgWidth)
@@ -66,7 +67,7 @@ const Graph = ({ data, size, question, label}) => {
         }
         const ans = `QN_${question.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
         const score = d.fields[ans]; //scores are 1, 0.5, 0
-
+        
         switch (score) {
           case 0:
             return 0 + 50;
@@ -128,13 +129,6 @@ const Graph = ({ data, size, question, label}) => {
 
     const ans = `QN_${question?.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
     const filterData = data?.filter(d => d.fields[ans] >= 0)
-
-    const nombre = filterData.find(n  => n.fields.Nombre === 'Diana Rodríguez Uribe')
-
-    console.log(nombre, 'nombre')
-    console.log(ans, 'ans')
-    console.log(filterData, 'filter-data')
-    console.log(data, 'data')
 
     let candidates = svgContainer
       .selectAll("svg")
