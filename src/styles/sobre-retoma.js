@@ -70,8 +70,9 @@ const PliegosImage = styled.img`
 `
 
 const SpeakerWrapper = styled.div`
-  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
-    display: none;
+  display: none;
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
+    display: flex;
   }
 `
 

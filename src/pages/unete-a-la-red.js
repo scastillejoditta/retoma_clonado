@@ -37,16 +37,15 @@ const JoinToUs = () => {
                 desktopFontSize="customXlg" 
                 dsColor="#00000" 
                 mbColor='#00000' 
-                margin='2rem 0'
+                margin='1rem 0'
                 dsMaxWidth='768px'
               >
                 La movilización social no termina en las calles
               </Title>
               <Paragraph
-                mobileFontSize="base"
-                desktopFontSize="customBase"
+                mobileFontSize="customBase"
+                desktopFontSize="regular"
                 color="#00000"
-                desktopMargin='1rem 0'
                 dsMaxWidth='768px'
               >
                 Haz parte de nuestras brigadas de WhatsApp conformadas por jóvenes que creen en la protesta, la participación política y la conversación para lograr cambios.
@@ -59,7 +58,7 @@ const JoinToUs = () => {
                   margin='1rem 0'
                   fontSize={'22px'}
                 >
-                  Registrate aquí
+                  Regístrate aquí
                 </Button>
               </a>
             </Wrapper>

@@ -22,7 +22,7 @@ const retomaColors = {
   '/sobre-retoma': '#142FF4',
   '/unete-a-la-red': '#FF00A4',
   '/candidaturas': '#7E3BFF',
-  '/candidaturas/[candidate]': '#000000'
+  '/candidaturas/[candidate]': '#7E3BFF'
 }
 
 const Navbar = () => {

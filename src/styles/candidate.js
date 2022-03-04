@@ -47,6 +47,14 @@ const Li = styled.li`
     right: -7%;
     top: -8%;
   }
+
+  > div {
+    position: absolute;
+    right: -7%;
+    top: 8%;
+
+    margin: 1.25rem 0;
+  }
   
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
     max-width: 30%;

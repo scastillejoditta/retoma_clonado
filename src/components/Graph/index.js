@@ -32,8 +32,7 @@ const Graph = ({ data, size, question, label}) => {
   const svgWidth = width - margin * 2;
   const svgHeight = height;
 
-  console.log(label)
-  console.log(question)
+  console.log(data)
 
   useEffect(() => {
     const svgContainer = d3.select(svgRef.current);
@@ -130,7 +129,7 @@ const Graph = ({ data, size, question, label}) => {
     };
 
     const ans = `QN_${question?.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
-    const filterData = data.filter(d => d.fields[ans])
+    const filterData = data?.filter(d => d.fields[ans])
 
     let candidates = svgContainer
       .selectAll("svg")
@@ -218,8 +217,6 @@ const Graph = ({ data, size, question, label}) => {
           .style("background-color", () => {
             const politicalParty = d.path[0].__data__.fields.Partido_politico
             switch (politicalParty) {
-              case "Partido Alianza verde":
-                return "#00D857";
               case "Alianza Verde":
                 return "#8CDDD3";
               case "Estamos Listas Colombia":
@@ -228,12 +225,8 @@ const Graph = ({ data, size, question, label}) => {
                 return "#64FFA3";
               case "Partido de la U":
                 return "#FFF422";
-              case "Coalición Alianza Verde Centro Esperanza":
-                return "#999999";
               case "Cambio Radical":
                 return "#142FF4";
-              case "Partido de la Unión por la gente":
-                return "#FFF422";
               case "Pacto Histórico":
                 return "#7E3BFF";
               case "Partido Liberal Colombiano":
@@ -244,9 +237,7 @@ const Graph = ({ data, size, question, label}) => {
                 return "#FFCCF1";
               case "Centro Democrático":
                 return "#839EFF";
-              case "Centro Democrático":
-                return "#839EFF";
-                case "Gente en Movimiento":
+              case "Gente en Movimiento":
                 return "#00AA45";
               default:
                 return "black";
@@ -274,12 +265,6 @@ const Graph = ({ data, size, question, label}) => {
       <GraphScroll>*Deslizarse a lo ancho</GraphScroll>
       <References>
         <Reference>
-          <Circle color={"#00D857"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Partido Alianza Verde
-          </Paragraph>
-        </Reference>
-        <Reference>
           <Circle color={"#8CDDD3"} />
           <Paragraph color="black" desktopFontSize="xs">
             Alianza Verde
@@ -304,21 +289,9 @@ const Graph = ({ data, size, question, label}) => {
           </Paragraph>
         </Reference>
         <Reference>
-          <Circle color={"#999999"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Coalición Alianza Verde Centro Esperanza
-          </Paragraph>
-        </Reference>
-        <Reference>
           <Circle color={"#142FF4"} />
           <Paragraph color="black" desktopFontSize="xs">
             Cambio Radical
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#FFF422"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Partido de la Unión por la gente
           </Paragraph>
         </Reference>
         <Reference>

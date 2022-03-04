@@ -127,18 +127,19 @@ const Home = () => {
                 desktopFontSize="customXlg" 
                 dsColor="#00000" 
                 mbColor='#00000' 
-                margin='2rem 0'
+                margin='1rem 0'
                 dsMaxWidth={'768px'}
               >
                 Luego del Paro Nacional de 2021, convocamos a más de 400 jóvenes en todo el país
               </Title>
               <Paragraph
-                mobileFontSize="base"
-                desktopFontSize="customBase"
+                mobileFontSize="regular"
+                desktopFontSize="regular"
+                weight='500'
                 color="#00000"
                 dsMaxWidth={'768px'}
               >
-                para conversar acerca de sus principales reclamos y preocupaciones frente a la realidad de Colombia. Nuestro objetivo final: construir pliegos temáticos para que las candidaturas políticas sienten sus posturas al respecto y lograr así que la ciudadanía pueda ejercer su voto de manera informada. 
+                Durante cinco meses hemos conversado acerca de sus principales reclamos y preocupaciones frente a la realidad de Colombia. Nuestro objetivo final: construir pliegos temáticos para que las candidaturas políticas sienten sus posturas al respecto y lograr así que la ciudadanía pueda ejercer su voto de manera informada.
               </Paragraph>
             </Wrapper>
           </Container>
@@ -298,7 +299,7 @@ const Home = () => {
           mbMargin="0 2rem"
           dsMargin="0 auto"
           maxWidth="1024px"
-          dsPadding="3rem 0"
+          dsPadding="3rem 0 0 0"
           mbPadding="2rem 0"
           style={{textAlign: 'center'}}
         >
@@ -308,7 +309,7 @@ const Home = () => {
           mbMargin="0 2rem"
           maxWidth="1024px"
           dsMargin='0 auto'
-          dsPadding="2rem 0 4rem 0"
+          dsPadding="1rem 0 4rem 0"
           mbPadding="1rem 0 4rem 0"
         >
           {loadingQuotes 
@@ -414,7 +415,7 @@ const Home = () => {
           mbMargin="0 2rem"
           dsMargin="0 auto"
           maxWidth="1024px"
-          dsPadding="3rem 0"
+          dsPadding="3rem 0 2rem 0"
           mbPadding="2rem 0"
           style={{textAlign: 'center'}}
         >
@@ -426,7 +427,7 @@ const Home = () => {
           mbMargin="0 4rem"
           dsMargin="0 auto"
           maxWidth="1024px"
-          dsPadding="2rem 0 4rem 0"
+          dsPadding="0 0 2rem 0"
           mbPadding="1rem 0"
         >
           {loadingNews 

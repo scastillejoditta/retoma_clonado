@@ -255,7 +255,7 @@ const About = () => {
           flexWrap='wrap'
           style={{
             maxWidth: "1024px",
-            margin: '2rem auto'
+            margin: '2rem auto 0 auto'
           }}
         >
           <Wrapper dsHeight='15rem' dsWidth='35%' mbPadding='2rem' dsMargin='0 0 4rem 0' >

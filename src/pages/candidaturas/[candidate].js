@@ -65,6 +65,7 @@ export async function getStaticPaths() {
 }
 
 const trafficLightsStyles = {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.35rem', background: '#060606'}
+const tickOrCrossStyles = {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.7rem', background: '#060606'}
 
 const questionIcon = (score) => {
   switch(true) {
@@ -74,6 +75,15 @@ const questionIcon = (score) => {
       return <span style={trafficLightsStyles}><YellowLight /></span>
     case score === 0:
       return <span style={trafficLightsStyles}><RedLight /></span>
+  }
+}
+
+const commentIcon = (comment) => {
+  switch(true) {
+    case comment === 'Sí':
+      return <span style={tickOrCrossStyles}><Tick /></span>
+    case comment === 'No':
+      return <span style={tickOrCrossStyles}><Cross /></span>
   }
 }
 
@@ -122,10 +132,11 @@ export default function Candidate({ candidate }) {
   const {data: candidateData, loading: loadingCandidate} = useFetch("Respuestas_Candidates", {}, candidate.id)
   const {data: questionsData, loading: loadingQuestions} = useFetch("Preguntas", [])
   const {data: questionsOptionsData, loading: loadingOptions} = useFetch("Preguntas_Opciones", [])
+  const {data: commentsOptionsData, loading: loadingCommentsOptionsData} = useFetch("Comentarios_Opciones", [])
   const {data: axles, loading: loadingAxles} = useFetch("Ejes", [])
   const {data: candidateComment, loading: loadingComment} = useFetch("Comentarios_Candidates", {}, candidate.id)
 
-  const newCandidate = findQuestionsByCandidate(candidateData, questionsData, questionsOptionsData)
+  const newCandidate = findQuestionsByCandidate(candidateData, questionsData, questionsOptionsData, commentsOptionsData)
   const axlesWithQuestionsAnswered = findAxlesWithQuestionsAnswered(axles, newCandidate)
 
   const commentsByAxle = candidateComment?.Comentarios_ejes?.map((cc, idx) => {
@@ -155,7 +166,13 @@ export default function Candidate({ candidate }) {
       return cba?.axle_id === axlesWithQuestionsAnswered[0]?.value
     }
   }) 
-  
+
+
+  const findComment = (ans) => {
+    const question = newCandidate?.comments?.find(ncc => ncc?.Name === ans?.Name)
+    return question ? question.Opcion : null
+  }
+
   return (
     <>
     <Container>
@@ -250,7 +267,7 @@ export default function Candidate({ candidate }) {
                       <b>Verde:</b> le dio prioridad alta al problema o está a favor de la solución. <b>Amarillo:</b> le dio prioridad media al problema o no ha definido una postura respecto a la solución. <b>Rojo:</b> le dio prioridad baja al problema o está en contra de la solución.
                     </Paragraph>
                   </TrafficLightsWrapper>
-                  <div style={{width: '200px', margin: '0 2rem'}}>
+                  <Wrapper dsWidth='200px' style={{margin: '0 2rem'}}>
                     <div>
                       <TicksWrapper>
                         <div 
@@ -279,7 +296,7 @@ export default function Candidate({ candidate }) {
                     <Paragraph mobileFontSize='base' color='black' weight='500' style={{textAlign: 'justify'}}>
                       <b>Si</b> se comprometió a resolver el problema o implementar. <b>No</b> se comprometió a resolver el problema o implementar.
                     </Paragraph>
-                  </div>
+                  </Wrapper>
                 </Wrapper>
                 <Select
                   styles={customStyles}
@@ -308,6 +325,9 @@ export default function Candidate({ candidate }) {
                 <span>
                   {questionIcon(ans.Puntaje)}
                 </span>
+                <div>
+                  {findComment(ans) ? commentIcon(findComment(ans).trim())  : null}
+                </div>
               </Li>
           )}
         </ListWrapper>
