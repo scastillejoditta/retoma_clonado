@@ -129,7 +129,7 @@ const Graph = ({ data, size, question, label}) => {
     };
 
     const ans = `QN_${question?.replace(/\D/g, "")}_P`; //transform QN_xxx_Q into QN_xxx_P for score
-    const filterData = data?.filter(d => d.fields[ans] && d.vx.toString() !== 'NaN')
+    const filterData = data?.filter(d => d.fields[ans] && d?.vx?.toString() !== 'NaN')
 
     let candidates = svgContainer
       .selectAll("svg")

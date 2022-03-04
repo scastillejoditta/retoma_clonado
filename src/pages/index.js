@@ -102,7 +102,12 @@ const Home = () => {
 
   const filterQuestions = questions?.filter(q => JSON.stringify(q.fields) !== "{}")
 
-  console.log(SelectedQuestion)
+  const questionsAsSelectOption = filterQuestions?.filter((q) => q.fields["Id (from Ejes)"][0] === axles[selectedAxleIndex]?.fields.Id)
+  .map((q) => ({
+    value: q.id,
+    label: q.fields.Pregunta,
+    name: q.fields.Name,
+  }))
 
   return (
     <>
@@ -262,16 +267,11 @@ const Home = () => {
                   id={"Questions"}
                   instanceId={"Questions"}
                   isSearchable={false}
-                  value={SelectedQuestion}
+                  value={SelectedQuestion ? SelectedQuestion : questionsAsSelectOption[selectedAxleIndex]}
                   onChange={handleChange}
                   components={{ DropdownIndicator }}
                   placeholder={"Selecciona la pregunta"}
-                  options={filterQuestions.filter((q) => q.fields["Id (from Ejes)"][0] === axles[selectedAxleIndex]?.fields.Id)
-                    .map((q) => ({
-                      value: q.id,
-                      label: q.fields.Pregunta,
-                      name: q.fields.Name,
-                    }))}
+                  options={questionsAsSelectOption}
                 />
               </SelectWrapper>
           }
@@ -288,7 +288,7 @@ const Home = () => {
             <Graph
               data={candidates.filter(c => Object.keys(c.fields).length)}
               size={{ width: 768, height: 400, margin: 0 }}
-              question={SelectedQuestion?.name}
+              question={SelectedQuestion ? SelectedQuestion.name : questionsAsSelectOption[selectedAxleIndex]?.name}
               label={SelectedQuestion?.label.trim()}
             />
           </GraphWrapper>
