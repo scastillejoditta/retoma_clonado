@@ -51,14 +51,17 @@ const JoinToUs = () => {
               >
                 Haz parte de nuestras brigadas de WhatsApp conformadas por jóvenes que creen en la protesta, la participación política y la conversación para lograr cambios.
               </Paragraph>
-              <Button
-                background='#FF00A4'
-                color='#FFD039'
-                padding='1rem'
-                margin='1rem 0'
-              >
-                Registrate aquí
-              </Button>
+              <a href='https://formularios.retoma.co/index.php/864869?lang=es' target='_blank'>
+                <Button
+                  background='#FF00A4'
+                  color='#FFD039'
+                  padding='1rem 2.5rem'
+                  margin='1rem 0'
+                  fontSize={'22px'}
+                >
+                  Registrate aquí
+                </Button>
+              </a>
             </Wrapper>
           </Container>
         </Wrapper>
@@ -156,18 +159,21 @@ const JoinToUs = () => {
             color="#00000"
             desktopMargin='2rem 0 0 0'
             desktopPadding='0 4rem'
-
+            mobilePadding='0 2rem'
           >
-            Cualquier persona colombiana que tenga entre 18 y 30 años, que crea en el poder transformador de la movilización social y la participación política
+            <b>Cualquier persona colombiana que tenga entre 18 y 30 años</b>, que crea en el poder transformador de la movilización social y la participación política
           </Paragraph>
-          <Button
-            background='#142FF4'
-            color='#FFFFFF'
-            padding='1rem'
-            margin='1rem 0'
-          >
+          <a href='https://formularios.retoma.co/index.php/864869?lang=es' target='_blank'>
+            <Button
+              background='#142FF4'
+              color='#FFFFFF'
+              padding='1rem 2.5rem'
+              margin='2rem 0'
+              fontSize='22px'
+            >
             Haz parte de Retoma
-          </Button>
+            </Button>
+          </a>
         </Wrapper>
       </Wrapper>
     </>

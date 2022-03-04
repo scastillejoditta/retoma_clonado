@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
 const OptionsWrapper = styled.section`
-  display: none;
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    flex-wrap: wrap;
+    width: 100%;
   }
 `;
 
@@ -20,7 +24,7 @@ const Option = styled.div`
 
   margin: 0 0.8rem;
 
-  background: ${props => props.bg ? '#FFCCF1' : 'white'};
+  background: ${props => props.selected ? props.bg : 'white'};
   color: ${props => props.theme.colors.black};
   border: 1px solid black;
 
@@ -29,6 +33,12 @@ const Option = styled.div`
 
   cursor: pointer;
   font-size: 12px;
+
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    width: 40%;
+    max-width: 40%;
+    margin: 0.5rem 0;
+  }
 `;
 
 const AxlesWrapper = styled.div`

@@ -8,6 +8,11 @@ const StyledButton = styled.button`
   color: ${props => props.color};
   margin: ${props => props.margin};
   padding: ${props => props.padding};
+  font-size: ${props => props.fontSize};
+
+  @media only screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    padding: 0.5rem 1rem;
+  }
 `
 
 export {StyledButton}

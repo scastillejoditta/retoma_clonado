@@ -129,7 +129,7 @@ const Candidates = () => {
                   <Wrapper>
                     <div style={{minHeight: '22rem', maxHeight: '22rem'}}>
                       <div style={{display: 'flex', justifyContent: 'center'}}>
-                        <Image src={candidate?.fields?.Foto} />
+                        <Image src={candidate?.fields?.Foto ? candidate?.fields?.Foto : '/images/motivations.png' } />
                       </div>
                       <Title 
                         dsColor='violet' 

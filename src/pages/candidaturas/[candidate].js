@@ -67,7 +67,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-const trafficLightsStyles = {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.5rem', background: '#060606'}
+const trafficLightsStyles = {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.35rem', background: '#060606'}
 
 const questionIcon = (score) => {
   switch(true) {
@@ -156,32 +156,30 @@ export default function Candidate({ candidate }) {
     if(selectedAxle) {
       return cba?.axle_id === selectedAxle?.value
     } else {
-      console.log(axlesWithQuestionsAnswered[0])
-      console.log(commentsByAxle)
       return cba?.axle_id === axlesWithQuestionsAnswered[0]?.value
     }
-  })
-
-  console.log(filterCommentsByAxle)
-
-  
+  }) 
   
   return (
     <>
     <Container>
-    <Wrapper >
+      <Wrapper 
+        dsBackground={'linear-gradient(to bottom, #FFCCF1 40%, white 40%, white 100%)'}
+      >
         <Wrapper 
           dsPadding={'4rem 6rem'}
           mbPadding={'2rem'}
-          dsBackground={'linear-gradient(to bottom, #FFCCF1 40%, white 40%, white 100%)'}
           mbBackground={'white'}
           display='flex' 
           justifyCont='flex-start' 
+          maxWidth='1024px'
+          dsMargin='0 auto'
+          dsBackground={'linear-gradient(to bottom, #FFCCF1 40%, white 40%, white 100%)'}
         >
           {loadingCandidate 
             ? <Spinner />
             : <>
-                <Wrapper dsWidth={'30%'} >
+                <Wrapper  dsWidth={'30%'} >
                   <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Image src={candidateData?.Foto} />
                   </div>
@@ -244,8 +242,8 @@ export default function Candidate({ candidate }) {
           }
         </Wrapper>
       </Wrapper>
-      <Wrapper display='flex' justifyCont='space-between'>
-        <Wrapper mbMargin={'0 2rem'} dsMargin={'0 6rem'}>
+      <Wrapper maxWidth='1024px' dsMargin='0 auto' display='flex' justifyCont='space-between'>
+        <Wrapper mbMargin={'0 2rem'}>
           {loadingQuestions 
             ? <Spinner />
             : <SectionWrapper>
@@ -265,7 +263,7 @@ export default function Candidate({ candidate }) {
                   <TrafficLightsWrapper>
                     <TrafficLights />
                     <Paragraph  mobileFontSize='base' color='black' weight='500' style={{textAlign: 'justify'}}>
-                      <b>Verde:</b> le dio prioridad alta al problema o está a favor de la solución. <b>Amarillo:</b> le dio prioridad media al problema o no ha definido una postura respecto a la solución. <b>rojo:</b> le dio prioridad baja al problema o está en contra de la solución.
+                      <b>Verde:</b> le dio prioridad alta al problema o está a favor de la solución. <b>Amarillo:</b> le dio prioridad media al problema o no ha definido una postura respecto a la solución. <b>Rojo:</b> le dio prioridad baja al problema o está en contra de la solución.
                     </Paragraph>
                   </TrafficLightsWrapper>
                   <div style={{width: '250px'}}>
@@ -277,7 +275,7 @@ export default function Candidate({ candidate }) {
                             height: 'fit-content',
                             padding: '0.5rem', 
                             background: '#060606',
-                            margin: '0 1rem'
+                            margin: '0 1rem 0 0'
                           }}
                         >
                           <Tick />
@@ -303,16 +301,13 @@ export default function Candidate({ candidate }) {
           }
         </Wrapper>
       </Wrapper>
-      <Wrapper>
+      <Wrapper maxWidth='1024px' dsMargin='0 auto' dsPadding='1rem 0'>
         <ListWrapper>
           {filterAnswersByAxle && filterAnswersByAxle
             .map((ans, idx) =>
               <Li key={idx}>
                 <Paragraph style={{lineHeight: '25px'}} desktopMargin='0 0 1rem 0' desktopFontSize='base' mobileFontSize='base' color='black' weight='normal' mobilePadding='1.5rem 1.5rem 0 1.5rem'>
                   {ans.question}:
-                </Paragraph>
-                <Paragraph style={{lineHeight: '25px'}} desktopFontSize='regular' mobileFontSize='regular' color='black' weight='900' mobilePadding='0 1.5rem 1.5rem 1.5rem'>
-                  {ans.Opcion}
                 </Paragraph>
                 <span>
                   {questionIcon(ans.Puntaje)}
@@ -322,13 +317,13 @@ export default function Candidate({ candidate }) {
         </ListWrapper>
       </Wrapper>
       
-      <Wrapper dsPadding='1rem 0' dsBackground='#FFCCF1' mbBackground='#FFCCF1'>
+      <Wrapper mbPadding='0.25rem 0 1rem 0' dsPadding='1rem 0' dsBackground='#FFCCF1' mbBackground='#FFCCF1'>
         <ListWrapper>
           {filterCommentsByAxle && 
             filterCommentsByAxle.length !== 0
             ?  filterCommentsByAxle
                 .map((cba, idx) => 
-                  <div key={idx}>
+                  <Wrapper maxWidth='1024px' dsMargin='0 auto' key={idx}>
                     <Title weight='700' color='dark' margin='2rem 0'>
                       {cba.pregunta}
                     </Title>
@@ -339,7 +334,7 @@ export default function Candidate({ candidate }) {
                     >
                       {cba.comentario}
                     </Paragraph>
-                  </div>      
+                  </Wrapper>      
               )
             : <Title weight='700' color='dark' padding='1rem' margin='2rem 0'>
                 Le candidate aún no hizo comentarios sobre este eje, por favor selecciona uno distinto.

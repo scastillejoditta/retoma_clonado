@@ -1,12 +1,13 @@
 import {useState} from "react"
 import {useRouter} from 'next/router'
-import {Wrapper} from './styles'
+import {HeaderWrapper} from './styles'
 
 // Assets
 import Retoma from "../../assets/Retoma"
 
 // Components
 import Menu from "../Menu"
+import Wrapper from '../Wrapper'
 
 const backgroundsPerPage = {
   '/': '#FFF422',
@@ -31,20 +32,25 @@ const Navbar = () => {
   const fillByPage = retomaColors[router.pathname]
   return (
     <Wrapper 
-      bg={bgs}
+      dsBackground={bgs}
+      mbBackground={bgs}
     >
-      <Retoma 
-        fill={fillByPage} 
-        bg={bgs} 
-        isMobile={showMenuInMobile}
-        style={{margin: '0 2.5rem 0 0'}}
-      />
-      <Menu 
-        showMenuInMobile={showMenuInMobile} 
-        setShowMenuInMobile={setShowMenuInMobile} 
-        bg={bgs} 
-        burgerColor={fillByPage} 
-      />
+      <HeaderWrapper 
+        bg={bgs}
+      >
+        <Retoma 
+          fill={fillByPage} 
+          bg={bgs} 
+          isMobile={showMenuInMobile}
+          style={{margin: '0 1.2rem 0 0'}}
+        />
+        <Menu 
+          showMenuInMobile={showMenuInMobile} 
+          setShowMenuInMobile={setShowMenuInMobile} 
+          bg={bgs} 
+          burgerColor={fillByPage} 
+        />
+      </HeaderWrapper>
     </Wrapper>
   );
 };

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-const Wrapper = styled.header`
+const HeaderWrapper = styled.header`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -12,9 +12,10 @@ const Wrapper = styled.header`
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     max-width: 1024px;
-    margin: 2rem auto;
+    margin: 0 auto;
+    padding: 4rem 0;
     flex-direction: initial;
   }
 `;
 
-export {Wrapper}
+export {HeaderWrapper}

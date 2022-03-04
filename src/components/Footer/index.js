@@ -30,33 +30,33 @@ const Footer = () => {
         <SecondSectionWrapper>
           <ProjectMadeByList>
             <RetomaWrapper>
-              <Title>Una iniciativa de <b>MUTANTE</b> con el apoyo en seguridad digital de Colnodo</Title>
+              <Title>Una iniciativa de <img src={'/images/mutante.png'} width='100px' style={{margin: '0 0.25rem'}} /> con el apoyo en seguridad digital de Colnodo</Title>
             </RetomaWrapper>
           </ProjectMadeByList>
         </SecondSectionWrapper>
         <SocialMediaList>
           <MediaIconsWrapper>
-            <a href='https://twitter.com/EcoFeminita' target='_blank'>
+            <a href='https://twitter.com/MutanteOrg' target='_blank'>
               <Twitter  />
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a href='https://www.facebook.com/ecofeminita' target='_blank'>
+            <a href='https://www.facebook.com/MutanteOrg/' target='_blank'>
               <Facebook  />
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a href='https://www.instagram.com/ecofeminita' target='_blank'>
+            <a href='https://www.instagram.com/mutanteorg/' target='_blank'>
               <Instagram />
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a href='https://www.youtube.com/channel/UCfykyqoI8gBCdpohn4veXCA' target='_blank'>
+            <a href='https://www.youtube.com/channel/UCE11dpRzLuTeztprBiT2shA' target='_blank'>
               <Youtube />
             </a>
           </MediaIconsWrapper>
           <MediaIconsWrapper>
-            <a href='https://www.youtube.com/channel/UCfykyqoI8gBCdpohn4veXCA' target='_blank'>
+            <a href='https://www.linkedin.com/company/mutanteorg/' target='_blank'>
               <Linkedin />
             </a>
           </MediaIconsWrapper>

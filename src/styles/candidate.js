@@ -45,12 +45,11 @@ const Li = styled.li`
   > span {
     position: absolute;
     right: -7%;
-    top: -5%;
+    top: -8%;
   }
   
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
-    max-width: 25%;
-    margin: 4rem 2rem 2rem 0;
+    max-width: 30%;
   }
 `
 
@@ -64,11 +63,10 @@ const ListWrapper = styled.ul`
   }
   margin: 0 2rem;
 
-  @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
-    margin: 0 6rem
   }
 `
 
@@ -77,13 +75,12 @@ const Image = styled.img`
   width: 225px;
   object-fit: cover;
   background-repeat: no-repeat;
-  border-radius: 50%;
 `
 
 const TrafficLightsWrapper = styled.div`
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin: 0 2rem;
+    margin: 0 4rem;
     width: 425px;
   }
 `

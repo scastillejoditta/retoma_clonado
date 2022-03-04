@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyledButton} from './styles'
 
-const Button = ({border, background, color, children, margin, padding, onClick}) => {
+const Button = ({border, fontSize, background, color, children, margin, padding, onClick}) => {
   return (
     <StyledButton 
       border={border}
@@ -9,6 +9,7 @@ const Button = ({border, background, color, children, margin, padding, onClick})
       color={color}
       margin={margin}
       padding={padding}
+      fontSize={fontSize}
       onClick={onClick}
     >
       {children}

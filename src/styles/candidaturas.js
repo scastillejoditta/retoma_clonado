@@ -89,15 +89,11 @@ const Option = styled.option`
 `
 
 const Image = styled.img`
-  height: 175px;
-  width: 175px;
+  height: 200px;
+  width: 250px;
   object-fit: cover;
-  border-radius: 50%;
 
   margin-top: -2rem;
-  margin-left: 1rem;
-
-  /* background-image: url('/images/motivations.png'); */
 `
 
 export {Image, Select, LinkWrapper, Input, Wrapper, Option}

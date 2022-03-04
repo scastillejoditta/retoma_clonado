@@ -54,17 +54,17 @@ const About = () => {
 
       <Wrapper      
         dsPosition='relative'
-        top='-5rem'
+        top='-2.5rem'
         display='flex'
         style={{
           maxWidth: "1024px",
-          margin: "2rem auto",
+          margin: "0 auto",
         }}
       >
         <Wrapper
           dsBackground='#142FF4'
           mbBackground='#142FF4'
-          dsPadding='2rem'
+          dsPadding='3rem'
           mbPadding='2rem'
           mbMargin='2rem'
           dsMargin='0'
@@ -75,6 +75,7 @@ const About = () => {
             weight='350'
             color="white"
             desktopMargin="0 0 1rem 0"
+            style={{lineHeight: '1.25'}}
           >
             En este contexto, en Mutante nos preguntamos: 
           </Paragraph>
@@ -89,7 +90,7 @@ const About = () => {
         </Wrapper>
         <Container
           desktopPadding="5rem 2.5rem"
-          mobilePadding="1.5rem"
+          mobilePadding="0 1.5rem"
           maxWidth="xs"
           dsMargin='0 2rem 0 0'
           margin='1rem'
@@ -125,7 +126,7 @@ const About = () => {
                   weight='500'
                   style={{lineHeight: '35px'}}
                 >
-                  En septiembre de 2021 convocamos a jóvenes colombianos entre 18 y 30 años que participaron del Paro Nacional a que se unieran a Retoma, red informativa para la toma de decisiones democráticas.
+                  En septiembre de 2021 convocamos a jóvenes colombianos entre 18 y 30 años que participaron del Paro Nacional a que se unieran a  <b>Retoma, Red Informativa para la Toma de Decisiones Democráticas</b>.
                 </Paragraph>
                 <Paragraph
                   mobileFontSize="customBase"
@@ -134,7 +135,7 @@ const About = () => {
                   weight='500'
                   style={{lineHeight: '35px'}}
                 >
-                  Contactamos a más de 50 organizaciones y colectivos que hicieron parte de las protestas y lanzamos una campaña en redes sociales que tuvo como resultado la apertura de un primer grupo de Whatsapp con 250 personas.
+                  Contactamos a más de 50 organizaciones y colectivos que hicieron parte de las protestas y lanzamos una campaña en redes sociales que tuvo como resultado la apertura de un primer grupo de WhatsApp con 250 personas.
                 </Paragraph>
               </div>
 

@@ -2,9 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import _ from "lodash";
 import {
   FacebookShareButton,
-  TelegramShareButton,
   TwitterShareButton,
-  LinkedinShareButton,
   WhatsappShareButton
 } from "react-share";
 
@@ -75,7 +73,7 @@ const axlesProperties = {
     color: '#00D857',
     image: '/images/mujeres-thumbnail.png'
   },
-  'Diversidad sexual y de género': {
+  'LGBTIQ+': {
     color: '#FFF422',
     image: '/images/lgbtq-thumbnail.png'
   }
@@ -83,7 +81,7 @@ const axlesProperties = {
 
 const Home = () => {
   const [selectedAxleIndex, setSelectedAxleIndex] = useState(0);
-  const [SelectedQuestion, setSelectedQuestion] = useState(null);
+  const [SelectedQuestion, setSelectedQuestion] = useState({value: 'recCZGAvjHl9VXWA8', label: "Las personas LGBTIQ+ son víctimas de discursos de odio, discriminación, amenazas y asesinatos, sobre todo en regiones donde operan grupos armados ilegales. ¿Qué prioridad le dará usted a resolver este problema en su ejercicio como congresista?", name: 'QN_014_Q'});
   const graphRef = useRef();
 
   const {data: questions, loading: loadingQuestions} = useFetch("Preguntas", [])
@@ -103,7 +101,8 @@ const Home = () => {
 
   const filterQuestions = questions?.filter(q => JSON.stringify(q.fields) !== "{}")
 
-  console.log(quotes, 'quotes')
+  console.log(SelectedQuestion)
+
   return (
     <>
       <Container dsHeight="45vh">
@@ -158,24 +157,26 @@ const Home = () => {
           ? <Spinner />
           : <OptionsWrapper>
               {axles?.map((a, index) => (
-                <Option
-                  bg={selectedAxleIndex === index}
-                  selected={selectedAxleIndex === index}
-                  onClick={() => {
-                    setSelectedQuestion(null);
-                    setSelectedAxleIndex(index);
-                  }}
-                  key={a.id}
-                >
-                  <Title
-                    weight="600"
-                    desktopMargin="0 0.8rem;"
-                    color="black"
-                    desktopFontSize="xs"
+                <>
+                  <Option
+                    bg={axlesProperties[a?.fields?.Ejes]?.color}
+                    selected={selectedAxleIndex === index}
+                    onClick={() => {
+                      setSelectedQuestion(null);
+                      setSelectedAxleIndex(index);
+                    }}
+                    key={a.id}
                   >
-                    {a.fields.Ejes}
-                  </Title>
-                </Option>
+                    <Title
+                      weight="600"
+                      desktopMargin="0 0.8rem;"
+                      color="black"
+                      desktopFontSize="xs"
+                    >
+                      {a.fields.Ejes}
+                    </Title>
+                  </Option>
+                </>
               ))}
             </OptionsWrapper>
         }
@@ -276,7 +277,6 @@ const Home = () => {
         <Wrapper
           display="flex"
           justifyCont="center"
-          mbMargin="0 4rem"
           dsMargin="0 auto"
           maxWidth="1024px"
           dsPadding="2rem 0"
@@ -323,14 +323,14 @@ const Home = () => {
                     weight='400'
                     color="white"
                   >
-                    "{q.fields.Frase}"
+                    {q.fields.Frase}
                   </Paragraph>      
                   <ShareWrapper>
                     <Share>
                       <SocialMedia>
                         <span>
                           <TwitterShareButton
-                            url={`https://feminindex.com`}
+                            url={`https://retoma.co`}
                             title={`"${q.fields.Frase}"`}
                             hashtag={"#Frases"}
                             description={"Frases"}
@@ -340,7 +340,7 @@ const Home = () => {
                         </span>
                         <span>
                           <FacebookShareButton
-                            url={`https://feminindex.com`}
+                            url={`https://retoma.co`}
                             quote={`"${q.fields.Frase}"`}
                             hashtag={"#Frases"}
                             description={"Frases"}
@@ -350,7 +350,7 @@ const Home = () => {
                         </span>
                         <span>
                           <WhatsappShareButton
-                            url={`https://feminindex.com`}
+                            url={`https://retoma.co`}
                             title={`"${q.fields.Frase}"`}
                           >
                             <Whatsapp />
@@ -390,13 +390,14 @@ const Home = () => {
             desktopPadding='0 4rem'
             mobileMargin='1rem 2rem'
           >
-            Cualquier persona colombiana que tenga entre 18 y 30 años, que crea en el poder transformador de la movilización social y la participación política
+            <b>Cualquier persona colombiana que tenga entre 18 y 30 años</b>, que crea en el poder transformador de la movilización social y la participación política
           </Paragraph>
           <Button
             background='#142FF4'
             color='#FFFFFF'
-            padding='1rem'
-            margin='1rem 0'
+            padding='1rem 2.5rem'
+            margin='2rem 0'
+            fontSize={'22px'}
           >
             Haz parte de Retoma
           </Button>
