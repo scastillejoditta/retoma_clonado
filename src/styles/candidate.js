@@ -78,9 +78,9 @@ const Image = styled.img`
 `
 
 const TrafficLightsWrapper = styled.div`
-
+  margin: 2rem;
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    margin: 0 4rem;
+    margin: 0 2rem;
     width: 425px;
   }
 `
@@ -111,7 +111,7 @@ const TicksWrapper = styled.div`
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     display: flex;
-    margin: .5rem 2rem;
+    margin: .5rem 0;
   }
 `
 

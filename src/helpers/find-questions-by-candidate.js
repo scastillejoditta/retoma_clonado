@@ -16,11 +16,11 @@ const findQuestionsByCandidate = (candidateData = {}, questionsData = [], questi
     }
   }) 
 
-  const test = options.find(opt => opt.fields.Opcion ===  candidate['QN_017_Q'])
-
   questions
     .map(q => {
       let objFound = candidate?.answers?.find(ca => ca.Name === q.fields.Name)
+
+     // const comment = `QN_${q?.replace(/\D/g, "")}_C`; //transform QN_xxx_Q into QN_xxx_P for score
 
       if(JSON.stringify(q.fields) === "{}") return
 

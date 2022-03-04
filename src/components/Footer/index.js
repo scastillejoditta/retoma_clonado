@@ -31,6 +31,7 @@ const Footer = () => {
           <ProjectMadeByList>
             <RetomaWrapper>
               <Title>Una iniciativa de <img src={'/images/mutante.png'} width='100px' style={{margin: '0 0.25rem'}} /> con el apoyo en seguridad digital de Colnodo</Title>
+              <Title>Desarrollado por: <img src={'/images/wingu.svg'} width='100px' style={{margin: '0 0.25rem'}} /></Title>
             </RetomaWrapper>
           </ProjectMadeByList>
         </SecondSectionWrapper>

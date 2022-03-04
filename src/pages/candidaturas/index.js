@@ -35,7 +35,7 @@ const Candidates = () => {
     if(corporationsArr.includes(corp)) return
     corporationsArr.push(corp)
   })
-    
+
   return (
     <>
       <Container dsHeight="45vh">
@@ -51,10 +51,8 @@ const Candidates = () => {
         >  
             <Wrapper 
               mbPadding='2rem'
-              style={{
-                maxWidth: "1200px",
-                margin: '0 auto 0 auto'
-              }}
+              dsWidth={'1024px'}
+              dsMargin='0 auto'
             >
             <Title 
               mobileFontSize="lg" 
@@ -63,6 +61,7 @@ const Candidates = () => {
               dsColor='#000000' 
               mbColor='#000000' 
               margin='0 0 1.5rem 0'
+              dsMaxWidth={'768px'}
             >
               ¿Qué opinan les candidates?
             </Title>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Router, { useRouter } from 'next/router'
+import React, {useState} from 'react';
+import { useRouter } from 'next/router'
 
 import {
   FacebookShareButton,
@@ -10,19 +10,16 @@ import {
 import Select, { components } from "react-select";
 
 import {Share, SocialMedia, Li, TrafficLightsWrapper, SectionWrapper, Image, ListWrapper, TicksWrapper} from '../../styles/candidate'
-import {BlackTwitter} from '../../assets/Icons/CandidateIcons/index'
 import DownArrow from '../../assets/Icons/Arrows/DownArrow'
 
 import Container from '../../components/Container';
 import Wrapper from '../../components/Wrapper';
 import Title from '../../components/Title';
 import Paragraph from '../../components/Paragraph';
-import Button from '../../components/Button'
 
 import Twitter from '../../assets/Icons/Twitter';
 import Facebook from '../../assets/Icons/Facebook';
 import Telegram from '../../assets/Icons/Whatsapp';
-import Linkedin from '../../assets/Icons/Linkedin';
 import GreenLight from '../../assets/Icons/GreenLight'
 import YellowLight from '../../assets/Icons/YellowLight'
 import RedLight from '../../assets/Icons/RedLight'
@@ -88,12 +85,11 @@ const customStyles = {
   }),
   container: (provided, state) => ({
     ...provided,
-    fontSize: "0.9rem",
-    fontFamily: '"Montserrat", sans-serif',
-    width: '40%',
-    "@media (max-width: 768px)": {
-      width: '100%'
-    } 
+    fontSize: "20px",
+    fontFamily: '"Supreme-Medium"',
+    fontWeight: '700',
+    minWidth: '200px',
+    margin: '4rem 2rem 0 2rem',
   }),
   control: (provided) => ({
     ...provided,
@@ -243,30 +239,18 @@ export default function Candidate({ candidate }) {
         </Wrapper>
       </Wrapper>
       <Wrapper maxWidth='1024px' dsMargin='0 auto' display='flex' justifyCont='space-between'>
-        <Wrapper mbMargin={'0 2rem'}>
+        <Wrapper>
           {loadingQuestions 
             ? <Spinner />
             : <SectionWrapper>
-                <Select
-                  styles={customStyles}
-                  id={"Questions"}
-                  instanceId={"Questions"}
-                  isSearchable={false}
-                  isSelected={selectedAxle}
-                  value={selectedAxle ? selectedAxle : axlesWithQuestionsAnswered[0]}
-                  onChange={handleChange}
-                  components={{ DropdownIndicator }}
-                  placeholder={"Selecciona la pregunta"}
-                  options={axlesWithQuestionsAnswered}
-                />
                 <Wrapper display='flex' justifyCont='flex-start' alignItems='center'>
                   <TrafficLightsWrapper>
                     <TrafficLights />
-                    <Paragraph  mobileFontSize='base' color='black' weight='500' style={{textAlign: 'justify'}}>
+                    <Paragraph  mobileFontSize='base' color='black' weight='500' desktopMargin='0.5rem 0' style={{textAlign: 'justify'}}>
                       <b>Verde:</b> le dio prioridad alta al problema o está a favor de la solución. <b>Amarillo:</b> le dio prioridad media al problema o no ha definido una postura respecto a la solución. <b>Rojo:</b> le dio prioridad baja al problema o está en contra de la solución.
                     </Paragraph>
                   </TrafficLightsWrapper>
-                  <div style={{width: '250px'}}>
+                  <div style={{width: '200px', margin: '0 2rem'}}>
                     <div>
                       <TicksWrapper>
                         <div 
@@ -297,6 +281,18 @@ export default function Candidate({ candidate }) {
                     </Paragraph>
                   </div>
                 </Wrapper>
+                <Select
+                  styles={customStyles}
+                  id={"Questions"}
+                  instanceId={"Questions"}
+                  isSearchable={false}
+                  isSelected={selectedAxle}
+                  value={selectedAxle ? selectedAxle : axlesWithQuestionsAnswered[0]}
+                  onChange={handleChange}
+                  components={{ DropdownIndicator }}
+                  placeholder={"Selecciona la pregunta"}
+                  options={axlesWithQuestionsAnswered}
+                />
               </SectionWrapper>
           }
         </Wrapper>
@@ -306,7 +302,7 @@ export default function Candidate({ candidate }) {
           {filterAnswersByAxle && filterAnswersByAxle
             .map((ans, idx) =>
               <Li key={idx}>
-                <Paragraph style={{lineHeight: '25px'}} desktopMargin='0 0 1rem 0' desktopFontSize='base' mobileFontSize='base' color='black' weight='normal' mobilePadding='1.5rem 1.5rem 0 1.5rem'>
+                <Paragraph style={{lineHeight: '25px'}} desktopMargin='0 0 1rem 0' desktopFontSize='base' mobileFontSize='base' color='black' weight='normal' desktopPadding='2rem 4rem 1rem 2rem' mobilePadding='1rem 3rem 3rem 1rem'>
                   {ans.question}:
                 </Paragraph>
                 <span>

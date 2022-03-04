@@ -393,15 +393,20 @@ const Home = () => {
           >
             <b>Cualquier persona colombiana que tenga entre 18 y 30 años</b>, que crea en el poder transformador de la movilización social y la participación política
           </Paragraph>
-          <Button
-            background='#142FF4'
-            color='#FFFFFF'
-            padding='1rem 2.5rem'
-            margin='2rem 0'
-            fontSize={'22px'}
+          <a 
+            href='https://formularios.retoma.co/index.php/864869?lang=es' 
+            target='_blank'
           >
-            Haz parte de Retoma
-          </Button>
+            <Button
+              background='#142FF4'
+              color='#FFFFFF'
+              padding='1rem 2.5rem'
+              margin='2rem 0'
+              fontSize={'22px'}
+            >
+              Haz parte de Retoma
+            </Button>
+          </a> 
         </Wrapper>
       </Wrapper>
       <Container background="white">

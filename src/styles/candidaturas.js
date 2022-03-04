@@ -12,11 +12,12 @@ const Wrapper = styled.section`
 `;
 
 const Input = styled.input`
-  background: ${props => props.theme.colors.violet};
-  border: none;
+  background: transparent;
+  border: 2px solid #000000;
 
-  color: ${props => props.theme.colors.white};
-  font-size: ${props => props.theme.fontSizes.base};
+  color: ${props => props.theme.colors.black};
+  font-size: ${props => props.theme.fontSizes.regular};
+  font-weight: 700;
 
   width: 100%;
   padding: 1rem 0;
@@ -26,9 +27,9 @@ const Input = styled.input`
   text-indent: 10px;
 
   &::placeholder {
-    color: ${props => props.theme.colors.white};
-    font-size: ${props => props.theme.fontSizes.base};
-    font-weight: normal;
+    color: ${props => props.theme.colors.black};
+    font-size: ${props => props.theme.fontSizes.regular};
+    font-weight: 700;
   }
 
   :focus::-webkit-input-placeholder {
@@ -36,7 +37,7 @@ const Input = styled.input`
   }
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    max-width: 30%;
+    max-width: 40%;
   }
 `
 
@@ -56,11 +57,11 @@ const LinkWrapper = styled.a`
 `
 
 const Select = styled.select`
-  background: ${props => props.theme.colors.violet};
-  border: none;
+  background: transparent;
+  border: 2px solid #000000;
 
-  color: ${props => props.theme.colors.white};
-  font-size: ${props => props.theme.fontSizes.base};
+  color: ${props => props.theme.colors.black};
+  font-size: ${props => props.theme.fontSizes.regular};
 
 
   width: 100%;
@@ -71,8 +72,8 @@ const Select = styled.select`
   text-indent: 10px;
 
   &::placeholder {
-    color: ${props => props.theme.colors.white};
-    font-size: ${props => props.theme.fontSizes.base};
+    color: ${props => props.theme.colors.black};
+    font-size: ${props => props.theme.fontSizes.regular};
     font-weight: normal;
   }
 
@@ -81,7 +82,7 @@ const Select = styled.select`
   }
 
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
-    max-width: 25%;
+    max-width: 20%;
   }
 `
 
@@ -89,8 +90,8 @@ const Option = styled.option`
 `
 
 const Image = styled.img`
-  height: 200px;
-  width: 250px;
+  height: 170px;
+  width: 175px;
   object-fit: cover;
 
   margin-top: -2rem;
