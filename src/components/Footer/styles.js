@@ -31,7 +31,7 @@ const SecondSectionWrapper = styled.div`
 
 const RetomaWrapper = styled.div``;
 
-const Title = styled.h3`
+const Title = styled.p`
   color: ${(props) => props.theme.colors.white};
   font-size: ${(props) => props.theme.fontSizes.customBase};
   font-weight: 500;

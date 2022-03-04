@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Image, Select, LinkWrapper, Input, Option} from '../../styles/candidaturas'
+import React, {useState, useEffect} from 'react';
+import {StyledImage, Select, LinkWrapper, Input, Option} from '../../styles/candidaturas'
 import Link from 'next/link';
 
 import Container from '../../components/Container';
@@ -35,6 +35,18 @@ const Candidates = () => {
     if(corporationsArr.includes(corp)) return
     corporationsArr.push(corp)
   })
+
+  useEffect(() => {
+    // Preload images for performance benefits.
+    const candidatesPhotos = filteredCandidates.map(fc => fc.fields.Foto)
+    const preloadedData = () => { candidatesPhotos.map(photo => {
+        let im = new Image();
+        im.src = photo?.fileName;
+        return im
+      })
+    };
+    preloadedData();
+  }, [filteredCandidates])
 
   return (
     <>
@@ -128,7 +140,7 @@ const Candidates = () => {
                   <Wrapper>
                     <div style={{minHeight: '22rem', maxHeight: '22rem'}}>
                       <div style={{display: 'flex', justifyContent: 'center'}}>
-                        <Image src={candidate?.fields?.Foto ? candidate?.fields?.Foto : '/images/motivations.png' } />
+                        <StyledImage src={candidate?.fields?.Foto ? candidate?.fields?.Foto : '/images/motivations.png' } />
                       </div>
                       <Title 
                         dsColor='violet' 

@@ -4,7 +4,7 @@ const findAxlesWithQuestionsAnswered = (axles = [], newCandidate = {}) => {
   const axlesWihQuestionsAnswered = axlesCopy.map(ax => {
     const answers = [];
     candidatesCopy?.questions?.map(cn => {
-      if(ax.fields.Pregunta_front.includes(cn.question)) {
+      if(ax?.fields?.Pregunta_front?.includes(cn.question)) {
         answers.push(cn)
       }
     })

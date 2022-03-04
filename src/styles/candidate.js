@@ -87,6 +87,11 @@ const Image = styled.img`
 
 const TrafficLightsWrapper = styled.div`
   margin: 2rem;
+
+  > div > span {
+    margin: 0 0.5rem;
+  }
+
   @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin: 0 2rem;
     width: 425px;

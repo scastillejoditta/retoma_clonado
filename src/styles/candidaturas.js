@@ -89,7 +89,7 @@ const Select = styled.select`
 const Option = styled.option`
 `
 
-const Image = styled.img`
+const StyledImage = styled.img`
   height: 170px;
   width: 175px;
   object-fit: cover;
@@ -97,4 +97,4 @@ const Image = styled.img`
   margin-top: -2rem;
 `
 
-export {Image, Select, LinkWrapper, Input, Wrapper, Option}
+export {StyledImage, Select, LinkWrapper, Input, Wrapper, Option}

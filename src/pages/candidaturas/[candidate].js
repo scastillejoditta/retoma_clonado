@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import {
@@ -9,7 +10,7 @@ import {
 
 import Select, { components } from "react-select";
 
-import {Share, SocialMedia, Li, TrafficLightsWrapper, SectionWrapper, Image, ListWrapper, TicksWrapper} from '../../styles/candidate'
+import {Share, SocialMedia, Li, TrafficLightsWrapper, SectionWrapper, StyledImage, ListWrapper, TicksWrapper} from '../../styles/candidate'
 import DownArrow from '../../assets/Icons/Arrows/DownArrow'
 
 import Container from '../../components/Container';
@@ -24,7 +25,6 @@ import GreenLight from '../../assets/Icons/GreenLight'
 import YellowLight from '../../assets/Icons/YellowLight'
 import RedLight from '../../assets/Icons/RedLight'
 import Spinner from '../../assets/Icons/Spinner'
-import TrafficLights from '../../assets/Icons/TrafficLights'
 import Tick from '../../assets/Icons/Tick'
 import Cross from '../../assets/Icons/Cross'
 
@@ -64,7 +64,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-const trafficLightsStyles = {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.35rem', background: '#060606'}
+const trafficLightsStyles = {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.35rem'}
 const tickOrCrossStyles = {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.7rem', background: '#060606'}
 
 const questionIcon = (score) => {
@@ -194,7 +194,12 @@ export default function Candidate({ candidate }) {
             : <>
                 <Wrapper  dsWidth={'30%'} >
                   <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <Image src={candidateData?.Foto} />
+                    <Image
+                      src={candidateData?.Foto}
+                      width={175}
+                      height={175}
+                      style={{objectFit: 'cover', marginTop: '-2rem'}}
+                    /> 
                   </div>
                   <SocialMedia style={{display: 'flex', justifyContent: 'center', margin: '0.75rem 1rem'}}>
                     <a 
@@ -243,7 +248,7 @@ export default function Candidate({ candidate }) {
                     </span>
                     <span>
                       <WhatsappShareButton
-                        url={`https://feminindex.com${router.asPath}`}
+                        url={`https://retoma.co${router.asPath}`}
                         title={`Mira el puntaje que obtuvo ${candidateData?.Nombre} en cuestiones de género!`}
                       >
                         <Telegram />
@@ -262,7 +267,17 @@ export default function Candidate({ candidate }) {
             : <SectionWrapper>
                 <Wrapper display='flex' justifyCont='flex-start' alignItems='center'>
                   <TrafficLightsWrapper>
-                    <TrafficLights />
+                    <div>
+                      <span>
+                        <GreenLight />
+                      </span>
+                      <span>
+                        <YellowLight />
+                      </span>
+                      <span>
+                        <RedLight />
+                      </span>
+                    </div>
                     <Paragraph  mobileFontSize='base' color='black' weight='500' desktopMargin='0.5rem 0' style={{textAlign: 'justify'}}>
                       <b>Verde:</b> le dio prioridad alta al problema o está a favor de la solución. <b>Amarillo:</b> le dio prioridad media al problema o no ha definido una postura respecto a la solución. <b>Rojo:</b> le dio prioridad baja al problema o está en contra de la solución.
                     </Paragraph>
@@ -333,7 +348,7 @@ export default function Candidate({ candidate }) {
         </ListWrapper>
       </Wrapper>
       
-      <Wrapper mbPadding='0.25rem 0 1rem 0' dsPadding='1rem 0' dsBackground='#FFCCF1' mbBackground='#FFCCF1'>
+      <Wrapper mbPadding='0.25rem 0 1.5rem 0' dsPadding='1rem 0 3rem 0' dsBackground='#FFCCF1' mbBackground='#FFCCF1'>
         <ListWrapper>
           {filterCommentsByAxle && 
             filterCommentsByAxle.length !== 0
