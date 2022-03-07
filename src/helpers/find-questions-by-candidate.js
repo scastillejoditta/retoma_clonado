@@ -22,8 +22,6 @@ const findQuestionsByCandidate = (candidateData = {}, questionsData = [], questi
     }
   }) 
 
-  console.log(commentsArr, 'comments')
-
   options.map(opt => {
     if(opt.fields.Opcion === candidate[opt.fields.Name]) {
       optionsArr.push(opt.fields)

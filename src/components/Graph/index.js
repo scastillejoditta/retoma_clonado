@@ -5,6 +5,9 @@ import {isMobileOnly} from "react-device-detect";
 
 import {Circle, Reference, References, GraphScroll, SvgWrapper} from './styles'
 import Paragraph from "../../components/Paragraph";
+import Spinner from '../../assets/Icons/Spinner'
+
+import {useFetch} from '../../hooks/useFetch'
 
 const xAxles = {
   "QN_001_Q": ['Baja', 'Media', 'Alta'],
@@ -38,11 +41,26 @@ const xAxles = {
   'QN_030_Q': ['Baja', 'Media', 'Alta'],
 }
 
-const Graph = ({ data, size, question, label}) => {
+const Graph = ({ data, size, question}) => {
+  const {data: politicalParties, loading: loadingPoliticalParties} = useFetch('Partidos_Politicos', [])
+  const {data: questionsOptions, loading: loadingQuestionsOptions} = useFetch('Preguntas_Opciones', [])
+  
   const svgRef = useRef(null);
   const { width, height, margin } = size;
   const svgWidth = width - margin * 2;
   const svgHeight = height;
+
+  const questionsWithArrayOfOptionsByQuestion = questionsOptions.reduce((acc, curr) => {
+    const {Name, Opcion} = curr.fields
+    acc[Name] ??= {Name: Name, Opcion: []};
+    if(Array.isArray(Opcion)) // if it's array type then concat 
+      acc[Name].Opcion = acc[Name].Opcion.concat(Opcion);
+    else
+      acc[Name].Opcion.push(Opcion);
+    
+    return acc;
+  }, {});
+
 
   useEffect(() => {
     const svgContainer = d3.select(svgRef.current);
@@ -51,7 +69,7 @@ const Graph = ({ data, size, question, label}) => {
     const x = d3.scaleLinear().range([100, width - 100]);
     x.domain([-10, 10]);
     let tickLabels = [];
-    tickLabels[1] = question ? xAxles[question] : ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+    tickLabels[1] = question ? questionsWithArrayOfOptionsByQuestion[question].Opcion : ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
 
     svgContainer
       .attr("height", svgHeight)
@@ -150,38 +168,9 @@ const Graph = ({ data, size, question, label}) => {
       .style("position", "relative")
       .attr("r", isMobileOnly ? 10 : 15)
       .attr("fill", (d) => {
-        switch (d.fields.Partido_politico) {
-          case "Partido Alianza verde":
-            return "#00D857";
-          case "Alianza Verde":
-            return "#8CDDD3";
-          case "Estamos Listas Colombia":
-            return "#FF00A4";
-          case "Coalición Centro Esperanza":
-            return "#64FFA3";
-          case "Partido de la U":
-            return "#FFF422";
-          case "Coalición Alianza Verde Centro Esperanza":
-            return "#999999";
-          case "Cambio Radical":
-            return "#142FF4";
-          case "Partido de la Unión por la gente":
-            return "#FFF422";
-          case "Pacto Histórico":
-            return "#7E3BFF";
-          case "Partido Liberal Colombiano":
-            return "#FF2928";
-          case "Fuerza Ciudadana":
-            return "#FF9D00";
-          case "Nuevo Liberalismo":
-            return "#FFCCF1";
-          case "Centro Democrático":
-            return "#839EFF";
-            case "Gente en Movimiento":
-            return "#00AA45";
-          default:
-            return "black";
-        }
+        const politicalParty = d.fields.Partido_politico
+        const politicalPartyObj = politicalParties.find(pp => pp.fields.Nombre === politicalParty).fields
+        return politicalPartyObj['Color']
       })
 
       .on("mouseover", (d, i) => {
@@ -227,32 +216,9 @@ const Graph = ({ data, size, question, label}) => {
           .style("top", `${d.path[0].cy.animVal.value + 5}px`)
           .style("background-color", () => {
             const politicalParty = d.path[0].__data__.fields.Partido_politico
-            switch (politicalParty) {
-              case "Alianza Verde":
-                return "#8CDDD3";
-              case "Estamos Listas Colombia":
-                return "#FF00A4";
-              case "Coalición Centro Esperanza":
-                return "#64FFA3";
-              case "Partido de la U":
-                return "#FFF422";
-              case "Cambio Radical":
-                return "#142FF4";
-              case "Pacto Histórico":
-                return "#7E3BFF";
-              case "Partido Liberal Colombiano":
-                return "#FF2928";
-              case "Fuerza Ciudadana":
-                return "#FF9D00";
-              case "Nuevo Liberalismo":
-                return "#FFCCF1";
-              case "Centro Democrático":
-                return "#839EFF";
-              case "Gente en Movimiento":
-                return "#00AA45";
-              default:
-                return "black";
-            }
+
+            const politicalPartyObj = politicalParties.find(pp => pp.fields.Nombre === politicalParty).fields
+            return politicalPartyObj['Color']
           });
       });
 
@@ -275,72 +241,14 @@ const Graph = ({ data, size, question, label}) => {
       </SvgWrapper>
       <GraphScroll>*Deslizarse a lo ancho</GraphScroll>
       <References>
-        <Reference>
-          <Circle color={"#8CDDD3"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Alianza Verde
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#FF00A4"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Estamos Listas Colombia
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#64FFA3"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Coalición Centro Esperanza
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#FFF422"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Partido de la U
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#142FF4"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Cambio Radical
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#7E3BFF"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Pacto Histórico
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#FF2928"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Partido Liberal Colombiano
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#FF9D00"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Fuerza Ciudadana
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#FFCCF1"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Nuevo Liberalismo
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#839EFF"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Centro Democrático
-          </Paragraph>
-        </Reference>
-        <Reference>
-          <Circle color={"#00AA45"} />
-          <Paragraph color="black" desktopFontSize="xs">
-            Gente en Movimiento
-          </Paragraph>
-        </Reference>
+        {politicalParties?.map(pp =>
+          <Reference>
+            <Circle color={pp.fields.Color} />
+            <Paragraph color="black" desktopFontSize="xs">
+              {pp?.fields?.Nombre}
+            </Paragraph>
+          </Reference>
+        )}   
       </References>
     </>
   );

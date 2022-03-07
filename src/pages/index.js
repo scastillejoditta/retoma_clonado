@@ -173,7 +173,7 @@ const Home = () => {
               {axles?.map((a, index) => (
                 <>
                   <Option
-                    bg={axlesProperties[a?.fields?.Ejes]?.color ? axlesProperties[a?.fields?.Ejes]?.color : 'white'}
+                    bg={a.fields.Color ? a.fields.Color : 'white'}
                     selected={selectedAxleIndex === index}
                     onClick={() => {
                       setSelectedQuestion(null);
