@@ -123,10 +123,10 @@ const Candidates = () => {
           </Wrapper>
         </Wrapper>
       </Container>
-      <Container dsMargin='2rem 6rem'>
+      <Container>
         {loadingCandidates 
           ? <Spinner />
-          : <Container display='flex' justifyCont='flex-start' flexWrap='wrap' dsMargin='0 6rem'>
+          : <Container display='flex' justifyCont='center' flexWrap='wrap'>
               {filteredCandidates.map((candidate) =>
                 <Container  
                   dsWidth='20%' 
@@ -138,7 +138,7 @@ const Candidates = () => {
                   key={candidate.id}
                 >
                   <Wrapper>
-                    <div style={{minHeight: '22rem', maxHeight: '22rem'}}>
+                    <div style={{minHeight: '22rem'}}>
                       <div style={{display: 'flex', justifyContent: 'center'}}>
                         <StyledImage src={candidate?.fields?.Foto ? candidate?.fields?.Foto : '/images/motivations.png' } />
                       </div>
