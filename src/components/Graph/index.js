@@ -44,22 +44,23 @@ const xAxles = {
 const Graph = ({ data, size, question}) => {
   const {data: politicalParties, loading: loadingPoliticalParties} = useFetch('Partidos_Politicos', [])
   const {data: questionsOptions, loading: loadingQuestionsOptions} = useFetch('Preguntas_Opciones', [])
-  
   const svgRef = useRef(null);
   const { width, height, margin } = size;
   const svgWidth = width - margin * 2;
   const svgHeight = height;
 
-  const questionsWithArrayOfOptionsByQuestion = questionsOptions.reduce((acc, curr) => {
-    const {Name, Opcion} = curr.fields
-    acc[Name] ??= {Name: Name, Opcion: []};
-    if(Array.isArray(Opcion)) // if it's array type then concat 
-      acc[Name].Opcion = acc[Name].Opcion.concat(Opcion);
-    else
-      acc[Name].Opcion.push(Opcion);
+  // const result = questionsOptions.reduce((acc, curr) => {
+  //   const { Name, Opcion } = curr.fields 
+  //   acc[Name] ??= {Name: Name, Opcion: []};
+  //   if(Array.isArray(Opcion)) // if it's array type then concat 
+  //     acc[Name].Opcion = acc[Name].Opcion.concat(Opcion);
+  //   else
+  //     acc[Name].Opcion.push(Opcion);
     
-    return acc;
-  }, {});
+  //   return acc;
+  // }, {});
+
+  // console.log(result, 'output')
 
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const Graph = ({ data, size, question}) => {
     const x = d3.scaleLinear().range([100, width - 100]);
     x.domain([-10, 10]);
     let tickLabels = [];
-    tickLabels[1] = question ? questionsWithArrayOfOptionsByQuestion[question].Opcion : ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
+    tickLabels[1] = question ? xAxles[question] : ['En contra', 'No he definido mi posición/No tengo una posición', 'A favor'],
 
     svgContainer
       .attr("height", svgHeight)
