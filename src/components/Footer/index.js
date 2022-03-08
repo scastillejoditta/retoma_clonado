@@ -30,7 +30,7 @@ const Footer = () => {
         <SecondSectionWrapper>
           <ProjectMadeByList>
             <RetomaWrapper>
-              <Title>Una iniciativa de <a href='https://www.mutante.org/' target='_blank'><img src={'/images/mutante.png'} width='100px' style={{margin: '0 0.25rem'}} /></a> con el apoyo de Luminate y NED y la guía de Colnodo en seguridad digital.</Title>
+              <Title>Una iniciativa de <a href='https://www.mutante.org/' target='_blank'><img src={'/images/mutante.png'} width='100px' style={{margin: '0 0.25rem'}} /></a> con el apoyo de <img src={'/images/luminate.png'} width='100px' style={{position: 'relative', top: '4px', margin: '0 0.25rem'}} /> y <img src={'/images/ned.png'} width='100px' style={{position: 'relative', top: '4px', margin: '0 0.25rem'}} /> y la guía de Colnodo en seguridad digital.</Title>
               <Title style={{display: 'flex'}}>Desarrollado por <a href='https://www.winguweb.org/' target='_blank'><img src={'/images/wingu.svg'} width='100px' style={{margin: '0 0.75rem'}} /></a></Title>
             </RetomaWrapper>
           </ProjectMadeByList>
