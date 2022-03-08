@@ -59,6 +59,7 @@ function MyApp({ Component, pageProps }) {
       <meta name="author" content="MUTANTE - https://www.mutante.org/sobre-mutante/quienes-somos" />
       <meta name="keywords" content="Movilización, Transformación social, Incidencia política, Elecciones Colombia, Prosperidad social" />
       <meta name="copyright" content="MUTANTE" />
+      <meta name="facebook-domain-verification" content="j208yo7j1jh7f7vi0drlh7wk9mwth5" />
       <title>Retoma :: Red Informativa para la Toma de decisiones Democráticas</title>
       <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
